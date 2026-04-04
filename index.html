@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damodar Dhakal | PhD Candidate & Food Scientist</title>
+    <title>Aashma Bidari | Software Engineer & Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,226 +11,295 @@
             scroll-behavior: smooth;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
             animation: fadeIn 1s ease-out forwards;
         }
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans">
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-10 top-0">
-        <div class="max-w-6xl mx-auto px-4">
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 font-bold text-xl text-blue-600">
-                    Damodar Dhakal
+                <div class="flex-shrink-0 font-bold text-2xl text-indigo-600 tracking-tight">
+                    AB.
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-blue-600 transition">Home</a>
-                    <a href="#about" class="hover:text-blue-600 transition">About</a>
-                    <a href="#research" class="hover:text-blue-600 transition">Research</a>
-                    <a href="#publications" class="hover:text-blue-600 transition">Publications</a>
-                    <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+                    <a href="#home" class="text-slate-600 hover:text-indigo-600 font-medium transition">Home</a>
+                    <a href="#about" class="text-slate-600 hover:text-indigo-600 font-medium transition">About</a>
+                    <a href="#skills" class="text-slate-600 hover:text-indigo-600 font-medium transition">Skills</a>
+                    <a href="#projects" class="text-slate-600 hover:text-indigo-600 font-medium transition">Projects</a>
+                    <a href="#contact" class="text-slate-600 hover:text-indigo-600 font-medium transition">Contact</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-slate-600 hover:text-indigo-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-2">
-            <a href="#home" class="block text-gray-600 hover:text-blue-600 py-2 font-medium">Home</a>
-            <a href="#about" class="block text-gray-600 hover:text-blue-600 py-2 font-medium">About</a>
-            <a href="#research" class="block text-gray-600 hover:text-blue-600 py-2 font-medium">Research</a>
-            <a href="#publications" class="block text-gray-600 hover:text-blue-600 py-2 font-medium">Publications</a>
-            <a href="#contact" class="block text-gray-600 hover:text-blue-600 py-2 font-medium">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-2">
+            <a href="#home" class="block text-slate-600 hover:text-indigo-600 py-2 font-medium">Home</a>
+            <a href="#about" class="block text-slate-600 hover:text-indigo-600 py-2 font-medium">About</a>
+            <a href="#skills" class="block text-slate-600 hover:text-indigo-600 py-2 font-medium">Skills</a>
+            <a href="#projects" class="block text-slate-600 hover:text-indigo-600 py-2 font-medium">Projects</a>
+            <a href="#contact" class="block text-slate-600 hover:text-indigo-600 py-2 font-medium">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in">Damodar Dhakal</h1>
-            <p class="text-xl md:text-2xl font-light mb-8">PhD Candidate at Monash University | Food Scientist | Research Associate</p>
-            <div class="flex justify-center space-x-4">
-                <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg">Get In Touch</a>
-                <a href="#research" class="border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition">View My Work</a>
+    <header id="home" class="min-h-screen flex items-center pt-16 bg-white overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold text-indigo-600 bg-indigo-50 rounded-full mb-4">Available for opportunities</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 leading-tight">
+                        Hi, I'm <span class="text-indigo-600">Aashma Bidari</span>
+                    </h1>
+                    <p class="text-xl text-slate-600 mb-8 max-w-lg leading-relaxed">
+                        A passionate Software Engineer dedicated to building exceptional digital experiences that are functional, beautiful, and accessible.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-lg font-bold hover:border-indigo-600 hover:text-indigo-600 transition">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block relative">
+                    <div class="absolute -top-20 -right-20 w-80 h-80 bg-indigo-100 rounded-full blur-3xl opacity-50"></div>
+                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+                    <div class="relative z-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl aspect-square flex items-center justify-center shadow-2xl">
+                        <i class="fas fa-code text-[120px] text-white opacity-20"></i>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                             <div class="text-white text-center p-8">
+                                <span class="block text-6xl mb-4">💻</span>
+                                <p class="text-lg font-medium opacity-90">Building the future, one line of code at a time.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3">
-                    <div class="w-56 h-56 bg-gray-200 rounded-full mx-auto flex items-center justify-center overflow-hidden border-4 border-blue-100 shadow-xl">
-                         <i class="fas fa-user-tie text-9xl text-gray-400"></i>
-                         <!-- Placeholder for actual photo -->
-                    </div>
-                </div>
-                <div class="md:w-2/3 text-lg leading-relaxed text-gray-700">
-                    <p class="mb-4">
-                        I am currently in the second year of my PhD program in the Department of Chemical and Biological Engineering at <strong>Monash University</strong>, Australia. My research is dedicated to pioneering <strong>plant-based dairy mimics</strong>, particularly yoghurt analogues.
+    <section id="about" class="section-padding bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-8 rounded-2xl shadow-sm">
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-600">My Journey</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed text-lg">
+                        I am a software engineer with a strong foundation in computer science and a passion for creating impactful software solutions. I enjoy tackling complex problems and turning them into simple, elegant code.
                     </p>
-                    <p class="mb-4">
-                        With a Master's degree in Food Engineering and Bioprocess Technology from the <strong>Asian Institute of Technology (AIT)</strong> and over a decade of professional experience, I bring a wealth of knowledge in food chemistry, analysis, and processing. My work involves exploring how probiotic cultures and various plant proteins influence the molecular characterization and sensory attributes of dairy alternatives.
-                    </p>
-                    <p>
-                        I have previously served as a Research Associate at AIT and have contributed significantly to agricultural research in Nepal, focusing on improving crop performance, shelf-life, and food quality.
+                    <p class="text-slate-600 leading-relaxed text-lg">
+                        With a focus on modern web technologies, I strive to stay at the forefront of the industry, constantly learning and adapting to new challenges. Whether it's front-end polish or back-end architecture, I'm always eager to dive in and build something great.
                     </p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="py-20 bg-gray-100">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Current Research Focus</h2>
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-l-8 border-blue-600">
-                <h3 class="text-2xl font-bold mb-4 text-blue-900">Design rules of Plant-Based Dairy Mimic (Yoghurt Analogue)</h3>
-                <p class="text-gray-600 mb-6 italic text-lg">Supervised by A/Prof. Sushil Dhittal, Dr. Tayyaba Younus, and Dr. Ram Bhusal</p>
-                <p class="mb-6 text-gray-700 text-lg">
-                    This thesis explores how different probiotic cultures and plant-based proteins (such as lupin and oat) influence the texture, taste, nutrition, and health benefits of plant-based yoghurt. By studying the interaction between ingredients and microbes during fermentation, we aim to develop sustainable and nutritious alternatives that mimic traditional dairy products.
-                </p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i class="fas fa-microscope text-blue-600 text-xl"></i>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-indigo-100 p-3 rounded-lg text-indigo-600">
+                            <i class="fas fa-graduation-cap text-xl"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-blue-900">Molecular Characterization</h4>
-                            <p class="text-gray-600 text-sm">Analyzing product formation and structural changes at the molecular level.</p>
+                            <h4 class="font-bold text-lg">Education</h4>
+                            <p class="text-slate-600">Bachelor of Science in Computer Science</p>
                         </div>
                     </div>
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i class="fas fa-vial text-blue-600 text-xl"></i>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-indigo-100 p-3 rounded-lg text-indigo-600">
+                            <i class="fas fa-briefcase text-xl"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-blue-900">Probiotic Influence</h4>
-                            <p class="text-gray-600 text-sm">Investigating the impact of probiotic cultures on sensory attributes and metabolite formation.</p>
+                            <h4 class="font-bold text-lg">Experience</h4>
+                            <p class="text-slate-600">Open to new opportunities and collaborations.</p>
                         </div>
                     </div>
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-indigo-100 p-3 rounded-lg text-indigo-600">
+                            <i class="fas fa-heart text-xl"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-blue-900">Rheology & Stability</h4>
-                            <p class="text-gray-600 text-sm">Focusing on proteolytic activity, texture analysis, and storage stability.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                            <i class="fas fa-leaf text-blue-600 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-blue-900">Sustainable Food Science</h4>
-                            <p class="text-gray-600 text-sm">Developing consumer-friendly, allergen-reduced plant-based alternatives.</p>
+                            <h4 class="font-bold text-lg">Interests</h4>
+                            <p class="text-slate-600">Web Development, UI/UX Design, Open Source contributor.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications" class="py-20 bg-white">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Selected Publications</h2>
-            <div class="grid gap-6">
-                <div class="p-6 border rounded-xl hover:shadow-md transition bg-gray-50">
-                    <h4 class="text-xl font-bold text-blue-700 mb-2">Design rules of Plant-Based Dairy Mimic (Yoghurt Analogue): Product Formulation, Molecular Characterization</h4>
-                    <p class="text-gray-500 mb-2">PhD Thesis, Monash University, 2026</p>
-                    <p class="text-gray-700 text-sm">Explores the influence of probiotic cultures and lupin protein on oat-lupin based yoghurt alternatives.</p>
-                </div>
-                <div class="p-6 border rounded-xl hover:shadow-md transition">
-                    <h4 class="text-xl font-bold text-blue-700 mb-2">Effect of Organic and Inorganic Sources of Nitrogen on Performance of Hybrid Potato Seed (HPS II/67) in Chitwan</h4>
-                    <p class="text-gray-500 mb-2">Article, 2020 | Nepal Journal of Multidisciplinary Research</p>
-                    <p class="text-gray-700 text-sm">Evaluating the impact of nitrogen sources on ware potato production.</p>
-                </div>
-                <div class="p-6 border rounded-xl hover:shadow-md transition">
-                    <h4 class="text-xl font-bold text-blue-700 mb-2">Shelf-Life and Quality of Cauliflower (Brassica Oleracea L. Var Botrytis) as Affected by the Type of Polymeric Films and Duration of Modified Atmosphere Packaging</h4>
-                    <p class="text-gray-500 mb-2">Article, 2018</p>
-                </div>
-                <div class="p-6 border rounded-xl hover:shadow-md transition">
-                    <h4 class="text-xl font-bold text-blue-700 mb-2">Evaluation of Tomato Hybrids for Yield Attributes under Khumaltar Condition</h4>
-                    <p class="text-gray-500 mb-2">Article, 2018</p>
-                </div>
-                <div class="p-6 border rounded-xl hover:shadow-md transition">
-                    <h4 class="text-xl font-bold text-blue-700 mb-2">Evaluation of vermicompost and chemical fertilizers on performance of Pak choi and soil biological process</h4>
-                    <p class="text-gray-500 mb-2">Article, 2018</p>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://scholar.google.com/citations?user=Gp2Q4C4AAAAJ" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold border-b-2 border-blue-600 pb-1">
-                    <i class="fab fa-google-scholar mr-2"></i> View Full List on Google Scholar
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="py-20 bg-blue-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-12 text-white">Skills & Expertise</h2>
-            <div class="flex flex-wrap justify-center gap-4 text-lg">
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Food Chemistry</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Food Processing</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Molecular Characterization</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Rheology</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Sensory Analysis</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Bioprocess Technology</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Agricultural Science</span>
-                <span class="bg-blue-800 px-4 py-2 rounded-full border border-blue-700">Product Formulation</span>
+    <section id="skills" class="section-padding bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
+                <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-js text-4xl text-yellow-500 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">JavaScript</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-react text-4xl text-blue-400 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">React</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-node-js text-4xl text-green-600 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">Node.js</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-python text-4xl text-blue-600 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">Python</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fas fa-database text-4xl text-slate-600 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">SQL / NoSQL</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-git-alt text-4xl text-orange-600 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">Git</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fab fa-css3-alt text-4xl text-blue-500 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">Tailwind CSS</h4>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-xl hover:shadow-md transition text-center group">
+                    <i class="fas fa-cloud text-4xl text-sky-500 mb-4 group-hover:scale-110 transition"></i>
+                    <h4 class="font-bold">Cloud (AWS/GCP)</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                         <i class="fas fa-shopping-cart text-5xl text-indigo-300 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Platform</h3>
+                        <p class="text-slate-600 mb-4 text-sm">A full-stack e-commerce solution with real-time inventory management and secure payments.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">React</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">Node.js</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-bold hover:text-indigo-800 transition flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                         <i class="fas fa-tasks text-5xl text-blue-300 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+                        <p class="text-slate-600 mb-4 text-sm">A collaborative task tracking tool with team workspaces and deadline notifications.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">Vue.js</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">Firebase</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">Tailwind</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-bold hover:text-indigo-800 transition flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group">
+                    <div class="h-48 bg-purple-100 flex items-center justify-center">
+                         <i class="fas fa-chart-line text-5xl text-purple-300 group-hover:scale-110 transition"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+                        <p class="text-slate-600 mb-4 text-sm">Interactive data visualization dashboard for tracking business metrics and KPIs.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">D3.js</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">React</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600">Express</span>
+                        </div>
+                        <a href="#" class="text-indigo-600 font-bold hover:text-indigo-800 transition flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-100">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-12">Get In Touch</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-6 text-blue-900">Contact Information</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-600">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <span class="text-gray-700">damodar.dhakal@monash.edu</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-600">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <span class="text-gray-700">Monash University, Clayton, Australia</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4 text-blue-600">
-                                <i class="fab fa-researchgate"></i>
-                            </div>
-                            <a href="https://www.researchgate.net/profile/Damodar-Dhakal" target="_blank" class="text-gray-700 hover:text-blue-600 hover:underline">ResearchGate Profile</a>
-                        </div>
+    <section id="contact" class="section-padding bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-600">Interested in working together? Drop me a message!</p>
+            </div>
+            <div class="bg-slate-50 p-8 rounded-2xl shadow-sm">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Your Name</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-lg border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 outline-none transition" placeholder="John Doe">
                     </div>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col justify-center">
-                    <h3 class="text-xl font-bold mb-4 text-blue-900">Let's Connect</h3>
-                    <p class="text-gray-600 mb-8">I am open for collaborations, research discussions, and sharing insights on the future of food engineering.</p>
-                    <a href="mailto:damodar.dhakal@monash.edu" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-blue-700 transition shadow-lg">Send Email</a>
-                </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-lg border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 outline-none transition" placeholder="john@example.com">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-lg border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 outline-none transition" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-12 flex justify-center space-x-8">
+                <a href="#" class="text-slate-400 hover:text-indigo-600 transition text-2xl"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600 transition text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600 transition text-2xl"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:aashma.bidari@example.com" class="text-slate-400 hover:text-indigo-600 transition text-2xl"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="font-bold text-white text-xl mb-4">AB.</p>
+            <p>&copy; 2025 Aashma Bidari. All rights reserved.</p>
+            <p class="text-sm mt-2">Built with Tailwind CSS & ❤️</p>
+        </div>
+    </footer>
 
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -247,18 +316,6 @@
             });
         });
     </script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-500 py-12 text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="flex justify-center space-x-6 mb-6 text-xl">
-                <a href="https://scholar.google.com/citations?user=Gp2Q4C4AAAAJ" class="hover:text-white transition"><i class="fab fa-google"></i></a>
-                <a href="https://www.researchgate.net/profile/Damodar-Dhakal" class="hover:text-white transition"><i class="fab fa-researchgate"></i></a>
-            </div>
-            <p>&copy; 2025 Damodar Dhakal. All rights reserved.</p>
-            <p class="text-sm mt-2">Food Scientist & PhD Researcher</p>
-        </div>
-    </footer>
 
 </body>
 </html>
