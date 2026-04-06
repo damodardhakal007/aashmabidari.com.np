@@ -99,7 +99,7 @@ section {
     z-index: 1001;
 }
 
-img[src$="profile.jpeg"] {
+img[src$="about.jpeg"] {
     position: relative;
     z-index: 1001;
 }
