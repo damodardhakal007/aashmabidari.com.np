@@ -14,7 +14,7 @@ window.onscroll = () => {
 const typedTarget = document.querySelector('.multiple-text');
 if (typedTarget) {
     new Typed(typedTarget, {
-        strings: ['Teacher', 'Writer', 'Nepali'],
+        strings: ['Student', 'Entrepreneur', 'Motivator'],
         typeSpeed: 80,
         backSpeed: 80,
         backDelay: 1200,
