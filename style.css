@@ -198,7 +198,6 @@ span {
 
 .about-img img {
     width: 25vw;
-    width: 25vw;
     border: 2px solid var(--main-color);
     border-radius: 50%;
     box-shadow: 0 0 25px var(--main-color);
@@ -444,6 +443,26 @@ span {
     object-fit: cover;
     display: block;
 }
+
+/* Terms Container Section */
+
+.terms-container {
+    max-width: 800px;
+    margin: 120px auto 40px;
+    padding: 20px;
+    font-size: 1.6rem;
+}
+
+.terms-container h1, .terms-container h2, .terms-container h3 {
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+}
+
+.terms-container p {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
 /* ******************Footer Section********************* */
 
 .footer {
