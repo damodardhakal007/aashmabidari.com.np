@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Aashma Bidari</title>
+    <style>
+        .login-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 9% 2rem;
+            background: var(--snd-bg-color);
+        }
+
+        .login-container {
+            background: var(--bg-color);
+            padding: 4rem;
+            border-radius: 2rem;
+            box-shadow: 0 0 25px rgba(0, 127, 115, 0.2);
+            width: 100%;
+            max-width: 45rem;
+            border: .2rem solid var(--main-color);
+        }
+
+        .login-container h2 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .login-container h2 span {
+            color: var(--main-color);
+        }
+
+        .login-form .input-group {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-form .input-group i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--main-color);
+        }
+
+        .login-form .input-group input {
+            width: 100%;
+            padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: var(--bg-color);
+            border-radius: 0.8rem;
+            border: 0.2rem solid var(--main-color);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .login-form .input-group input:focus {
+            box-shadow: 0 0 10px rgba(0, 127, 115, 0.3);
+        }
+
+        .login-form .input-group input::placeholder {
+            color: #999;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            font-size: 1.4rem;
+        }
+
+        .login-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .login-options label input[type="checkbox"] {
+            width: 1.6rem;
+            height: 1.6rem;
+            accent-color: var(--main-color);
+        }
+
+        .login-options a {
+            color: var(--main-color);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-options a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--main-color);
+            border: none;
+            border-radius: 4rem;
+            font-size: 1.8rem;
+            color: var(--bg-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.5s ease;
+            letter-spacing: 0.1rem;
+        }
+
+        .login-btn:hover {
+            box-shadow: 0 0 16px var(--main-color);
+            transform: scale(1.02);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        .login-footer a {
+            color: var(--main-color);
+            font-weight: 600;
+        }
+
+        .login-error {
+            background: #ffe0e0;
+            color: #d32f2f;
+            padding: 1rem 1.5rem;
+            border-radius: 0.8rem;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-error i {
+            font-size: 2rem;
+        }
+
+        .login-success {
+            background: #e0ffe0;
+            color: #2e7d32;
+            padding: 1rem 1.5rem;
+            border-radius: 0.8rem;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-success i {
+            font-size: 2rem;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--main-color);
+            cursor: pointer;
+        }
+
+        @media (max-width: 450px) {
+            .login-container {
+                padding: 3rem 2rem;
+            }
+            .login-options {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <a href="index.html#home" class="logo">Aashma Bidari</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="index.html#services">Services</a>
+            <a href="contact-me.html">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Admin <span>Login</span></h2>
+            
+            <div class="login-error" id="loginError">
+                <i class='bx bx-error-circle'></i>
+                <span id="errorMessage">Invalid username or password</span>
+            </div>
+
+            <div class="login-success" id="loginSuccess">
+                <i class='bx bx-check-circle'></i>
+                <span id="successMessage">Login successful! Redirecting...</span>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <i class='bx bx-user'></i>
+                    <input type="text" id="username" placeholder="Username" required autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                    <i class='bx bx-show password-toggle' id="togglePassword"></i>
+                </div>
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                    <a href="#" id="forgotPassword">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class='bx bx-log-in'></i> Login
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="index.html">← Back to Website</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/aashma.bidari.2025" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com/aashma._dhakal" target="_blank"><i class='bx bxl-instagram'></i></a>
+            <a href="https://play.google.com/store/apps/details?id=com.bank.damodardhakal&hl=ne" target="_blank"><i class='bx bxl-play-store'></i></a>
+        </div>
+        <p class="copyright">
+            © Aashma Bidari - All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Password toggle visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.classList.toggle('bx-show');
+            togglePassword.classList.toggle('bx-hide');
+        });
+
+        // Login form handler
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const loginSuccess = document.getElementById('loginSuccess');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            loginError.style.display = 'none';
+            loginSuccess.style.display = 'none';
+
+            try {
+                const response = await fetch('/admin/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, rememberMe })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    loginSuccess.style.display = 'flex';
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    setTimeout(() => {
+                        window.location.href = '/admin/dashboard/';
+                    }, 1000);
+                } else {
+                    loginError.style.display = 'flex';
+                    document.getElementById('errorMessage').textContent = data.message || 'Invalid username or password';
+                }
+            } catch (error) {
+                loginError.style.display = 'flex';
+                document.getElementById('errorMessage').textContent = 'Server error. Please try again later.';
+            }
+        });
+
+        // Forgot password handler
+        document.getElementById('forgotPassword').addEventListener('click', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            if (!username) {
+                loginError.style.display = 'flex';
+                document.getElementById('errorMessage').textContent = 'Please enter your username first';
+                return;
+            }
+            alert('Password reset instructions will be sent to the admin email associated with: ' + username);
+        });
+
+        // Check if already logged in
+        const token = localStorage.getItem('token');
+        if (token) {
+            window.location.href = '/admin/dashboard/';
+        }
+    </script>
+</body>
+</html>
