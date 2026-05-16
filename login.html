@@ -667,24 +667,54 @@
 
         // GitHub OAuth Login
         function loginWithGitHub() {
-            const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
-            const REDIRECT_URI = window.location.origin + '/admin/github-callback.html';
-            const SCOPES = 'repo,user';
-            
-            // Generate random state for CSRF protection
-            const array = new Uint8Array(16);
-            crypto.getRandomValues(array);
-            const state = Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
-            sessionStorage.setItem('github_oauth_state', state);
+            try {
+                const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
+                
+                // Check if Client ID is configured
+                if (!GITHUB_CLIENT_ID || GITHUB_CLIENT_ID === 'Ov23liYourClientIdHere') {
+                    showError('GitHub OAuth is not configured yet. Please set up a GitHub OAuth App and update the Client ID.');
+                    return;
+                }
 
-            // Save config for callback
-            const githubData = JSON.parse(localStorage.getItem('aashma_github') || '{}');
-            githubData.clientId = GITHUB_CLIENT_ID;
-            localStorage.setItem('aashma_github', JSON.stringify(githubData));
+                // Determine redirect URI based on current location
+                let baseUrl = window.location.origin;
+                if (!baseUrl || baseUrl === 'null' || baseUrl === 'file://') {
+                    baseUrl = 'https://aashmabidari.com.np';
+                }
+                const REDIRECT_URI = baseUrl + '/admin/github-callback.html';
+                const SCOPES = 'repo,user';
+                
+                // Generate random state for CSRF protection
+                let state;
+                try {
+                    const array = new Uint8Array(16);
+                    crypto.getRandomValues(array);
+                    state = Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+                } catch (e) {
+                    // Fallback state generation if crypto is not available
+                    state = Date.now().toString(36) + Math.random().toString(36).substring(2);
+                }
+                sessionStorage.setItem('github_oauth_state', state);
 
-            // Redirect to GitHub OAuth
-            const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${SCOPES}&state=${state}`;
-            window.location.href = authUrl;
+                // Save config for callback
+                const githubData = JSON.parse(localStorage.getItem('aashma_github') || '{}');
+                githubData.clientId = GITHUB_CLIENT_ID;
+                localStorage.setItem('aashma_github', JSON.stringify(githubData));
+
+                // Redirect to GitHub OAuth
+                const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${SCOPES}&state=${state}`;
+                
+                // Use window.open as primary method to ensure the page opens
+                const authWindow = window.open(authUrl, '_self');
+                
+                // Fallback if window.open didn't work
+                if (!authWindow) {
+                    window.location.href = authUrl;
+                }
+            } catch (err) {
+                showError('Failed to start GitHub login: ' + err.message);
+                console.error('GitHub OAuth Error:', err);
+            }
         }
     </script>
 </body>

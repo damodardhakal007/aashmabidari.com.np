@@ -599,29 +599,60 @@ function clearActivityLogs() {
 // To set up: Create a GitHub OAuth App at https://github.com/settings/developers
 // Set callback URL to: https://aashmabidari.com.np/admin/github-callback.html
 const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
-const GITHUB_REDIRECT_URI = window.location.origin + '/admin/github-callback.html';
+
+function getGitHubRedirectURI() {
+    let baseUrl = window.location.origin;
+    if (!baseUrl || baseUrl === 'null' || baseUrl === 'file://') {
+        baseUrl = 'https://aashmabidari.com.np';
+    }
+    return baseUrl + '/admin/github-callback.html';
+}
+
 const GITHUB_SCOPES = 'repo,user';
 
 // Start GitHub OAuth Flow
 function startGitHubOAuth() {
-    const state = generateRandomState();
-    sessionStorage.setItem('github_oauth_state', state);
-    
-    // Save current config
-    const githubData = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
-    githubData.clientId = GITHUB_CLIENT_ID;
-    githubData.proxyUrl = githubData.proxyUrl || '';
-    localStorage.setItem(GITHUB_KEY, JSON.stringify(githubData));
-    
-    // Redirect to GitHub OAuth
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(GITHUB_REDIRECT_URI)}&scope=${GITHUB_SCOPES}&state=${state}`;
-    window.location.href = authUrl;
+    try {
+        // Check if Client ID is configured
+        if (!GITHUB_CLIENT_ID || GITHUB_CLIENT_ID === 'Ov23liYourClientIdHere') {
+            showToast('GitHub OAuth is not configured. Please set your GitHub OAuth App Client ID in admin.js and login.html.', 'error');
+            return;
+        }
+
+        const state = generateRandomState();
+        sessionStorage.setItem('github_oauth_state', state);
+        
+        // Save current config
+        const githubData = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+        githubData.clientId = GITHUB_CLIENT_ID;
+        githubData.proxyUrl = githubData.proxyUrl || '';
+        localStorage.setItem(GITHUB_KEY, JSON.stringify(githubData));
+        
+        const redirectUri = getGitHubRedirectURI();
+        
+        // Redirect to GitHub OAuth
+        const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${GITHUB_SCOPES}&state=${state}`;
+        
+        // Use window.open as primary, fallback to location.href
+        const authWindow = window.open(authUrl, '_self');
+        if (!authWindow) {
+            window.location.href = authUrl;
+        }
+    } catch (err) {
+        showToast('Failed to start GitHub OAuth: ' + err.message, 'error');
+        console.error('GitHub OAuth Error:', err);
+    }
 }
 
 function generateRandomState() {
-    const array = new Uint8Array(16);
-    crypto.getRandomValues(array);
-    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+    try {
+        const array = new Uint8Array(16);
+        crypto.getRandomValues(array);
+        return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+        // Fallback if crypto is not available (e.g., non-HTTPS)
+        return Date.now().toString(36) + Math.random().toString(36).substring(2);
+    }
 }
 
 // Disconnect GitHub
