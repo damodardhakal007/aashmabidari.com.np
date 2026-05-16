@@ -459,90 +459,80 @@ span {
     color: var(--text-color);
 }
 
-.download-cards {
+.download-badges {
     display: flex;
     justify-content: center;
-    align-items: stretch;
-    gap: 3rem;
+    align-items: center;
+    gap: 2.5rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
 }
 
-.download-card {
-    background: var(--bg-color);
-    border-radius: 2rem;
-    padding: 3rem 4rem;
-    min-width: 280px;
-    max-width: 350px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+.store-badge {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border-radius: 1.2rem;
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 220px;
+}
+
+.store-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.badge-content {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.badge-content i {
+    font-size: 4rem;
+    color: #fff;
+}
+
+.badge-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    text-align: left;
 }
 
-.download-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 35px rgba(0, 127, 115, 0.2);
+.badge-small {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #ccc;
 }
 
-.download-card i {
-    font-size: 5rem;
-    color: var(--main-color);
-}
-
-.download-card h3 {
+.badge-big {
     font-size: 2.2rem;
-    color: var(--text-color);
-}
-
-.download-card p {
-    font-size: 1.4rem;
-    color: #666;
-}
-
-.download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    padding: 1.2rem 2.8rem;
-    background: var(--main-color);
-    color: #fff;
-    border-radius: 4rem;
-    font-size: 1.6rem;
     font-weight: 600;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.download-btn:hover {
-    background: #005f56;
-    box-shadow: 0 5px 15px rgba(0, 127, 115, 0.4);
-    transform: scale(1.05);
-}
-
-.download-btn i {
-    font-size: 2rem;
+    line-height: 1.2;
     color: #fff;
 }
 
 .download-note {
     display: block;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: #999;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    color: #666;
     font-style: italic;
 }
 
 @media (max-width: 768px) {
-    .download-cards {
+    .download-badges {
         flex-direction: column;
         align-items: center;
     }
-    .download-card {
+    .store-badge {
         width: 100%;
-        max-width: 100%;
+        max-width: 280px;
     }
 }
 
