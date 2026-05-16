@@ -56,7 +56,11 @@
             <div class="error-icon">✗</div>
             <h1>Authorization Failed</h1>
             <p id="errorMsg">Something went wrong. Please try again.</p>
-            <a href="index.html" style="display: inline-block; margin-top: 1rem; padding: 10px 20px; background: #007F73; color: white; border-radius: 8px; text-decoration: none;">Back to Dashboard</a>
+            <div id="patFallback" style="margin-top: 1.5rem; text-align: left; background: #f9fafb; border-radius: 8px; padding: 1.5rem; border: 1px solid #e5e7eb;">
+                <p style="font-size: 0.85rem; color: #374151; font-weight: 600; margin-bottom: 0.75rem;">Quick Alternative: Use a Personal Access Token</p>
+                <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 1rem;">Generate a token at <a href="https://github.com/settings/tokens/new?scopes=repo&description=Aashma+Bidari+Admin" target="_blank" style="color: #007F73;">GitHub Settings → Tokens</a> (select "repo" scope), then enter it in the GitHub Integration page.</p>
+            </div>
+            <a href="index.html#github" style="display: inline-block; margin-top: 1rem; padding: 10px 20px; background: #007F73; color: white; border-radius: 8px; text-decoration: none;">Back to Dashboard</a>
         </div>
     </div>
 
@@ -95,7 +99,6 @@
                 const clientId = githubConfig.clientId || 'Ov23liZAE6fT8eATFv2P';
                 
                 // Use a token exchange proxy (Cloudflare Worker / Vercel / Netlify function)
-                // For GitHub Pages, we need a small serverless proxy to exchange the code
                 const proxyUrl = githubConfig.proxyUrl || 'https://github-oauth-proxy.aashmabidari.workers.dev';
                 
                 const response = await fetch(proxyUrl + '/token', {
@@ -108,7 +111,7 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error('Token exchange failed');
+                    throw new Error('Token exchange failed. Use a Personal Access Token instead.');
                 }
                 
                 const data = await response.json();
@@ -125,13 +128,19 @@
                         ...githubConfig,
                         token: data.access_token,
                         connected: true,
+                        autoPush: true,
+                        owner: userData.login,
+                        repo: 'aashmabidari.com.np',
+                        selectedRepo: userData.login + '/aashmabidari.com.np',
+                        branch: 'main',
                         user: {
                             login: userData.login,
                             name: userData.name || userData.login,
                             avatar: userData.avatar_url,
                             id: userData.id
                         },
-                        connectedAt: new Date().toISOString()
+                        connectedAt: new Date().toISOString(),
+                        method: 'oauth'
                     };
                     localStorage.setItem(GITHUB_KEY, JSON.stringify(githubData));
                     
@@ -148,9 +157,7 @@
                     throw new Error('No access token received');
                 }
             } catch (err) {
-                // If proxy fails, try direct token storage approach
-                // (User may have pasted a token via alternative method)
-                showError(err.message + '. Make sure the OAuth proxy is configured correctly.');
+                showError(err.message);
             }
         })();
         

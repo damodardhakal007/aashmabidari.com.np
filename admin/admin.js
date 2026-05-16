@@ -655,6 +655,99 @@ function generateRandomState() {
     }
 }
 
+// Connect with Personal Access Token (no server needed)
+async function connectWithPAT() {
+    const token = document.getElementById('githubPatInput').value.trim();
+    const owner = document.getElementById('githubOwnerInput').value.trim();
+    const repo = document.getElementById('githubRepoInput').value.trim();
+
+    if (!token) {
+        showToast('Please enter a Personal Access Token', 'error');
+        return;
+    }
+    if (!owner || !repo) {
+        showToast('Please enter the repository owner and name', 'error');
+        return;
+    }
+
+    showToast('Verifying token...', 'info');
+
+    try {
+        // Verify the token by fetching user info
+        const userResponse = await fetch('https://api.github.com/user', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        if (!userResponse.ok) {
+            if (userResponse.status === 401) {
+                showToast('Invalid token. Please check and try again.', 'error');
+            } else {
+                showToast('Failed to verify token: ' + userResponse.statusText, 'error');
+            }
+            return;
+        }
+
+        const userData = await userResponse.json();
+
+        // Verify repo access
+        const repoResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        if (!repoResponse.ok) {
+            showToast(`Cannot access repository ${owner}/${repo}. Check permissions.`, 'error');
+            return;
+        }
+
+        // Save connection
+        const githubData = {
+            token: token,
+            connected: true,
+            autoPush: true,
+            owner: owner,
+            repo: repo,
+            selectedRepo: `${owner}/${repo}`,
+            branch: 'main',
+            user: {
+                login: userData.login,
+                name: userData.name || userData.login,
+                avatar: userData.avatar_url,
+                id: userData.id
+            },
+            connectedAt: new Date().toISOString(),
+            method: 'pat'
+        };
+        localStorage.setItem(GITHUB_KEY, JSON.stringify(githubData));
+
+        logActivity('settings', `GitHub connected via PAT as @${userData.login}`, currentUser.username);
+        addNotification('GitHub connected - auto-publish enabled!');
+        showToast('GitHub connected successfully! Auto-publish is now active.', 'success');
+
+        // Clear the input
+        document.getElementById('githubPatInput').value = '';
+
+        // Refresh UI
+        loadGithubUI();
+    } catch (err) {
+        showToast('Connection failed: ' + err.message, 'error');
+        console.error('GitHub PAT connection error:', err);
+    }
+}
+
+function togglePatVisibility() {
+    const input = document.getElementById('githubPatInput');
+    const icon = document.getElementById('patToggleIcon');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bx-show');
+        icon.classList.add('bx-hide');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('bx-hide');
+        icon.classList.add('bx-show');
+    }
+}
+
 // Disconnect GitHub
 function disconnectGitHub() {
     if (!confirm('Disconnect GitHub? Auto-push will stop working.')) return;
@@ -1129,11 +1222,55 @@ document.getElementById('settingBgColor').addEventListener('input', function() {
     document.getElementById('bgColorLabel').textContent = this.value;
 });
 
+// ==================== AUTO-CONFIGURE GITHUB ====================
+function autoConfigureGitHub() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    // If not already connected, auto-configure with pre-set PAT
+    if (!data.connected || !data.token) {
+        const preConfigured = {
+            token: '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',
+            connected: true,
+            autoPush: true,
+            owner: 'damodardhakal',
+            repo: 'aashmabidari.com.np',
+            selectedRepo: 'damodardhakal/aashmabidari.com.np',
+            branch: 'main',
+            user: {
+                login: 'damodardhakal',
+                name: 'Damodar Dhakal',
+                avatar: '',
+                id: null
+            },
+            connectedAt: new Date().toISOString(),
+            method: 'pat'
+        };
+        localStorage.setItem(GITHUB_KEY, JSON.stringify(preConfigured));
+        
+        // Fetch actual user info in background
+        fetch('https://api.github.com/user', {
+            headers: { 'Authorization': 'Bearer ' + preConfigured.token }
+        }).then(r => r.json()).then(userData => {
+            const updated = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+            updated.user = {
+                login: userData.login,
+                name: userData.name || userData.login,
+                avatar: userData.avatar_url,
+                id: userData.id
+            };
+            updated.owner = userData.login;
+            updated.selectedRepo = userData.login + '/aashmabidari.com.np';
+            localStorage.setItem(GITHUB_KEY, JSON.stringify(updated));
+            loadGithubUI();
+        }).catch(() => {});
+    }
+}
+
 // ==================== INITIALIZATION ====================
 function init() {
     checkAuth();
     initializePages();
     initializeMedia();
+    autoConfigureGitHub();
     loadDashboard();
     loadNotifications();
     updateNotifDot();

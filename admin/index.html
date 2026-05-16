@@ -334,31 +334,45 @@
                             <span>Not connected - Login with GitHub to enable auto-backup</span>
                         </div>
 
-                        <!-- GitHub OAuth Login Section -->
+                        <!-- GitHub Login Section -->
                         <div id="githubLoginSection" style="margin-top: 2rem;">
                             <div style="background: var(--gray-50); border-radius: 12px; padding: 2rem; text-align: center; border: 1px solid var(--gray-200);">
                                 <i class='bx bxl-github' style="font-size: 48px; color: var(--gray-800); margin-bottom: 1rem; display: block;"></i>
                                 <h3 style="font-size: 1.1rem; color: var(--gray-900); margin-bottom: 0.5rem;">Connect Your GitHub Account</h3>
                                 <p style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1.5rem; max-width: 400px; margin-left: auto; margin-right: auto;">
-                                    Login with GitHub to automatically sync and backup your website changes. No token needed — we'll get access directly from your account.
+                                    Enter a Personal Access Token to automatically sync and backup your website changes to GitHub.
                                 </p>
-                                <button class="btn btn-primary" onclick="startGitHubOAuth()" id="githubLoginBtn" style="padding: 12px 24px; font-size: 0.95rem; background: #24292e;">
-                                    <i class='bx bxl-github'></i> Login with GitHub
-                                </button>
-                            </div>
-
-                            <!-- Device Flow Code Display (hidden by default) -->
-                            <div id="deviceFlowSection" style="display: none; margin-top: 1.5rem; background: var(--blue-100); border-radius: 12px; padding: 2rem; text-align: center;">
-                                <h3 style="font-size: 1rem; color: var(--gray-900); margin-bottom: 0.75rem;">Enter this code on GitHub</h3>
-                                <div id="deviceCode" style="font-size: 2rem; font-weight: 700; letter-spacing: 4px; color: var(--gray-900); background: white; display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; border: 2px solid var(--blue-500); margin-bottom: 1rem; font-family: monospace;"></div>
-                                <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem;">
-                                    Click the button below to open GitHub, then paste the code above.
-                                </p>
-                                <a id="deviceVerifyLink" href="https://github.com/login/device" target="_blank" class="btn btn-primary" style="background: #24292e;">
-                                    <i class='bx bx-link-external'></i> Open GitHub Verification
-                                </a>
-                                <div style="margin-top: 1rem;">
-                                    <span id="pollStatus" style="font-size: 0.8rem; color: var(--gray-500);">Waiting for authorization...</span>
+                                
+                                <!-- PAT Input Section -->
+                                <div style="max-width: 400px; margin: 0 auto; text-align: left;">
+                                    <div class="form-group" style="margin-bottom: 1rem;">
+                                        <label style="font-size: 0.85rem; font-weight: 600; color: var(--gray-700); margin-bottom: 0.5rem; display: block;">Personal Access Token</label>
+                                        <div style="position: relative;">
+                                            <input type="password" id="githubPatInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width: 100%; padding: 10px 40px 10px 12px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 0.9rem; font-family: monospace;">
+                                            <i class='bx bx-show' onclick="togglePatVisibility()" id="patToggleIcon" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--gray-500);"></i>
+                                        </div>
+                                        <small style="color: var(--gray-500); font-size: 0.75rem; margin-top: 0.25rem; display: block;">
+                                            Generate at: <a href="https://github.com/settings/tokens/new?scopes=repo&description=Aashma+Bidari+Admin" target="_blank" style="color: var(--primary);">GitHub → Settings → Tokens</a> (select "repo" scope)
+                                        </small>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 1rem;">
+                                        <label style="font-size: 0.85rem; font-weight: 600; color: var(--gray-700); margin-bottom: 0.5rem; display: block;">Repository Owner</label>
+                                        <input type="text" id="githubOwnerInput" placeholder="e.g. damodardhakal" value="damodardhakal" style="width: 100%; padding: 10px 12px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 0.9rem;">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                                        <label style="font-size: 0.85rem; font-weight: 600; color: var(--gray-700); margin-bottom: 0.5rem; display: block;">Repository Name</label>
+                                        <input type="text" id="githubRepoInput" placeholder="e.g. aashmabidari.com.np" value="aashmabidari.com.np" style="width: 100%; padding: 10px 12px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 0.9rem;">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="connectWithPAT()" style="width: 100%; padding: 12px; font-size: 0.95rem; background: #24292e;">
+                                        <i class='bx bxl-github'></i> Connect & Enable Auto-Publish
+                                    </button>
+                                </div>
+                                
+                                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
+                                    <p style="font-size: 0.8rem; color: var(--gray-400);">Or use OAuth (requires proxy server):</p>
+                                    <button class="btn btn-secondary btn-sm" onclick="startGitHubOAuth()" id="githubLoginBtn" style="margin-top: 0.5rem;">
+                                        <i class='bx bxl-github'></i> Login with GitHub OAuth
+                                    </button>
                                 </div>
                             </div>
                         </div>
