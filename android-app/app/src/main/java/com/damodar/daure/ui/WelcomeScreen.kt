@@ -38,7 +38,7 @@ fun WelcomeScreen(onGetStarted: () -> Unit) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.65f),
+                    .fillMaxHeight(0.60f),
                 contentAlignment = Alignment.Center
             ) {
                 AnimatedNepalFlag(
@@ -72,6 +72,13 @@ fun WelcomeScreen(onGetStarted: () -> Unit) {
                             fontWeight = FontWeight.ExtraBold,
                             color = Color(0xFF1976D2)
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Your Digital Nepal Companion",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Normal,
+                            color = Color.Gray
+                        )
                     }
 
                     Box(
@@ -82,16 +89,16 @@ fun WelcomeScreen(onGetStarted: () -> Unit) {
                             onClick = onGetStarted,
                             modifier = Modifier
                                 .height(56.dp)
-                                .width(180.dp),
+                                .width(200.dp),
                             shape = RoundedCornerShape(topStart = 28.dp, bottomStart = 28.dp, bottomEnd = 28.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00796B))
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1976D2))
                         ) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Text(
-                                    text = "get started",
+                                    text = "Get Started",
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color.White

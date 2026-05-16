@@ -98,6 +98,9 @@ fun BottomNavItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val selectedColor = Color(0xFF1976D2) // DAURE Brand Blue
+    val unselectedColor = Color.Gray
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -112,14 +115,14 @@ fun BottomNavItem(
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = if (isSelected) Color.Black else Color.Gray,
+            tint = if (isSelected) selectedColor else unselectedColor,
             modifier = Modifier.size(24.dp)
         )
         Text(
             text = label,
             fontSize = 11.sp,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-            color = if (isSelected) Color.Black else Color.Gray
+            color = if (isSelected) selectedColor else unselectedColor
         )
     }
 }

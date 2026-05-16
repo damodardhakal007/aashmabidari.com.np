@@ -16,13 +16,17 @@ import androidx.core.view.WindowCompat
 import com.damodar.daure.ui.HomeViewModel
 
 private val DarkColorScheme = darkColorScheme(
-    primary = White,
+    primary = DaurePrimaryLight,
     onPrimary = Black,
-    secondary = Gray,
-    onSecondary = White,
+    primaryContainer = DaurePrimaryDark,
+    onPrimaryContainer = White,
+    secondary = DaureAccentLight,
+    onSecondary = Black,
+    secondaryContainer = DaureAccent,
+    onSecondaryContainer = White,
     tertiary = LightGray,
-    background = Black,
-    surface = DarkGray,
+    background = DarkGray,
+    surface = DarkSurface,
     onBackground = White,
     onSurface = White,
     error = Color(0xFFCF6679),
@@ -30,10 +34,14 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Black,
+    primary = DaurePrimary,
     onPrimary = White,
-    secondary = Gray,
+    primaryContainer = DaurePrimaryLight,
+    onPrimaryContainer = Black,
+    secondary = DaureAccent,
     onSecondary = White,
+    secondaryContainer = DaureAccentLight,
+    onSecondaryContainer = Black,
     tertiary = DarkGray,
     background = White,
     surface = LightGray,
