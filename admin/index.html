@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Admin Dashboard - Aashma Bidari</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-icon"><i class='bx bx-code-alt'></i></div>
+            <span class="logo-text">Aashma Admin</span>
+        </div>
+
+        <span class="nav-section-title">Main</span>
+        <ul class="nav-menu">
+            <li><a class="active" onclick="showPage('dashboard')" data-page="dashboard"><i class='bx bx-home-circle'></i><span class="nav-text">Dashboard</span></a></li>
+            <li><a onclick="showPage('pages')" data-page="pages"><i class='bx bx-file'></i><span class="nav-text">Pages</span></a></li>
+            <li><a onclick="showPage('media')" data-page="media"><i class='bx bx-image'></i><span class="nav-text">Media Uploads</span></a></li>
+            <li><a onclick="showPage('users')" data-page="users"><i class='bx bx-group'></i><span class="nav-text">Users</span></a></li>
+        </ul>
+
+        <span class="nav-section-title">Content</span>
+        <ul class="nav-menu">
+            <li><a onclick="showPage('home-editor')" data-page="home-editor"><i class='bx bx-edit'></i><span class="nav-text">Home Page</span></a></li>
+            <li><a onclick="showPage('privacy')" data-page="privacy"><i class='bx bx-shield'></i><span class="nav-text">Privacy Policy</span></a></li>
+            <li><a onclick="showPage('contact')" data-page="contact"><i class='bx bx-phone'></i><span class="nav-text">Contact Info</span></a></li>
+        </ul>
+
+        <span class="nav-section-title">System</span>
+        <ul class="nav-menu">
+            <li><a onclick="showPage('activity')" data-page="activity"><i class='bx bx-history'></i><span class="nav-text">Activity Logs</span></a></li>
+            <li><a onclick="showPage('github')" data-page="github"><i class='bx bxl-github'></i><span class="nav-text">GitHub Backup</span></a></li>
+            <li><a onclick="showPage('settings')" data-page="settings"><i class='bx bx-cog'></i><span class="nav-text">Settings</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="top-nav-left">
+                <button class="toggle-sidebar" onclick="toggleSidebar()"><i class='bx bx-menu'></i></button>
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="top-nav-right">
+                <a href="../index.html" class="nav-icon-btn" title="View Website" target="_blank"><i class='bx bx-globe'></i></a>
+                <button class="nav-icon-btn" onclick="toggleNotifications()" title="Notifications">
+                    <i class='bx bx-bell'></i>
+                    <span class="notif-dot" id="notifDot"></span>
+                </button>
+                <div class="user-dropdown" onclick="toggleDropdown()">
+                    <div class="user-avatar" id="userAvatar">D</div>
+                    <div class="user-info">
+                        <div class="name" id="userName">Damodar</div>
+                        <div class="role" id="userRole">Admin</div>
+                    </div>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="#" onclick="showPage('settings'); event.stopPropagation();"><i class='bx bx-user'></i> Profile</a>
+                        <a href="#" onclick="showPage('settings'); event.stopPropagation();"><i class='bx bx-cog'></i> Settings</a>
+                        <div class="divider"></div>
+                        <a href="#" class="danger" onclick="handleLogout(); event.stopPropagation();"><i class='bx bx-log-out'></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Notifications Panel -->
+        <div class="notification-panel" id="notifPanel">
+            <div class="notif-header">Notifications</div>
+            <div id="notifList"></div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Dashboard Page -->
+            <div class="page-section active" id="page-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon blue"><i class='bx bx-file'></i></div>
+                        </div>
+                        <div class="stat-value" id="totalPages">5</div>
+                        <div class="stat-label">Total Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon green"><i class='bx bx-group'></i></div>
+                        </div>
+                        <div class="stat-value" id="totalUsers">1</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon yellow"><i class='bx bx-image'></i></div>
+                        </div>
+                        <div class="stat-value" id="totalMedia">3</div>
+                        <div class="stat-label">Media Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon purple"><i class='bx bxl-github'></i></div>
+                        </div>
+                        <div class="stat-value" id="totalBackups">0</div>
+                        <div class="stat-label">GitHub Backups</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="panel">
+                    <div class="panel-header"><h2>Quick Actions</h2></div>
+                    <div class="panel-body">
+                        <div class="quick-actions">
+                            <a class="quick-action-card" onclick="showPage('home-editor')"><i class='bx bx-edit'></i><span>Edit Home Page</span></a>
+                            <a class="quick-action-card" onclick="showPage('pages')"><i class='bx bx-plus-circle'></i><span>Add New Page</span></a>
+                            <a class="quick-action-card" onclick="showPage('media')"><i class='bx bx-upload'></i><span>Upload Media</span></a>
+                            <a class="quick-action-card" onclick="showPage('users')"><i class='bx bx-user-plus'></i><span>Manage Users</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Recent Activity</h2>
+                        <a class="btn btn-secondary btn-sm" onclick="showPage('activity')">View All</a>
+                    </div>
+                    <div class="panel-body" id="dashboardActivity"></div>
+                </div>
+            </div>
+
+            <!-- Pages Management -->
+            <div class="page-section" id="page-pages">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Website Pages</h2>
+                        <button class="btn btn-primary" onclick="showAddPageModal()"><i class='bx bx-plus'></i> Add Page</button>
+                    </div>
+                    <div class="panel-body" id="pagesList"></div>
+                </div>
+            </div>
+
+            <!-- Media Uploads -->
+            <div class="page-section" id="page-media">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Media Library</h2>
+                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()"><i class='bx bx-upload'></i> Upload Files</button>
+                        <input type="file" id="fileInput" hidden multiple accept="image/*,.pdf,.doc,.docx,.mp4" onchange="handleFileUpload(event)">
+                    </div>
+                    <div class="panel-body">
+                        <div class="upload-area" onclick="document.getElementById('fileInput').click()" id="dropArea">
+                            <i class='bx bx-cloud-upload'></i>
+                            <p>Drag and drop files here or click to browse</p>
+                            <p class="upload-hint">Supports: Images, PDFs, Videos, Documents (Max 10MB)</p>
+                        </div>
+                        <div class="media-grid" id="mediaGrid" style="margin-top: 1.5rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management -->
+            <div class="page-section" id="page-users">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>User Management</h2>
+                        <button class="btn btn-primary" onclick="showAddUserModal()"><i class='bx bx-user-plus'></i> Add User</button>
+                    </div>
+                    <div class="panel-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Page Editor -->
+            <div class="page-section" id="page-home-editor">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Edit Home Page</h2>
+                        <div class="panel-actions">
+                            <a href="../index.html" target="_blank" class="btn btn-secondary btn-sm"><i class='bx bx-show'></i> Preview</a>
+                            <button class="btn btn-primary btn-sm" onclick="saveHomePage()"><i class='bx bx-save'></i> Save Changes</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Website Title</label>
+                                <input type="text" id="siteTitle" value="Aashma Bidari">
+                            </div>
+                            <div class="form-group">
+                                <label>Banner Heading</label>
+                                <input type="text" id="bannerHeading" value="Hello, Myself">
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="siteName" value="Aashma Bidari">
+                            </div>
+                            <div class="form-group">
+                                <label>Typing Text (comma separated)</label>
+                                <input type="text" id="typingText" value="Student, Entrepreneur, Motivator">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>About Section Text</label>
+                            <textarea id="aboutText" rows="4">I am a Student, Entrepreneur and a Motivator.</textarea>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Facebook URL</label>
+                                <input type="url" id="facebookUrl" value="https://www.facebook.com/aashma.bidari.2025">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram URL</label>
+                                <input type="url" id="instagramUrl" value="https://instagram.com/aashma._dhakal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Policy Editor -->
+            <div class="page-section" id="page-privacy">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Privacy Policy Editor</h2>
+                        <button class="btn btn-primary btn-sm" onclick="savePrivacyPolicy()"><i class='bx bx-save'></i> Save Changes</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="content-editor">
+                            <div class="editor-toolbar">
+                                <button onclick="execCmd('bold')" title="Bold"><i class='bx bx-bold'></i></button>
+                                <button onclick="execCmd('italic')" title="Italic"><i class='bx bx-italic'></i></button>
+                                <button onclick="execCmd('underline')" title="Underline"><i class='bx bx-underline'></i></button>
+                                <button onclick="execCmd('insertUnorderedList')" title="Bullet List"><i class='bx bx-list-ul'></i></button>
+                                <button onclick="execCmd('insertOrderedList')" title="Numbered List"><i class='bx bx-list-ol'></i></button>
+                                <button onclick="execCmd('formatBlock', 'h2')" title="Heading">H2</button>
+                                <button onclick="execCmd('formatBlock', 'h3')" title="Sub Heading">H3</button>
+                                <button onclick="execCmd('formatBlock', 'p')" title="Paragraph">P</button>
+                            </div>
+                            <div class="editor-content" contenteditable="true" id="privacyEditor">
+                                <h2>Privacy Policy</h2>
+                                <p>This Privacy Policy describes how your personal information is collected, used, and shared when you visit aashmabidari.com.np.</p>
+                                <h3>Information We Collect</h3>
+                                <p>When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device.</p>
+                                <h3>How We Use Your Information</h3>
+                                <p>We use the information we collect to improve and optimize our Site and to communicate with you.</p>
+                                <h3>Contact Us</h3>
+                                <p>For more information about our privacy practices, please contact us at aashmadhakal007@gmail.com.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info Editor -->
+            <div class="page-section" id="page-contact">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Contact Information</h2>
+                        <button class="btn btn-primary btn-sm" onclick="saveContactInfo()"><i class='bx bx-save'></i> Save Changes</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contactEmail" value="aashmadhakal007@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="contactPhone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" id="contactAddress" value="Kathmandu, Nepal">
+                            </div>
+                            <div class="form-group">
+                                <label>Google Map Embed URL</label>
+                                <input type="url" id="contactMap" placeholder="Paste Google Maps embed URL">
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1rem; margin: 1.5rem 0 1rem; color: var(--gray-700);">Social Media Links</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Facebook</label>
+                                <input type="url" id="contactFacebook" value="https://www.facebook.com/aashma.bidari.2025">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram</label>
+                                <input type="url" id="contactInstagram" value="https://instagram.com/aashma._dhakal">
+                            </div>
+                            <div class="form-group">
+                                <label>Play Store App</label>
+                                <input type="url" id="contactPlayStore" value="https://play.google.com/store/apps/details?id=com.bank.damodardhakal&hl=ne">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Logs -->
+            <div class="page-section" id="page-activity">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Activity Logs</h2>
+                        <button class="btn btn-secondary btn-sm" onclick="clearActivityLogs()"><i class='bx bx-trash'></i> Clear All</button>
+                    </div>
+                    <div class="panel-body" id="activityList"></div>
+                </div>
+            </div>
+
+            <!-- GitHub Backup -->
+            <div class="page-section" id="page-github">
+                <div class="panel">
+                    <div class="panel-header"><h2>GitHub Integration</h2></div>
+                    <div class="panel-body">
+                        <div class="github-status disconnected" id="githubStatus">
+                            <i class='bx bxl-github'></i>
+                            <span>Not connected - Configure GitHub token to enable auto-backup</span>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>GitHub Token</label>
+                                    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
+                                </div>
+                                <div class="form-group">
+                                    <label>Repository Owner</label>
+                                    <input type="text" id="githubOwner" placeholder="username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Repository Name</label>
+                                    <input type="text" id="githubRepo" value="aashmabidari.com.np">
+                                </div>
+                                <div class="form-group">
+                                    <label>Branch</label>
+                                    <input type="text" id="githubBranch" value="main">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="saveGithubSettings()"><i class='bx bx-save'></i> Save &amp; Connect</button>
+                            <button class="btn btn-secondary" onclick="triggerBackup()" style="margin-left: 0.5rem;"><i class='bx bx-cloud-upload'></i> Trigger Backup Now</button>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--gray-700);">Backup History</h3>
+                            <div id="backupHistory">
+                                <div class="empty-state">
+                                    <i class='bx bx-git-branch'></i>
+                                    <p>No backups yet. Connect GitHub and trigger a backup to get started.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="page-section" id="page-settings">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Website Settings</h2>
+                        <button class="btn btn-primary btn-sm" onclick="saveSettings()"><i class='bx bx-save'></i> Save Settings</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Website Name</label>
+                                <input type="text" id="settingSiteName" value="Aashma Bidari">
+                            </div>
+                            <div class="form-group">
+                                <label>SEO Description</label>
+                                <input type="text" id="settingSeoDesc" value="Aashma Bidari - Student, Entrepreneur, Motivator">
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Primary Color</label>
+                                <div class="color-preview">
+                                    <input type="color" id="settingPrimaryColor" value="#007F73">
+                                    <span id="primaryColorLabel">#007F73</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Background Color</label>
+                                <div class="color-preview">
+                                    <input type="color" id="settingBgColor" value="#ffffff">
+                                    <span id="bgColorLabel">#ffffff</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1rem; margin: 2rem 0 1rem; color: var(--gray-700);">Features</h3>
+                        <div class="setting-item">
+                            <div class="setting-info"><h3>Dark Mode</h3><p>Enable dark mode theme for the website</p></div>
+                            <label class="toggle-switch"><input type="checkbox" id="settingDarkMode"><span class="toggle-slider"></span></label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info"><h3>Auto Save</h3><p>Automatically save content changes</p></div>
+                            <label class="toggle-switch"><input type="checkbox" id="settingAutoSave" checked><span class="toggle-slider"></span></label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info"><h3>Activity Tracking</h3><p>Track all user activities and changes</p></div>
+                            <label class="toggle-switch"><input type="checkbox" id="settingTracking" checked><span class="toggle-slider"></span></label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info"><h3>GitHub Auto-Backup</h3><p>Automatically push changes to GitHub</p></div>
+                            <label class="toggle-switch"><input type="checkbox" id="settingGithubAuto"><span class="toggle-slider"></span></label>
+                        </div>
+                        <h3 style="font-size: 1rem; margin: 2rem 0 1rem; color: var(--gray-700);">Change Password</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" id="currentPassword" placeholder="Enter current password">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" placeholder="Enter new password">
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="changePassword()"><i class='bx bx-lock-alt'></i> Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Add User Modal -->
+    <div class="modal-overlay" id="addUserModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add New User</h2>
+                <button class="close-modal" onclick="closeModal('addUserModal')"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group"><label>Full Name</label><input type="text" id="newUserName" placeholder="John Doe"></div>
+                <div class="form-group"><label>Username</label><input type="text" id="newUserUsername" placeholder="johndoe"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="newUserEmail" placeholder="john@example.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="newUserPassword" placeholder="Minimum 6 characters"></div>
+                <div class="form-group"><label>Role</label><select id="newUserRole"><option value="editor">Editor</option><option value="viewer">Viewer</option><option value="admin">Admin</option></select></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addUserModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addUser()">Add User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Page Modal -->
+    <div class="modal-overlay" id="addPageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add New Page</h2>
+                <button class="close-modal" onclick="closeModal('addPageModal')"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group"><label>Page Name</label><input type="text" id="newPageName" placeholder="e.g., Gallery"></div>
+                <div class="form-group"><label>URL Slug</label><input type="text" id="newPageSlug" placeholder="e.g., gallery"></div>
+                <div class="form-group"><label>Show in Navigation</label><select id="newPageNav"><option value="yes">Yes</option><option value="no">No</option></select></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addPageModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addPage()">Create Page</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
