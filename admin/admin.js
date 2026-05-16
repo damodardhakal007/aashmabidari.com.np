@@ -463,6 +463,143 @@ function hashPassword(password) {
 }
 
 // ==================== CONTENT EDITORS ====================
+
+// Lock/Unlock editor sections
+function lockEditor(section) {
+    let fields = [];
+    let editBtn, saveBtn;
+
+    switch (section) {
+        case 'home':
+            fields = ['siteTitle', 'bannerHeading', 'siteName', 'typingText', 'aboutText', 'facebookUrl', 'instagramUrl'];
+            editBtn = document.getElementById('editHomeBtn');
+            saveBtn = document.getElementById('saveHomeBtn');
+            break;
+        case 'privacy':
+            editBtn = document.getElementById('editPrivacyBtn');
+            saveBtn = document.getElementById('savePrivacyBtn');
+            const privacyEditor = document.getElementById('privacyEditor');
+            if (privacyEditor) {
+                privacyEditor.contentEditable = 'false';
+                privacyEditor.style.opacity = '0.7';
+                privacyEditor.style.pointerEvents = 'none';
+            }
+            // Disable toolbar buttons
+            const toolbar = document.querySelector('#page-privacy .editor-toolbar');
+            if (toolbar) {
+                toolbar.querySelectorAll('button').forEach(btn => btn.disabled = true);
+                toolbar.style.opacity = '0.5';
+                toolbar.style.pointerEvents = 'none';
+            }
+            break;
+        case 'contact':
+            fields = ['contactEmail', 'contactPhone', 'contactAddress', 'contactMap', 'contactFacebook', 'contactInstagram', 'contactPlayStore'];
+            editBtn = document.getElementById('editContactBtn');
+            saveBtn = document.getElementById('saveContactBtn');
+            break;
+    }
+
+    // Disable input fields
+    fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.disabled = true;
+            el.style.opacity = '0.7';
+        }
+    });
+
+    // Show Edit button, hide Save button
+    if (editBtn) editBtn.style.display = 'inline-flex';
+    if (saveBtn) saveBtn.style.display = 'none';
+}
+
+function unlockEditor(section) {
+    let fields = [];
+    let editBtn, saveBtn;
+
+    switch (section) {
+        case 'home':
+            fields = ['siteTitle', 'bannerHeading', 'siteName', 'typingText', 'aboutText', 'facebookUrl', 'instagramUrl'];
+            editBtn = document.getElementById('editHomeBtn');
+            saveBtn = document.getElementById('saveHomeBtn');
+            break;
+        case 'privacy':
+            editBtn = document.getElementById('editPrivacyBtn');
+            saveBtn = document.getElementById('savePrivacyBtn');
+            const privacyEditor = document.getElementById('privacyEditor');
+            if (privacyEditor) {
+                privacyEditor.contentEditable = 'true';
+                privacyEditor.style.opacity = '1';
+                privacyEditor.style.pointerEvents = 'auto';
+            }
+            // Enable toolbar buttons
+            const toolbar = document.querySelector('#page-privacy .editor-toolbar');
+            if (toolbar) {
+                toolbar.querySelectorAll('button').forEach(btn => btn.disabled = false);
+                toolbar.style.opacity = '1';
+                toolbar.style.pointerEvents = 'auto';
+            }
+            break;
+        case 'contact':
+            fields = ['contactEmail', 'contactPhone', 'contactAddress', 'contactMap', 'contactFacebook', 'contactInstagram', 'contactPlayStore'];
+            editBtn = document.getElementById('editContactBtn');
+            saveBtn = document.getElementById('saveContactBtn');
+            break;
+    }
+
+    // Enable input fields
+    fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.disabled = false;
+            el.style.opacity = '1';
+        }
+    });
+
+    // Hide Edit button, show Save button
+    if (editBtn) editBtn.style.display = 'none';
+    if (saveBtn) saveBtn.style.display = 'inline-flex';
+
+    showToast(`${section.charAt(0).toUpperCase() + section.slice(1)} editor unlocked for editing`, 'info');
+}
+
+// Check if content was previously saved and lock the editors
+function initEditorLocks() {
+    const homeContent = localStorage.getItem('aashma_home_content');
+    const privacyContent = localStorage.getItem('aashma_privacy_content');
+    const contactInfo = localStorage.getItem('aashma_contact_info');
+
+    if (homeContent) {
+        // Load saved values into fields
+        const data = JSON.parse(homeContent);
+        if (data.title) document.getElementById('siteTitle').value = data.title;
+        if (data.bannerHeading) document.getElementById('bannerHeading').value = data.bannerHeading;
+        if (data.name) document.getElementById('siteName').value = data.name;
+        if (data.typingText) document.getElementById('typingText').value = data.typingText;
+        if (data.aboutText) document.getElementById('aboutText').value = data.aboutText;
+        if (data.facebookUrl) document.getElementById('facebookUrl').value = data.facebookUrl;
+        if (data.instagramUrl) document.getElementById('instagramUrl').value = data.instagramUrl;
+        lockEditor('home');
+    }
+
+    if (privacyContent) {
+        document.getElementById('privacyEditor').innerHTML = privacyContent;
+        lockEditor('privacy');
+    }
+
+    if (contactInfo) {
+        const data = JSON.parse(contactInfo);
+        if (data.email) document.getElementById('contactEmail').value = data.email;
+        if (data.phone) document.getElementById('contactPhone').value = data.phone;
+        if (data.address) document.getElementById('contactAddress').value = data.address;
+        if (data.map) document.getElementById('contactMap').value = data.map;
+        if (data.facebook) document.getElementById('contactFacebook').value = data.facebook;
+        if (data.instagram) document.getElementById('contactInstagram').value = data.instagram;
+        if (data.playStore) document.getElementById('contactPlayStore').value = data.playStore;
+        lockEditor('contact');
+    }
+}
+
 function saveHomePage() {
     const data = {
         title: document.getElementById('siteTitle').value,
@@ -477,13 +614,120 @@ function saveHomePage() {
     logActivity('edit', 'Home page content updated', currentUser.username);
     addNotification('Home page was updated');
     showToast('Home page saved successfully', 'success');
+    lockEditor('home');
 
-    // Auto-push to GitHub
+    // Generate actual index.html and push to GitHub
+    const indexHtml = generateIndexHtml(data);
     autoPushToGitHub(
-        'admin/content/home.json',
-        JSON.stringify(data, null, 2),
+        'index.html',
+        indexHtml,
         `Update home page content - ${currentUser.username}`
     );
+}
+
+// Generate the actual index.html file content from admin data
+function generateIndexHtml(data) {
+    const typingTexts = data.typingText.split(',').map(t => t.trim());
+    const typingStrings = typingTexts.map(t => `'${t}'`).join(', ');
+    
+    return `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>${data.title} -</title>
+</head>
+
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <a href="#home" class="logo">${data.name}</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="#services">Services</a>
+            <a href="contact-me.html">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+
+    <section id="home" class="home">
+        <div class="home-img">
+            <a href="${data.facebookUrl}" target="_blank">
+                <img src="./assets/profile.JPG" alt="Profile Image">
+            </a>
+        </div>
+        <div class="home-content">
+            <h3>${data.bannerHeading}</h3>
+            <h1>${data.name}</h1>
+            <h3>And I'm a <span class="multiple-text"></span></h3>
+            <div class="social-media">
+                <a href="${data.facebookUrl}" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="${data.instagramUrl}" target="_blank"><i class='bx bxl-instagram' ></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span> </h2>
+            <h3>${data.aboutText}</h3>
+            <a href="contact-me.html" class="btn">Read more</a>
+        </div>
+        <div class="about-img">
+            <img src="assets/about.jpeg" alt="">
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+
+    <footer class="footer">
+        <div class="social">
+            <a href="${data.facebookUrl}" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="${data.instagramUrl}" target="_blank"><i class='bx bxl-instagram' ></i></a>
+            <a href="https://play.google.com/store/apps/details?id=com.bank.damodardhakal&hl=ne" target="_blank"><i class='bx bxl-play-store'></i></a>
+        </div>
+
+        <p class="copyright">
+            &copy; Damodar Dhakal - All Rights Reserved
+        </p>
+    </footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        let menu = document.querySelector('#menu-icon');
+        let navbar = document.querySelector('.navbar');
+        menu.onclick = () => {
+            menu.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        }
+        window.onscroll = () => {
+            menu.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        }
+        const typedTarget = document.querySelector('.multiple-text');
+        if (typedTarget) {
+            new Typed(typedTarget, {
+                strings: [${typingStrings}],
+                typeSpeed: 80,
+                backSpeed: 80,
+                backDelay: 1200,
+                loop: true,
+            });
+        }
+    </script>
+</body>
+
+</html>`;
 }
 
 function savePrivacyPolicy() {
@@ -492,13 +736,66 @@ function savePrivacyPolicy() {
     logActivity('edit', 'Privacy Policy updated', currentUser.username);
     addNotification('Privacy Policy was updated');
     showToast('Privacy Policy saved successfully', 'success');
+    lockEditor('privacy');
 
-    // Auto-push to GitHub
+    // Generate actual privacy-policy.html and push to GitHub
+    const privacyHtml = generatePrivacyHtml(content);
     autoPushToGitHub(
-        'admin/content/privacy.html',
-        content,
+        'privacy-policy.html',
+        privacyHtml,
         `Update privacy policy - ${currentUser.username}`
     );
+}
+
+// Generate the actual privacy-policy.html file content
+function generatePrivacyHtml(content) {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Privacy Policy - Aashma Bidari</title>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <a href="index.html#home" class="logo">Aashma Bidari</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html" class="active">Privacy Policy</a>
+            <a href="index.html#services">Services</a>
+            <a href="contact-me.html">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Privacy Policy Section -->
+    <section class="about">
+        <div class="about-content">
+            ${content}
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/aashma.bidari.2025" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com/aashma._dhakal" target="_blank"><i class='bx bxl-instagram'></i></a>
+            <a href="https://play.google.com/store/apps/details?id=com.bank.damodardhakal&hl=ne" target="_blank"><i class='bx bxl-play-store'></i></a>
+        </div>
+        <p class="copyright">
+            &copy; Damodar Dhakal - All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>`;
 }
 
 function saveContactInfo() {
@@ -515,13 +812,91 @@ function saveContactInfo() {
     logActivity('edit', 'Contact information updated', currentUser.username);
     addNotification('Contact info was updated');
     showToast('Contact information saved successfully', 'success');
+    lockEditor('contact');
 
-    // Auto-push to GitHub
+    // Generate actual contact-me.html and push to GitHub
+    const contactHtml = generateContactHtml(data);
     autoPushToGitHub(
-        'admin/content/contact.json',
-        JSON.stringify(data, null, 2),
+        'contact-me.html',
+        contactHtml,
         `Update contact info - ${currentUser.username}`
     );
+}
+
+// Generate the actual contact-me.html file content
+function generateContactHtml(data) {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Me - Aashma Bidari</title>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <a href="index.html#home" class="logo">Aashma Bidari</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="index.html#services">Services</a>
+            <a href="contact-me.html" class="active">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Contact Me Section -->
+    <section class="about">
+        <div class="about-content">
+            <h2 class="heading">Contact <span>Me</span></h2>
+            <h3>Get in Touch with Aashma Bidari</h3>
+            <h3>Contact Information</h3>
+            <ul>
+                ${data.email ? `<li><strong>Email:</strong> ${data.email}</li>` : ''}
+                ${data.phone ? `<li><strong>Phone:</strong> ${data.phone}</li>` : ''}
+                ${data.address ? `<li><strong>Location:</strong> ${data.address}</li>` : ''}
+            </ul>
+            ${data.playStore ? `<h3>My Projects & Apps</h3>
+            <p>Download my educational Android app:</p>
+            <a href="${data.playStore}" target="_blank" class="btn">
+                <i class='bx bxl-play-store'></i> Download on Play Store
+            </a>` : ''}
+        </div>
+        <div class="about-img">
+            <img src="./assets/about.jpeg" alt="Aashma Bidari">
+        </div>
+    </section>
+
+    <!-- Admin Login Section -->
+    <section class="login-section" style="min-height: auto; padding: 4rem 9%; background: var(--bg-color); text-align: center;">
+        <div class="login-prompt">
+            <p style="font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--text-color);">Are you an admin or editor?</p>
+            <a href="login.html" class="btn" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                <i class='bx bx-log-in'></i> Login to Dashboard
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="social">
+            ${data.facebook ? `<a href="${data.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>` : ''}
+            ${data.instagram ? `<a href="${data.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>` : ''}
+            ${data.playStore ? `<a href="${data.playStore}" target="_blank"><i class='bx bxl-play-store'></i></a>` : ''}
+        </div>
+        <p class="copyright">
+            &copy; Damodar Dhakal - All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>`;
 }
 
 function execCmd(command, value = null) {
@@ -969,7 +1344,7 @@ async function pushToGitHub(filePath, content, commitMessage) {
     }
 }
 
-// Trigger manual backup - pushes all content to GitHub
+// Trigger manual backup - pushes all website HTML files to GitHub
 async function triggerBackup() {
     const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
     if (!data.connected || !data.token) {
@@ -977,46 +1352,51 @@ async function triggerBackup() {
         return;
     }
 
-    showToast('Pushing changes to GitHub...', 'info');
+    showToast('Pushing all website files to GitHub...', 'info');
 
     // Gather content to push
     const homeContent = localStorage.getItem('aashma_home_content');
     const privacyContent = localStorage.getItem('aashma_privacy_content');
     const contactInfo = localStorage.getItem('aashma_contact_info');
-    const timestamp = new Date().toISOString();
 
     let successCount = 0;
     let errors = [];
 
-    // Push site data as JSON backup
-    const siteData = {
-        home: homeContent ? JSON.parse(homeContent) : null,
-        privacy: privacyContent,
-        contact: contactInfo ? JSON.parse(contactInfo) : null,
-        pages: JSON.parse(localStorage.getItem(PAGES_KEY) || '[]'),
-        settings: JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'),
-        lastBackup: timestamp
-    };
+    // Push index.html if home content exists
+    if (homeContent) {
+        const homeData = JSON.parse(homeContent);
+        const indexHtml = generateIndexHtml(homeData);
+        const result = await pushToGitHub('index.html', indexHtml, `Update home page - ${new Date().toLocaleString()}`);
+        if (result.success) successCount++;
+        else errors.push('index.html: ' + result.error);
+    }
 
-    const result = await pushToGitHub(
-        'admin/site-data.json',
-        JSON.stringify(siteData, null, 2),
-        `Backup site data - ${new Date().toLocaleString()}`
-    );
+    // Push privacy-policy.html if privacy content exists
+    if (privacyContent) {
+        const privacyHtml = generatePrivacyHtml(privacyContent);
+        const result = await pushToGitHub('privacy-policy.html', privacyHtml, `Update privacy policy - ${new Date().toLocaleString()}`);
+        if (result.success) successCount++;
+        else errors.push('privacy-policy.html: ' + result.error);
+    }
 
-    if (result.success) {
-        successCount++;
-    } else {
-        errors.push(result.error);
+    // Push contact-me.html if contact info exists
+    if (contactInfo) {
+        const contactData = JSON.parse(contactInfo);
+        const contactHtml = generateContactHtml(contactData);
+        const result = await pushToGitHub('contact-me.html', contactHtml, `Update contact page - ${new Date().toLocaleString()}`);
+        if (result.success) successCount++;
+        else errors.push('contact-me.html: ' + result.error);
     }
 
     if (successCount > 0) {
-        logActivity('backup', 'Site data pushed to GitHub', currentUser.username);
-        addNotification('GitHub backup completed');
-        showToast('Backup pushed to GitHub successfully!', 'success');
+        logActivity('backup', `${successCount} file(s) pushed to GitHub`, currentUser.username);
+        addNotification('GitHub backup completed - website updated!');
+        showToast(`${successCount} file(s) pushed to GitHub successfully!`, 'success');
         loadCommitHistory();
-    } else {
+    } else if (errors.length > 0) {
         showToast('Backup failed: ' + errors.join(', '), 'error');
+    } else {
+        showToast('No saved content to push. Edit and save content first.', 'warning');
     }
 }
 
@@ -1277,6 +1657,7 @@ function init() {
     loadGithubSettings();
     loadSettings();
     setupDragDrop();
+    initEditorLocks();
 
     // Check if returning from GitHub OAuth (hash navigation)
     if (window.location.hash === '#github') {

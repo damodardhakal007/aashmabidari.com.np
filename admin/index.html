@@ -194,7 +194,8 @@
                         <h2>Edit Home Page</h2>
                         <div class="panel-actions">
                             <a href="../index.html" target="_blank" class="btn btn-secondary btn-sm"><i class='bx bx-show'></i> Preview</a>
-                            <button class="btn btn-primary btn-sm" onclick="saveHomePage()"><i class='bx bx-save'></i> Save Changes</button>
+                            <button class="btn btn-warning btn-sm" id="editHomeBtn" onclick="unlockEditor('home')" style="display:none;"><i class='bx bx-edit'></i> Edit</button>
+                            <button class="btn btn-primary btn-sm" id="saveHomeBtn" onclick="saveHomePage()"><i class='bx bx-save'></i> Save Changes</button>
                         </div>
                     </div>
                     <div class="panel-body">
@@ -239,7 +240,10 @@
                 <div class="panel">
                     <div class="panel-header">
                         <h2>Privacy Policy Editor</h2>
-                        <button class="btn btn-primary btn-sm" onclick="savePrivacyPolicy()"><i class='bx bx-save'></i> Save Changes</button>
+                        <div class="panel-actions">
+                            <button class="btn btn-warning btn-sm" id="editPrivacyBtn" onclick="unlockEditor('privacy')" style="display:none;"><i class='bx bx-edit'></i> Edit</button>
+                            <button class="btn btn-primary btn-sm" id="savePrivacyBtn" onclick="savePrivacyPolicy()"><i class='bx bx-save'></i> Save Changes</button>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="content-editor">
@@ -273,7 +277,10 @@
                 <div class="panel">
                     <div class="panel-header">
                         <h2>Contact Information</h2>
-                        <button class="btn btn-primary btn-sm" onclick="saveContactInfo()"><i class='bx bx-save'></i> Save Changes</button>
+                        <div class="panel-actions">
+                            <button class="btn btn-warning btn-sm" id="editContactBtn" onclick="unlockEditor('contact')" style="display:none;"><i class='bx bx-edit'></i> Edit</button>
+                            <button class="btn btn-primary btn-sm" id="saveContactBtn" onclick="saveContactInfo()"><i class='bx bx-save'></i> Save Changes</button>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="form-grid">
@@ -368,12 +375,6 @@
                                     </button>
                                 </div>
                                 
-                                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
-                                    <p style="font-size: 0.8rem; color: var(--gray-400);">Or use OAuth (requires proxy server):</p>
-                                    <button class="btn btn-secondary btn-sm" onclick="startGitHubOAuth()" id="githubLoginBtn" style="margin-top: 0.5rem;">
-                                        <i class='bx bxl-github'></i> Login with GitHub OAuth
-                                    </button>
-                                </div>
                             </div>
                         </div>
 
