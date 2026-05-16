@@ -598,7 +598,7 @@ function clearActivityLogs() {
 // GitHub OAuth Configuration
 // To set up: Create a GitHub OAuth App at https://github.com/settings/developers
 // Set callback URL to: https://aashmabidari.com.np/admin/github-callback.html
-const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
+const GITHUB_CLIENT_ID = 'Ov23liZAE6fT8eATFv2P';
 
 function getGitHubRedirectURI() {
     let baseUrl = window.location.origin;
