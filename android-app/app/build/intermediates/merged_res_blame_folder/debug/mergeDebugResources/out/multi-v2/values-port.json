@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.aashmabidari.app-mergeDebugResources-31:/values-port/values-port.xml",
+            "outputFile": "com.damodar.daure.app-mergeDebugResources-96:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Damodar\\.gradle\\caches\\8.13\\transforms\\9751129cf9a082d51cb0234e0f752002\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Damodar\\.gradle\\caches\\9.3.1\\transforms\\2b0a7faedd25640e24354afbe1348445\\workspace\\transformed\\appcompat-1.7.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.aashmabidari.app-mergeDebugResources-31:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "outputFile": "com.damodar.daure.app-mergeDebugResources-96:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Damodar\\.gradle\\caches\\8.13\\transforms\\599a5935c2166e8e0b398a0aed9a2d82\\transformed\\material-1.11.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "source": "C:\\Users\\Damodar\\.gradle\\caches\\9.3.1\\transforms\\54bf4ba8ae1843d02099e61d6cd20789\\workspace\\transformed\\material-1.4.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

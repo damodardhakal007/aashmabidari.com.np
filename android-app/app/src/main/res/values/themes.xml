@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.DAURE" parent="Theme.MaterialComponents.Light" />
+</resources>

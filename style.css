@@ -439,6 +439,113 @@ span {
     object-fit: cover;
     display: block;
 }
+/* ******************Download Section********************* */
+
+.download {
+    background: var(--snd-bg-color);
+    text-align: center;
+    min-height: auto;
+    padding: 8rem 9% 6rem;
+}
+
+.download .heading {
+    margin-bottom: 2rem;
+}
+
+.download-description {
+    font-size: 1.6rem;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    color: var(--text-color);
+}
+
+.download-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.download-card {
+    background: var(--bg-color);
+    border-radius: 2rem;
+    padding: 3rem 4rem;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0, 127, 115, 0.2);
+}
+
+.download-card i {
+    font-size: 5rem;
+    color: var(--main-color);
+}
+
+.download-card h3 {
+    font-size: 2.2rem;
+    color: var(--text-color);
+}
+
+.download-card p {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.download-btn:hover {
+    background: #005f56;
+    box-shadow: 0 5px 15px rgba(0, 127, 115, 0.4);
+    transform: scale(1.05);
+}
+
+.download-btn i {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.download-note {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #999;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .download-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .download-card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 /* ******************Footer Section********************* */
 
 .footer {

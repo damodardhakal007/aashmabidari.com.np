@@ -1,4 +1,13 @@
-#Fri May 15 08:16:43 NPT 2026
-base.0=C\:\\Users\\Damodar\\Documents\\GitHub\\aashmabidari.com.np\\android-app\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-path.0=0/classes.dex
+#Fri May 01 08:21:41 NPT 2026
+base.0=C\:\\Users\\Damodar\\AndroidStudioProjects\\DAURE\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=C\:\\Users\\Damodar\\AndroidStudioProjects\\DAURE\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.2=C\:\\Users\\Damodar\\AndroidStudioProjects\\DAURE\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\2\\classes.dex
+base.3=C\:\\Users\\Damodar\\AndroidStudioProjects\\DAURE\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\8\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=2/classes.dex
+path.3=8/classes.dex
 renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex

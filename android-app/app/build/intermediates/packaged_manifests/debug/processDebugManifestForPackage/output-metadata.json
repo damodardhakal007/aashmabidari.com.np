@@ -4,15 +4,15 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.aashmabidari.app",
+  "applicationId": "com.damodar.daure",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
-      "versionName": "1.0.0",
+      "versionCode": 4,
+      "versionName": "1.00003",
       "outputFile": "AndroidManifest.xml"
     }
   ],

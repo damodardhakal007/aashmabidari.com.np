@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "738035221815",
+    "project_id": "daure-1ec0c",
+    "storage_bucket": "daure-1ec0c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738035221815:android:8c0413f1765e3148e406b2",
+        "android_client_info": {
+          "package_name": "com.damodar.daure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738035221815-0flkkk8dgnig9hu7fq2v8emtaka18nhp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.damodar.daure",
+            "certificate_hash": "e8594e89c38cea47ef11bbf8b0148bfd892c387d"
+          }
+        },
+        {
+          "client_id": "738035221815-jvq1froaqdpi4cq9u9mrl0ja29fj5q4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxyKoCT_SHpOw6uT5Y5p38uqSPwkLTwrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738035221815-jvq1froaqdpi4cq9u9mrl0ja29fj5q4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
