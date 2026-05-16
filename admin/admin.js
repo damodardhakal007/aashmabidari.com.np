@@ -477,6 +477,13 @@ function saveHomePage() {
     logActivity('edit', 'Home page content updated', currentUser.username);
     addNotification('Home page was updated');
     showToast('Home page saved successfully', 'success');
+
+    // Auto-push to GitHub
+    autoPushToGitHub(
+        'admin/content/home.json',
+        JSON.stringify(data, null, 2),
+        `Update home page content - ${currentUser.username}`
+    );
 }
 
 function savePrivacyPolicy() {
@@ -485,6 +492,13 @@ function savePrivacyPolicy() {
     logActivity('edit', 'Privacy Policy updated', currentUser.username);
     addNotification('Privacy Policy was updated');
     showToast('Privacy Policy saved successfully', 'success');
+
+    // Auto-push to GitHub
+    autoPushToGitHub(
+        'admin/content/privacy.html',
+        content,
+        `Update privacy policy - ${currentUser.username}`
+    );
 }
 
 function saveContactInfo() {
@@ -501,6 +515,13 @@ function saveContactInfo() {
     logActivity('edit', 'Contact information updated', currentUser.username);
     addNotification('Contact info was updated');
     showToast('Contact information saved successfully', 'success');
+
+    // Auto-push to GitHub
+    autoPushToGitHub(
+        'admin/content/contact.json',
+        JSON.stringify(data, null, 2),
+        `Update contact info - ${currentUser.username}`
+    );
 }
 
 function execCmd(command, value = null) {
@@ -572,56 +593,325 @@ function clearActivityLogs() {
     showToast('Activity logs cleared', 'success');
 }
 
-// ==================== GITHUB INTEGRATION ====================
-function saveGithubSettings() {
-    const data = {
-        token: document.getElementById('githubToken').value,
-        owner: document.getElementById('githubOwner').value,
-        repo: document.getElementById('githubRepo').value,
-        branch: document.getElementById('githubBranch').value,
-        connected: !!(document.getElementById('githubToken').value && document.getElementById('githubOwner').value)
-    };
-    localStorage.setItem(GITHUB_KEY, JSON.stringify(data));
+// ==================== GITHUB INTEGRATION (OAuth) ====================
 
-    if (data.connected) {
-        document.getElementById('githubStatus').className = 'github-status';
-        document.getElementById('githubStatus').innerHTML = '<i class="bx bxl-github"></i><span>Connected to ' + data.owner + '/' + data.repo + '</span>';
-    }
+// GitHub OAuth Configuration
+// To set up: Create a GitHub OAuth App at https://github.com/settings/developers
+// Set callback URL to: https://aashmabidari.com.np/admin/github-callback.html
+const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
+const GITHUB_REDIRECT_URI = window.location.origin + '/admin/github-callback.html';
+const GITHUB_SCOPES = 'repo,user';
 
-    logActivity('settings', 'GitHub settings updated', currentUser.username);
-    showToast('GitHub settings saved', 'success');
+// Start GitHub OAuth Flow
+function startGitHubOAuth() {
+    const state = generateRandomState();
+    sessionStorage.setItem('github_oauth_state', state);
+    
+    // Save current config
+    const githubData = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    githubData.clientId = GITHUB_CLIENT_ID;
+    githubData.proxyUrl = githubData.proxyUrl || '';
+    localStorage.setItem(GITHUB_KEY, JSON.stringify(githubData));
+    
+    // Redirect to GitHub OAuth
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(GITHUB_REDIRECT_URI)}&scope=${GITHUB_SCOPES}&state=${state}`;
+    window.location.href = authUrl;
 }
 
-function triggerBackup() {
-    const github = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
-    if (!github.connected) {
+function generateRandomState() {
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Disconnect GitHub
+function disconnectGitHub() {
+    if (!confirm('Disconnect GitHub? Auto-push will stop working.')) return;
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    data.token = null;
+    data.connected = false;
+    data.user = null;
+    localStorage.setItem(GITHUB_KEY, JSON.stringify(data));
+    logActivity('settings', 'GitHub account disconnected', currentUser.username);
+    showToast('GitHub disconnected', 'success');
+    loadGithubUI();
+}
+
+// Load GitHub UI state
+function loadGithubUI() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    const loginSection = document.getElementById('githubLoginSection');
+    const connectedSection = document.getElementById('githubConnectedSection');
+    const statusEl = document.getElementById('githubStatus');
+
+    if (data.connected && data.token && data.user) {
+        // Show connected state
+        loginSection.style.display = 'none';
+        connectedSection.style.display = 'block';
+        statusEl.className = 'github-status';
+        statusEl.innerHTML = `<i class="bx bxl-github"></i><span>Connected as @${data.user.login}</span>`;
+
+        // Update user info
+        document.getElementById('githubUserAvatar').src = data.user.avatar || '';
+        document.getElementById('githubUserName').textContent = data.user.name || data.user.login;
+        document.getElementById('githubUserLogin').textContent = '@' + data.user.login;
+
+        // Load branch
+        if (data.branch) {
+            document.getElementById('githubBranch').value = data.branch;
+        }
+
+        // Load auto-push preference
+        const autoPush = document.getElementById('githubAutoPush');
+        if (autoPush) {
+            autoPush.checked = data.autoPush !== false; // default true
+        }
+
+        // Load repos
+        fetchUserRepos();
+
+        // Load commit history
+        loadCommitHistory();
+    } else {
+        // Show login state
+        loginSection.style.display = 'block';
+        connectedSection.style.display = 'none';
+        statusEl.className = 'github-status disconnected';
+        statusEl.innerHTML = '<i class="bx bxl-github"></i><span>Not connected - Login with GitHub to enable auto-backup</span>';
+    }
+}
+
+// Alias for backward compatibility
+function loadGithubSettings() {
+    loadGithubUI();
+}
+
+// Fetch user's repositories
+async function fetchUserRepos() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    if (!data.token) return;
+
+    try {
+        const response = await fetch('https://api.github.com/user/repos?sort=updated&per_page=30', {
+            headers: { 'Authorization': 'Bearer ' + data.token }
+        });
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                // Token expired
+                showToast('GitHub token expired. Please reconnect.', 'error');
+                disconnectGitHub();
+                return;
+            }
+            throw new Error('Failed to fetch repos');
+        }
+
+        const repos = await response.json();
+        const select = document.getElementById('githubRepoSelect');
+        select.innerHTML = repos.map(repo =>
+            `<option value="${repo.full_name}" ${repo.name === (data.repo || 'aashmabidari.com.np') ? 'selected' : ''}>${repo.full_name}</option>`
+        ).join('');
+
+        // If no repo selected yet, try to find the default
+        if (!data.selectedRepo) {
+            const defaultRepo = repos.find(r => r.name === 'aashmabidari.com.np');
+            if (defaultRepo) {
+                data.selectedRepo = defaultRepo.full_name;
+                data.owner = defaultRepo.owner.login;
+                data.repo = defaultRepo.name;
+                localStorage.setItem(GITHUB_KEY, JSON.stringify(data));
+            }
+        }
+    } catch (err) {
+        console.error('Failed to fetch repos:', err);
+    }
+}
+
+// Update selected repository
+function updateSelectedRepo() {
+    const select = document.getElementById('githubRepoSelect');
+    const fullName = select.value;
+    if (!fullName) return;
+
+    const [owner, repo] = fullName.split('/');
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    data.selectedRepo = fullName;
+    data.owner = owner;
+    data.repo = repo;
+    localStorage.setItem(GITHUB_KEY, JSON.stringify(data));
+    showToast(`Repository set to ${fullName}`, 'success');
+    loadCommitHistory();
+}
+
+// Save GitHub preferences
+function saveGithubPrefs() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    data.branch = document.getElementById('githubBranch').value || 'main';
+    data.autoPush = document.getElementById('githubAutoPush').checked;
+    localStorage.setItem(GITHUB_KEY, JSON.stringify(data));
+}
+
+// Fetch repo info
+function fetchRepoInfo() {
+    fetchUserRepos();
+    loadCommitHistory();
+    showToast('Refreshed repository info', 'success');
+}
+
+// Load recent commit history
+async function loadCommitHistory() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    if (!data.token || !data.owner || !data.repo) return;
+
+    const historyEl = document.getElementById('backupHistory');
+    try {
+        const response = await fetch(
+            `https://api.github.com/repos/${data.owner}/${data.repo}/commits?per_page=10&sha=${data.branch || 'main'}`,
+            { headers: { 'Authorization': 'Bearer ' + data.token } }
+        );
+
+        if (!response.ok) throw new Error('Failed to fetch commits');
+
+        const commits = await response.json();
+        if (commits.length === 0) {
+            historyEl.innerHTML = '<div class="empty-state"><i class="bx bx-git-branch"></i><p>No commits found.</p></div>';
+            return;
+        }
+
+        document.getElementById('totalBackups').textContent = commits.length;
+
+        historyEl.innerHTML = commits.map(c => `
+            <div class="activity-item">
+                <div class="activity-icon add"><i class='bx bx-git-commit'></i></div>
+                <div class="activity-content">
+                    <div class="activity-desc">${escapeHtml(c.commit.message)}</div>
+                    <div class="activity-time">${formatDate(c.commit.author.date)} by ${c.commit.author.name}</div>
+                </div>
+            </div>
+        `).join('');
+    } catch (err) {
+        historyEl.innerHTML = `<div class="empty-state"><i class="bx bx-error"></i><p>Could not load commits: ${err.message}</p></div>`;
+    }
+}
+
+// Push file to GitHub (used by auto-push)
+async function pushToGitHub(filePath, content, commitMessage) {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    if (!data.token || !data.connected || !data.owner || !data.repo) {
+        return { success: false, error: 'GitHub not connected' };
+    }
+
+    const branch = data.branch || 'main';
+    const apiBase = `https://api.github.com/repos/${data.owner}/${data.repo}`;
+
+    try {
+        // Get current file SHA (needed for updates)
+        let sha = null;
+        try {
+            const getResp = await fetch(`${apiBase}/contents/${filePath}?ref=${branch}`, {
+                headers: { 'Authorization': 'Bearer ' + data.token }
+            });
+            if (getResp.ok) {
+                const fileData = await getResp.json();
+                sha = fileData.sha;
+            }
+        } catch (e) { /* File doesn't exist yet, that's fine */ }
+
+        // Create or update file
+        const body = {
+            message: commitMessage || `Update ${filePath} from admin dashboard`,
+            content: btoa(unescape(encodeURIComponent(content))),
+            branch: branch
+        };
+        if (sha) body.sha = sha;
+
+        const putResp = await fetch(`${apiBase}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + data.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (!putResp.ok) {
+            const errData = await putResp.json();
+            throw new Error(errData.message || 'Push failed');
+        }
+
+        return { success: true };
+    } catch (err) {
+        return { success: false, error: err.message };
+    }
+}
+
+// Trigger manual backup - pushes all content to GitHub
+async function triggerBackup() {
+    const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+    if (!data.connected || !data.token) {
         showToast('Please connect GitHub first', 'error');
         return;
     }
 
-    showToast('Backup triggered - pushing to GitHub...', 'info');
-    logActivity('backup', 'Manual GitHub backup triggered', currentUser.username);
-    addNotification('GitHub backup completed successfully');
+    showToast('Pushing changes to GitHub...', 'info');
 
-    // Simulate backup
-    setTimeout(() => {
-        const backups = parseInt(document.getElementById('totalBackups').textContent) + 1;
-        document.getElementById('totalBackups').textContent = backups;
-        showToast('Backup completed successfully!', 'success');
-    }, 2000);
+    // Gather content to push
+    const homeContent = localStorage.getItem('aashma_home_content');
+    const privacyContent = localStorage.getItem('aashma_privacy_content');
+    const contactInfo = localStorage.getItem('aashma_contact_info');
+    const timestamp = new Date().toISOString();
+
+    let successCount = 0;
+    let errors = [];
+
+    // Push site data as JSON backup
+    const siteData = {
+        home: homeContent ? JSON.parse(homeContent) : null,
+        privacy: privacyContent,
+        contact: contactInfo ? JSON.parse(contactInfo) : null,
+        pages: JSON.parse(localStorage.getItem(PAGES_KEY) || '[]'),
+        settings: JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'),
+        lastBackup: timestamp
+    };
+
+    const result = await pushToGitHub(
+        'admin/site-data.json',
+        JSON.stringify(siteData, null, 2),
+        `Backup site data - ${new Date().toLocaleString()}`
+    );
+
+    if (result.success) {
+        successCount++;
+    } else {
+        errors.push(result.error);
+    }
+
+    if (successCount > 0) {
+        logActivity('backup', 'Site data pushed to GitHub', currentUser.username);
+        addNotification('GitHub backup completed');
+        showToast('Backup pushed to GitHub successfully!', 'success');
+        loadCommitHistory();
+    } else {
+        showToast('Backup failed: ' + errors.join(', '), 'error');
+    }
 }
 
-function loadGithubSettings() {
+// Auto-push on save (called after content saves)
+async function autoPushToGitHub(filePath, content, description) {
     const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
-    if (data.token) document.getElementById('githubToken').value = data.token;
-    if (data.owner) document.getElementById('githubOwner').value = data.owner;
-    if (data.repo) document.getElementById('githubRepo').value = data.repo;
-    if (data.branch) document.getElementById('githubBranch').value = data.branch;
+    if (!data.connected || !data.token || data.autoPush === false) return;
 
-    if (data.connected) {
-        document.getElementById('githubStatus').className = 'github-status';
-        document.getElementById('githubStatus').innerHTML = '<i class="bx bxl-github"></i><span>Connected to ' + data.owner + '/' + data.repo + '</span>';
+    const result = await pushToGitHub(filePath, content, description);
+    if (result.success) {
+        showToast('Auto-pushed to GitHub ✓', 'success');
+        logActivity('backup', `Auto-pushed: ${description}`, currentUser.username);
     }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }
 
 // ==================== SETTINGS ====================
@@ -819,6 +1109,16 @@ function init() {
     loadGithubSettings();
     loadSettings();
     setupDragDrop();
+
+    // Check if returning from GitHub OAuth (hash navigation)
+    if (window.location.hash === '#github') {
+        showPage('github');
+        window.location.hash = '';
+        const data = JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}');
+        if (data.connected) {
+            showToast('GitHub connected successfully!', 'success');
+        }
+    }
 }
 
 // Run on page load

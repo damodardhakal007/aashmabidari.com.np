@@ -431,6 +431,17 @@
             </button>
         </form>
 
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+                <span style="font-size: 0.8rem; color: var(--gray-500);">or</span>
+                <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+            </div>
+            <button type="button" onclick="loginWithGitHub()" style="width: 100%; padding: 12px; background: #24292e; color: white; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s;">
+                <i class='bx bxl-github' style="font-size: 20px;"></i> Login with GitHub
+            </button>
+        </div>
+
         <a href="index.html" class="back-link">
             <i class='bx bx-arrow-back'></i> Back to Website
         </a>
@@ -653,6 +664,28 @@
         document.getElementById('forgotModal').addEventListener('click', function(e) {
             if (e.target === this) closeForgotPassword();
         });
+
+        // GitHub OAuth Login
+        function loginWithGitHub() {
+            const GITHUB_CLIENT_ID = 'Ov23liYourClientIdHere'; // Replace with your GitHub OAuth App Client ID
+            const REDIRECT_URI = window.location.origin + '/admin/github-callback.html';
+            const SCOPES = 'repo,user';
+            
+            // Generate random state for CSRF protection
+            const array = new Uint8Array(16);
+            crypto.getRandomValues(array);
+            const state = Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+            sessionStorage.setItem('github_oauth_state', state);
+
+            // Save config for callback
+            const githubData = JSON.parse(localStorage.getItem('aashma_github') || '{}');
+            githubData.clientId = GITHUB_CLIENT_ID;
+            localStorage.setItem('aashma_github', JSON.stringify(githubData));
+
+            // Redirect to GitHub OAuth
+            const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${SCOPES}&state=${state}`;
+            window.location.href = authUrl;
+        }
     </script>
 </body>
 </html>
