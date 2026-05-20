@@ -1210,6 +1210,495 @@
 }
 
 /* ============================================
+   CREATE RESUME BUTTON
+   ============================================ */
+.create-btn {
+    background: linear-gradient(135deg, #27ae60, #1e8449);
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(39, 174, 96, 0.3);
+}
+
+.create-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(39, 174, 96, 0.5);
+}
+
+/* ============================================
+   RESUME BUILDER MODAL
+   ============================================ */
+.resume-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.resume-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.resume-modal {
+    background: linear-gradient(135deg, #0d1f30, #1a2d42);
+    border: 1px solid rgba(0, 238, 255, 0.2);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 238, 255, 0.1);
+    animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(30px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(0, 238, 255, 0.1);
+    background: rgba(0, 238, 255, 0.03);
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-title i {
+    font-size: 28px;
+    color: var(--primary);
+}
+
+.modal-title h2 {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.modal-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: #e74c3c;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Step Indicator */
+.form-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 35px;
+    padding: 0 10px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(0, 238, 255, 0.08);
+    border: 2px solid rgba(0, 238, 255, 0.2);
+    color: var(--text-muted);
+    transition: all 0.4s ease;
+}
+
+.step.active .step-number {
+    background: linear-gradient(135deg, var(--primary), var(--purple));
+    border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
+}
+
+.step.completed .step-number {
+    background: rgba(0, 200, 83, 0.2);
+    border-color: #00c853;
+    color: #00c853;
+}
+
+.step-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.step.active .step-label {
+    color: var(--primary);
+}
+
+.step.completed .step-label {
+    color: #00c853;
+}
+
+.step-line {
+    width: 60px;
+    height: 2px;
+    background: rgba(0, 238, 255, 0.15);
+    margin: 0 10px;
+    margin-bottom: 20px;
+    transition: background 0.4s ease;
+}
+
+/* Form Step Content */
+.form-step-content {
+    display: none;
+}
+
+.form-step-content.active {
+    display: block;
+    animation: fadeInStep 0.4s ease;
+}
+
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.form-step-content h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-step-content h3 i {
+    color: var(--primary);
+    font-size: 22px;
+}
+
+/* Form Fields */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row.full {
+    grid-template-columns: 1fr;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 238, 255, 0.04);
+    border: 1px solid rgba(0, 238, 255, 0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0, 238, 255, 0.1);
+    background: rgba(0, 238, 255, 0.06);
+}
+
+.form-field select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300eeff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+
+.form-field select option {
+    background: #1a2d42;
+    color: #fff;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Entry Cards (for repeatable sections) */
+.entry-card {
+    background: rgba(0, 238, 255, 0.03);
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.entry-card:hover {
+    border-color: rgba(0, 238, 255, 0.2);
+}
+
+.entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.entry-label {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.remove-entry-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-entry-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: #e74c3c;
+}
+
+.add-entry-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(0, 238, 255, 0.08);
+    border: 1px dashed rgba(0, 238, 255, 0.3);
+    border-radius: 10px;
+    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.add-entry-btn:hover {
+    background: rgba(0, 238, 255, 0.12);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.add-entry-btn i {
+    font-size: 18px;
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 238, 255, 0.1);
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.prev-btn {
+    background: rgba(0, 238, 255, 0.08);
+    border: 1px solid rgba(0, 238, 255, 0.2);
+    color: var(--primary);
+}
+
+.prev-btn:hover {
+    background: rgba(0, 238, 255, 0.12);
+    border-color: var(--primary);
+    transform: translateX(-3px);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, var(--primary), #006064);
+    color: #fff;
+    margin-left: auto;
+    box-shadow: 0 5px 15px rgba(0, 238, 255, 0.2);
+}
+
+.next-btn:hover {
+    transform: translateX(3px);
+    box-shadow: 0 8px 25px rgba(0, 238, 255, 0.3);
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, #27ae60, #1e8449);
+    color: #fff;
+    margin-left: auto;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+}
+
+.generate-btn i {
+    font-size: 18px;
+}
+
+/* ============================================
+   RESUME MODAL RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .resume-modal {
+        max-height: 95vh;
+        border-radius: 15px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-steps {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .step-line {
+        width: 30px;
+    }
+
+    .step-label {
+        font-size: 9px;
+    }
+
+    .form-navigation {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header {
+        padding: 15px 20px;
+    }
+
+    .modal-title h2 {
+        font-size: 16px;
+    }
+
+    .step-line {
+        width: 20px;
+        margin: 0 5px;
+    }
+}
+
+/* ============================================
    ANIMATIONS FOR SCROLL REVEAL
    ============================================ */
 .resume-block {
