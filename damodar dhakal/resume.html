@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damodar Dhakal | Resume</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="resume-styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="resume-page">
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <span class="loader-text">R</span>
+            <div class="loader-ring"></div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">Damodar<span>.</span></a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="index.html" style="--i:1">Home</a>
+            <a href="index.html#about" style="--i:2">About</a>
+            <a href="index.html#skills" style="--i:3">Skills</a>
+            <a href="index.html#portfolio" style="--i:4">Portfolio</a>
+            <a href="index.html#contact" style="--i:5">Contact</a>
+            <a href="resume.html" style="--i:6" class="active">Resume</a>
+        </nav>
+    </header>
+
+    <!-- Resume Hero Section -->
+    <section class="resume-hero">
+        <div class="resume-hero-content">
+            <div class="resume-badge">
+                <i class='bx bx-file'></i>
+                <span>Professional Resume</span>
+            </div>
+            <h1>My <span>Resume</span></h1>
+            <p>A comprehensive overview of my professional journey, education, and skills in banking, finance, and technology.</p>
+            
+            <!-- Download Buttons -->
+            <div class="download-actions">
+                <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="download-btn pdf-btn">
+                    <i class='bx bxs-file-pdf'></i>
+                    <div class="btn-content">
+                        <span class="btn-label">Download</span>
+                        <span class="btn-format">PDF Format</span>
+                    </div>
+                    <div class="btn-glow"></div>
+                </a>
+                <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="download-btn word-btn" id="word-download">
+                    <i class='bx bxs-file-doc'></i>
+                    <div class="btn-content">
+                        <span class="btn-label">Download</span>
+                        <span class="btn-format">Word Format</span>
+                    </div>
+                    <div class="btn-glow"></div>
+                </a>
+                <button class="download-btn print-btn" onclick="window.print()">
+                    <i class='bx bx-printer'></i>
+                    <div class="btn-content">
+                        <span class="btn-label">Print</span>
+                        <span class="btn-format">Resume</span>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </div>
+        <div class="resume-hero-visual">
+            <div class="floating-doc">
+                <div class="doc-preview">
+                    <div class="doc-header-bar"></div>
+                    <div class="doc-lines">
+                        <div class="doc-line long"></div>
+                        <div class="doc-line medium"></div>
+                        <div class="doc-line short"></div>
+                        <div class="doc-line long"></div>
+                        <div class="doc-line medium"></div>
+                    </div>
+                    <div class="doc-avatar">
+                        <img src="1.jpg" alt="Damodar Dhakal">
+                    </div>
+                </div>
+                <div class="doc-shadow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Content Section -->
+    <section class="resume-content">
+        <div class="resume-container">
+            <!-- Left Column - Timeline -->
+            <div class="resume-column left-column">
+                <!-- Profile Summary -->
+                <div class="resume-block" data-aos="fade-right">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-user-circle'></i>
+                        </div>
+                        <h2>Profile Summary</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="profile-card">
+                            <div class="profile-img-wrapper">
+                                <img src="1.jpg" alt="Damodar Dhakal">
+                                <div class="profile-status"></div>
+                            </div>
+                            <div class="profile-info">
+                                <h3>Damodar Dhakal</h3>
+                                <span class="profile-title">Banking Professional & Developer</span>
+                                <div class="profile-meta">
+                                    <span><i class='bx bx-map'></i> Kavresthali-1, Kathmandu</span>
+                                    <span><i class='bx bx-phone'></i> 9849353443</span>
+                                    <span><i class='bx bx-envelope'></i> damodardhakal007@gmail.com</span>
+                                    <span><i class='bx bx-calendar'></i> DOB: 1994-06-14</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="career-statement">
+                            I am an Account professional seeking to gain practical knowledge in this field. I would like to utilize my knowledge 
+                            and skill for the growth of the company. I am an enthusiast in accounts and currently working in a commercial Bank 
+                            with extensive experience. I want to implement my knowledge and skill for the growth of the organization.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-block" data-aos="fade-right">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-briefcase'></i>
+                        </div>
+                        <h2>Experience</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot active"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header">
+                                        <h3>Junior Assistant</h3>
+                                        <span class="timeline-badge current">Current</span>
+                                    </div>
+                                    <h4 class="company">Sunrise Bank Limited</h4>
+                                    <span class="timeline-date">
+                                        <i class='bx bx-calendar'></i> April 2018 - Present
+                                    </span>
+                                    <ul class="timeline-details">
+                                        <li>Core Banking Operations using Finacle System</li>
+                                        <li>Credit Risk Management & NPL Analysis</li>
+                                        <li>Customer Account Management & Services</li>
+                                        <li>Financial Reporting & Compliance</li>
+                                        <li>CRR Management & Loan Processing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header">
+                                        <h3>Right Share Management</h3>
+                                        <span class="timeline-badge">Completed</span>
+                                    </div>
+                                    <h4 class="company">Mega Bank Nepal Limited</h4>
+                                    <span class="timeline-date">
+                                        <i class='bx bx-calendar'></i> Sep 2017 - Oct 2017
+                                    </span>
+                                    <ul class="timeline-details">
+                                        <li>Managed right share issuance processes</li>
+                                        <li>Investor communication & documentation</li>
+                                        <li>Share allotment coordination</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="resume-block" data-aos="fade-right">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-id-card'></i>
+                        </div>
+                        <h2>Personal Details</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <i class='bx bx-user'></i>
+                                <div>
+                                    <span class="detail-label">Father's Name</span>
+                                    <span class="detail-value">Shukdev Dhakal</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class='bx bx-heart'></i>
+                                <div>
+                                    <span class="detail-label">Religion</span>
+                                    <span class="detail-value">Hindu</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class='bx bx-ring'></i>
+                                <div>
+                                    <span class="detail-label">Marital Status</span>
+                                    <span class="detail-value">Married</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class='bx bx-id-card'></i>
+                                <div>
+                                    <span class="detail-label">Citizenship No.</span>
+                                    <span class="detail-value">27-1033/96851</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="resume-column right-column">
+                <!-- Education -->
+                <div class="resume-block" data-aos="fade-left">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-book-open'></i>
+                        </div>
+                        <h2>Education</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="education-grid">
+                            <div class="edu-card">
+                                <div class="edu-icon">
+                                    <i class='bx bx-math'></i>
+                                </div>
+                                <div class="edu-info">
+                                    <h3>ACCA</h3>
+                                    <h4>Association of Chartered Certified Accountants</h4>
+                                    <p>National College of Accountancy, Battisputali, Gausala</p>
+                                    <span class="edu-level"><i class='bx bx-target-lock'></i> Current Level: Skill Level</span>
+                                </div>
+                            </div>
+                            <div class="edu-card">
+                                <div class="edu-icon">
+                                    <i class='bx bx-trophy'></i>
+                                </div>
+                                <div class="edu-info">
+                                    <h3>ICAI</h3>
+                                    <h4>Institute of Chartered Accountant of India</h4>
+                                    <p>CAI, Putalisadak, Kathmandu</p>
+                                    <span class="edu-level"><i class='bx bx-target-lock'></i> Current Level: IPCC</span>
+                                </div>
+                            </div>
+                            <div class="edu-card">
+                                <div class="edu-icon">
+                                    <i class='bx bx-graduation'></i>
+                                </div>
+                                <div class="edu-info">
+                                    <h3>BBS</h3>
+                                    <h4>Bachelor in Business Studies</h4>
+                                    <p>Shanker Dev Campus, Putalishadak, Kathmandu</p>
+                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
+                                </div>
+                            </div>
+                            <div class="edu-card">
+                                <div class="edu-icon">
+                                    <i class='bx bx-atom'></i>
+                                </div>
+                                <div class="edu-info">
+                                    <h3>+2 Science (Biology)</h3>
+                                    <h4>Higher Secondary Education</h4>
+                                    <p>Himalayan White House International College</p>
+                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
+                                </div>
+                            </div>
+                            <div class="edu-card">
+                                <div class="edu-icon">
+                                    <i class='bx bx-book-reader'></i>
+                                </div>
+                                <div class="edu-info">
+                                    <h3>SLC</h3>
+                                    <h4>School Leaving Certificate</h4>
+                                    <p>Green Hills Academy</p>
+                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="resume-block" data-aos="fade-left">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-cog'></i>
+                        </div>
+                        <h2>Skills</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="skills-tags">
+                            <div class="skill-tag-group">
+                                <h4><i class='bx bx-bank'></i> Banking Skills</h4>
+                                <div class="tags">
+                                    <span class="tag">Core Banking (Finacle)</span>
+                                    <span class="tag">Inventory Management (RIGO)</span>
+                                    <span class="tag">Credit Risk Management</span>
+                                    <span class="tag">NPL Analysis</span>
+                                    <span class="tag">CRR Management</span>
+                                    <span class="tag">Loan Pricing</span>
+                                </div>
+                            </div>
+                            <div class="skill-tag-group">
+                                <h4><i class='bx bx-code-alt'></i> Technical Skills</h4>
+                                <div class="tags">
+                                    <span class="tag">HTML/CSS/JavaScript</span>
+                                    <span class="tag">Python Programming</span>
+                                    <span class="tag">Android Development</span>
+                                    <span class="tag">Website Development</span>
+                                    <span class="tag">AI & Prompt Engineering</span>
+                                    <span class="tag">Computer Hardware</span>
+                                </div>
+                            </div>
+                            <div class="skill-tag-group">
+                                <h4><i class='bx bx-search-alt'></i> Research Skills</h4>
+                                <div class="tags">
+                                    <span class="tag">Data Collection</span>
+                                    <span class="tag">Interpretation & Analysis</span>
+                                    <span class="tag">Financial Forecasting</span>
+                                    <span class="tag">Market Analysis</span>
+                                </div>
+                            </div>
+                            <div class="skill-tag-group">
+                                <h4><i class='bx bx-group'></i> Soft Skills</h4>
+                                <div class="tags">
+                                    <span class="tag">Leadership</span>
+                                    <span class="tag">Interpersonal Communication</span>
+                                    <span class="tag">Team Management</span>
+                                    <span class="tag">Problem Solving</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- References -->
+                <div class="resume-block" data-aos="fade-left">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-conversation'></i>
+                        </div>
+                        <h2>References</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="references-grid">
+                            <div class="reference-card">
+                                <div class="ref-avatar">
+                                    <i class='bx bx-user'></i>
+                                </div>
+                                <h3>Rameshwor Prasad Yadav</h3>
+                                <span class="ref-designation">Principal</span>
+                                <span class="ref-org">Green Hills Academy</span>
+                                <div class="ref-contact">
+                                    <span><i class='bx bx-phone'></i> 015106358</span>
+                                    <span><i class='bx bx-envelope'></i> greenhills1@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <div class="ref-avatar">
+                                    <i class='bx bx-user'></i>
+                                </div>
+                                <h3>Sandip Babu Poudel</h3>
+                                <span class="ref-designation">Head Mega Account</span>
+                                <span class="ref-org">Mega Bank Limited</span>
+                                <div class="ref-contact">
+                                    <span><i class='bx bx-phone'></i> 9851145884</span>
+                                    <span><i class='bx bx-envelope'></i> sandip.poudel@megabank.com.np</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Objective -->
+                <div class="resume-block" data-aos="fade-left">
+                    <div class="block-header">
+                        <div class="block-icon">
+                            <i class='bx bx-target-lock'></i>
+                        </div>
+                        <h2>Personal Objective</h2>
+                    </div>
+                    <div class="block-content">
+                        <div class="objective-card">
+                            <blockquote>
+                                <i class='bx bxs-quote-alt-left quote-icon'></i>
+                                I am honest, hardworking and loyal and I want to utilize these characteristics for the betterment of the organization.
+                                <i class='bx bxs-quote-alt-right quote-icon'></i>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume PDF Viewer Section -->
+    <section class="resume-viewer-section">
+        <h2 class="heading">View <span>Resume</span></h2>
+        <div class="resume-viewer-container">
+            <div class="viewer-toolbar">
+                <div class="toolbar-left">
+                    <i class='bx bx-file'></i>
+                    <span>Resume Final.pdf</span>
+                </div>
+                <div class="toolbar-right">
+                    <a href="Resume Final.pdf" target="_blank" class="toolbar-btn" title="Open in new tab">
+                        <i class='bx bx-link-external'></i>
+                    </a>
+                    <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="toolbar-btn" title="Download PDF">
+                        <i class='bx bx-download'></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pdf-viewer">
+                <embed src="Resume Final.pdf" type="application/pdf" width="100%" height="800px">
+                <div class="pdf-fallback">
+                    <i class='bx bx-file-blank'></i>
+                    <p>Your browser doesn't support PDF embedding.</p>
+                    <a href="Resume Final.pdf" target="_blank" class="btn-box">Open PDF in New Tab</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">Damodar<span>.</span></a>
+            </div>
+            <p>&copy; 2025 Damodar Dhakal. All Rights Reserved.</p>
+            <p>Banker | Coder | Web Developer | Android App Developer</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/damodardhakal007" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/damodardhakal007" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://wa.me/9779808841371" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.tiktok.com/@damodar.dhakal" target="_blank"><i class='bx bxl-tiktok'></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+        <i class='bx bx-up-arrow-alt'></i>
+    </a>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <script src="resume.js"></script>
+</body>
+</html>
