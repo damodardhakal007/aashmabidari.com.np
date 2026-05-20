@@ -197,6 +197,39 @@
     box-shadow: 0 8px 30px rgba(0, 238, 255, 0.4);
 }
 
+/* View Button */
+.view-btn {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+}
+
+.view-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+}
+
+/* Disabled Button State */
+.download-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.download-btn:disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.download-btn:disabled .btn-glow {
+    display: none;
+}
+
+.download-btn.enabled {
+    opacity: 1;
+}
+
 /* ============================================
    FLOATING DOCUMENT VISUAL
    ============================================ */
@@ -1138,76 +1171,6 @@
     }
 }
 
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-@media print {
-    .header, .scroll-top, .cursor, .cursor-follower, 
-    #particles-canvas, .preloader, .resume-hero-visual,
-    .download-actions, .resume-viewer-section, .footer,
-    .resume-badge, .btn-glow {
-        display: none !important;
-    }
-
-    .resume-page {
-        background: #fff;
-        color: #333;
-    }
-
-    .resume-hero {
-        min-height: auto;
-        padding: 20px;
-    }
-
-    .resume-hero::before {
-        display: none;
-    }
-
-    .resume-hero-content h1 {
-        color: #333;
-        -webkit-text-fill-color: #333;
-    }
-
-    .resume-hero-content p {
-        color: #555;
-    }
-
-    .resume-content {
-        padding: 20px;
-    }
-
-    .resume-block {
-        border: 1px solid #ddd;
-        background: #fff;
-        box-shadow: none;
-        break-inside: avoid;
-    }
-
-    .resume-block:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-    .block-header h2 {
-        color: #333;
-    }
-
-    .profile-info h3, .timeline-header h3, .edu-info h3,
-    .reference-card h3, .detail-value {
-        color: #333;
-    }
-
-    .career-statement, .timeline-details li, .profile-meta span,
-    .edu-info p, .ref-org, .ref-contact span, .tag {
-        color: #555;
-    }
-
-    .tag {
-        background: #f0f0f0;
-        border-color: #ddd;
-        color: #333;
-    }
-}
 
 /* ============================================
    CREATE RESUME BUTTON
@@ -1699,6 +1662,77 @@
 }
 
 /* ============================================
+   DOC AVATAR PLACEHOLDER
+   ============================================ */
+.doc-avatar-placeholder {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 15px rgba(0, 238, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 238, 255, 0.1), rgba(168, 85, 247, 0.1));
+}
+
+.doc-avatar-placeholder i {
+    font-size: 30px;
+    color: var(--primary);
+}
+
+/* ============================================
+   RESUME PREVIEW SECTION
+   ============================================ */
+.resume-preview-section {
+    padding: 80px 10%;
+    background: var(--bg-section);
+    position: relative;
+    z-index: 1;
+}
+
+.resume-preview-section .heading {
+    text-align: center;
+    font-size: 42px;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.resume-preview-section .heading span {
+    background: linear-gradient(135deg, var(--primary), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.resume-preview-container {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 238, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    background: #fff;
+}
+
+.resume-preview-container .resume-pdf-content {
+    width: 100% !important;
+    min-height: auto !important;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* ============================================
    ANIMATIONS FOR SCROLL REVEAL
    ============================================ */
 .resume-block {
@@ -1710,4 +1744,138 @@
 .resume-block.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ============================================
+   PRINT STYLES FOR PREVIEW
+   ============================================ */
+@media print {
+    .header, .scroll-top, .cursor, .cursor-follower,
+    #particles-canvas, .preloader, .resume-hero,
+    .footer, .preview-actions {
+        display: none !important;
+    }
+
+    .resume-preview-section {
+        padding: 0 !important;
+        background: #fff !important;
+    }
+
+    .resume-preview-section .heading {
+        display: none !important;
+    }
+
+    .resume-preview-container {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+}
+
+/* ============================================
+   PHOTO UPLOAD STYLES
+   ============================================ */
+.photo-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.photo-preview {
+    width: 120px;
+    height: 140px;
+    border-radius: 8px;
+    border: 2px dashed rgba(0, 238, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: rgba(0, 238, 255, 0.03);
+}
+
+.photo-preview:hover {
+    border-color: var(--primary);
+    background: rgba(0, 238, 255, 0.06);
+}
+
+.photo-preview i {
+    font-size: 32px;
+    color: var(--primary);
+    opacity: 0.7;
+}
+
+.photo-preview span {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 0 5px;
+}
+
+.photo-preview.has-photo {
+    border-style: solid;
+    border-color: var(--primary);
+    padding: 0;
+}
+
+.photo-preview.has-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(0, 238, 255, 0.08);
+    border: 1px solid rgba(0, 238, 255, 0.25);
+    border-radius: 8px;
+    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-upload-btn:hover {
+    background: rgba(0, 238, 255, 0.12);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.photo-upload-btn i {
+    font-size: 16px;
+}
+
+.photo-remove-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(231, 76, 60, 0.08);
+    border: 1px solid rgba(231, 76, 60, 0.25);
+    border-radius: 8px;
+    color: #e74c3c;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-remove-btn:hover {
+    background: rgba(231, 76, 60, 0.15);
+    border-color: #e74c3c;
+    transform: translateY(-1px);
+}
+
+.photo-remove-btn i {
+    font-size: 16px;
 }

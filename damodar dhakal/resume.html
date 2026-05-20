@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damodar Dhakal | Resume</title>
+    <title>Resume Builder | Create Professional Resume</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="resume-styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -41,42 +41,34 @@
         <div class="resume-hero-content">
             <div class="resume-badge">
                 <i class='bx bx-file'></i>
-                <span>Professional Resume</span>
+                <span>Professional Resume Builder</span>
             </div>
-            <h1>My <span>Resume</span></h1>
-            <p>A comprehensive overview of my professional journey, education, and skills in banking, finance, and technology.</p>
+            <h1>Resume <span>Builder</span></h1>
+            <p>Create a professional resume in minutes. Fill in your details, preview your resume, and download it as a PDF — all in one place.</p>
             
-            <!-- Download Buttons -->
+            <!-- Action Buttons -->
             <div class="download-actions">
-                <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="download-btn pdf-btn">
-                    <i class='bx bxs-file-pdf'></i>
-                    <div class="btn-content">
-                        <span class="btn-label">Download</span>
-                        <span class="btn-format">PDF Format</span>
-                    </div>
-                    <div class="btn-glow"></div>
-                </a>
-                <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="download-btn word-btn" id="word-download">
-                    <i class='bx bxs-file-doc'></i>
-                    <div class="btn-content">
-                        <span class="btn-label">Download</span>
-                        <span class="btn-format">Word Format</span>
-                    </div>
-                    <div class="btn-glow"></div>
-                </a>
-                <button class="download-btn print-btn" onclick="window.print()">
-                    <i class='bx bx-printer'></i>
-                    <div class="btn-content">
-                        <span class="btn-label">Print</span>
-                        <span class="btn-format">Resume</span>
-                    </div>
-                    <div class="btn-glow"></div>
-                </button>
                 <button class="download-btn create-btn" id="create-resume-btn">
                     <i class='bx bx-plus-circle'></i>
                     <div class="btn-content">
                         <span class="btn-label">Create</span>
                         <span class="btn-format">New Resume</span>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="download-btn view-btn" id="view-resume-btn" disabled>
+                    <i class='bx bx-show'></i>
+                    <div class="btn-content">
+                        <span class="btn-label">View</span>
+                        <span class="btn-format">Resume</span>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="download-btn pdf-btn" id="download-resume-btn" disabled>
+                    <i class='bx bxs-file-pdf'></i>
+                    <div class="btn-content">
+                        <span class="btn-label">Download</span>
+                        <span class="btn-format">PDF</span>
                     </div>
                     <div class="btn-glow"></div>
                 </button>
@@ -93,8 +85,8 @@
                         <div class="doc-line long"></div>
                         <div class="doc-line medium"></div>
                     </div>
-                    <div class="doc-avatar">
-                        <img src="1.jpg" alt="Damodar Dhakal">
+                    <div class="doc-avatar-placeholder">
+                        <i class='bx bx-user'></i>
                     </div>
                 </div>
                 <div class="doc-shadow"></div>
@@ -102,350 +94,37 @@
         </div>
     </section>
 
-    <!-- Resume Content Section -->
-    <section class="resume-content">
-        <div class="resume-container">
-            <!-- Left Column - Timeline -->
-            <div class="resume-column left-column">
-                <!-- Profile Summary -->
-                <div class="resume-block" data-aos="fade-right">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-user-circle'></i>
-                        </div>
-                        <h2>Profile Summary</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="profile-card">
-                            <div class="profile-img-wrapper">
-                                <img src="1.jpg" alt="Damodar Dhakal">
-                                <div class="profile-status"></div>
-                            </div>
-                            <div class="profile-info">
-                                <h3>Damodar Dhakal</h3>
-                                <span class="profile-title">Banking Professional & Developer</span>
-                                <div class="profile-meta">
-                                    <span><i class='bx bx-map'></i> Kavresthali-1, Kathmandu</span>
-                                    <span><i class='bx bx-phone'></i> 9849353443</span>
-                                    <span><i class='bx bx-envelope'></i> damodardhakal007@gmail.com</span>
-                                    <span><i class='bx bx-calendar'></i> DOB: 1994-06-14</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="career-statement">
-                            I am an Account professional seeking to gain practical knowledge in this field. I would like to utilize my knowledge 
-                            and skill for the growth of the company. I am an enthusiast in accounts and currently working in a commercial Bank 
-                            with extensive experience. I want to implement my knowledge and skill for the growth of the organization.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Experience -->
-                <div class="resume-block" data-aos="fade-right">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-briefcase'></i>
-                        </div>
-                        <h2>Experience</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-dot active"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-header">
-                                        <h3>Junior Assistant</h3>
-                                        <span class="timeline-badge current">Current</span>
-                                    </div>
-                                    <h4 class="company">Sunrise Bank Limited</h4>
-                                    <span class="timeline-date">
-                                        <i class='bx bx-calendar'></i> April 2018 - Present
-                                    </span>
-                                    <ul class="timeline-details">
-                                        <li>Core Banking Operations using Finacle System</li>
-                                        <li>Credit Risk Management & NPL Analysis</li>
-                                        <li>Customer Account Management & Services</li>
-                                        <li>Financial Reporting & Compliance</li>
-                                        <li>CRR Management & Loan Processing</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-header">
-                                        <h3>Right Share Management</h3>
-                                        <span class="timeline-badge">Completed</span>
-                                    </div>
-                                    <h4 class="company">Mega Bank Nepal Limited</h4>
-                                    <span class="timeline-date">
-                                        <i class='bx bx-calendar'></i> Sep 2017 - Oct 2017
-                                    </span>
-                                    <ul class="timeline-details">
-                                        <li>Managed right share issuance processes</li>
-                                        <li>Investor communication & documentation</li>
-                                        <li>Share allotment coordination</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Personal Details -->
-                <div class="resume-block" data-aos="fade-right">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-id-card'></i>
-                        </div>
-                        <h2>Personal Details</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="details-grid">
-                            <div class="detail-item">
-                                <i class='bx bx-user'></i>
-                                <div>
-                                    <span class="detail-label">Father's Name</span>
-                                    <span class="detail-value">Shukdev Dhakal</span>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <i class='bx bx-heart'></i>
-                                <div>
-                                    <span class="detail-label">Religion</span>
-                                    <span class="detail-value">Hindu</span>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <i class='bx bx-ring'></i>
-                                <div>
-                                    <span class="detail-label">Marital Status</span>
-                                    <span class="detail-value">Married</span>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <i class='bx bx-id-card'></i>
-                                <div>
-                                    <span class="detail-label">Citizenship No.</span>
-                                    <span class="detail-value">27-1033/96851</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column -->
-            <div class="resume-column right-column">
-                <!-- Education -->
-                <div class="resume-block" data-aos="fade-left">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-book-open'></i>
-                        </div>
-                        <h2>Education</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="education-grid">
-                            <div class="edu-card">
-                                <div class="edu-icon">
-                                    <i class='bx bx-math'></i>
-                                </div>
-                                <div class="edu-info">
-                                    <h3>ACCA</h3>
-                                    <h4>Association of Chartered Certified Accountants</h4>
-                                    <p>National College of Accountancy, Battisputali, Gausala</p>
-                                    <span class="edu-level"><i class='bx bx-target-lock'></i> Current Level: Skill Level</span>
-                                </div>
-                            </div>
-                            <div class="edu-card">
-                                <div class="edu-icon">
-                                    <i class='bx bx-trophy'></i>
-                                </div>
-                                <div class="edu-info">
-                                    <h3>ICAI</h3>
-                                    <h4>Institute of Chartered Accountant of India</h4>
-                                    <p>CAI, Putalisadak, Kathmandu</p>
-                                    <span class="edu-level"><i class='bx bx-target-lock'></i> Current Level: IPCC</span>
-                                </div>
-                            </div>
-                            <div class="edu-card">
-                                <div class="edu-icon">
-                                    <i class='bx bx-graduation'></i>
-                                </div>
-                                <div class="edu-info">
-                                    <h3>BBS</h3>
-                                    <h4>Bachelor in Business Studies</h4>
-                                    <p>Shanker Dev Campus, Putalishadak, Kathmandu</p>
-                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
-                                </div>
-                            </div>
-                            <div class="edu-card">
-                                <div class="edu-icon">
-                                    <i class='bx bx-atom'></i>
-                                </div>
-                                <div class="edu-info">
-                                    <h3>+2 Science (Biology)</h3>
-                                    <h4>Higher Secondary Education</h4>
-                                    <p>Himalayan White House International College</p>
-                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
-                                </div>
-                            </div>
-                            <div class="edu-card">
-                                <div class="edu-icon">
-                                    <i class='bx bx-book-reader'></i>
-                                </div>
-                                <div class="edu-info">
-                                    <h3>SLC</h3>
-                                    <h4>School Leaving Certificate</h4>
-                                    <p>Green Hills Academy</p>
-                                    <span class="edu-level"><i class='bx bx-check-circle'></i> Completed</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Skills -->
-                <div class="resume-block" data-aos="fade-left">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-cog'></i>
-                        </div>
-                        <h2>Skills</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="skills-tags">
-                            <div class="skill-tag-group">
-                                <h4><i class='bx bx-bank'></i> Banking Skills</h4>
-                                <div class="tags">
-                                    <span class="tag">Core Banking (Finacle)</span>
-                                    <span class="tag">Inventory Management (RIGO)</span>
-                                    <span class="tag">Credit Risk Management</span>
-                                    <span class="tag">NPL Analysis</span>
-                                    <span class="tag">CRR Management</span>
-                                    <span class="tag">Loan Pricing</span>
-                                </div>
-                            </div>
-                            <div class="skill-tag-group">
-                                <h4><i class='bx bx-code-alt'></i> Technical Skills</h4>
-                                <div class="tags">
-                                    <span class="tag">HTML/CSS/JavaScript</span>
-                                    <span class="tag">Python Programming</span>
-                                    <span class="tag">Android Development</span>
-                                    <span class="tag">Website Development</span>
-                                    <span class="tag">AI & Prompt Engineering</span>
-                                    <span class="tag">Computer Hardware</span>
-                                </div>
-                            </div>
-                            <div class="skill-tag-group">
-                                <h4><i class='bx bx-search-alt'></i> Research Skills</h4>
-                                <div class="tags">
-                                    <span class="tag">Data Collection</span>
-                                    <span class="tag">Interpretation & Analysis</span>
-                                    <span class="tag">Financial Forecasting</span>
-                                    <span class="tag">Market Analysis</span>
-                                </div>
-                            </div>
-                            <div class="skill-tag-group">
-                                <h4><i class='bx bx-group'></i> Soft Skills</h4>
-                                <div class="tags">
-                                    <span class="tag">Leadership</span>
-                                    <span class="tag">Interpersonal Communication</span>
-                                    <span class="tag">Team Management</span>
-                                    <span class="tag">Problem Solving</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- References -->
-                <div class="resume-block" data-aos="fade-left">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-conversation'></i>
-                        </div>
-                        <h2>References</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="references-grid">
-                            <div class="reference-card">
-                                <div class="ref-avatar">
-                                    <i class='bx bx-user'></i>
-                                </div>
-                                <h3>Rameshwor Prasad Yadav</h3>
-                                <span class="ref-designation">Principal</span>
-                                <span class="ref-org">Green Hills Academy</span>
-                                <div class="ref-contact">
-                                    <span><i class='bx bx-phone'></i> 015106358</span>
-                                    <span><i class='bx bx-envelope'></i> greenhills1@gmail.com</span>
-                                </div>
-                            </div>
-                            <div class="reference-card">
-                                <div class="ref-avatar">
-                                    <i class='bx bx-user'></i>
-                                </div>
-                                <h3>Sandip Babu Poudel</h3>
-                                <span class="ref-designation">Head Mega Account</span>
-                                <span class="ref-org">Mega Bank Limited</span>
-                                <div class="ref-contact">
-                                    <span><i class='bx bx-phone'></i> 9851145884</span>
-                                    <span><i class='bx bx-envelope'></i> sandip.poudel@megabank.com.np</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Personal Objective -->
-                <div class="resume-block" data-aos="fade-left">
-                    <div class="block-header">
-                        <div class="block-icon">
-                            <i class='bx bx-target-lock'></i>
-                        </div>
-                        <h2>Personal Objective</h2>
-                    </div>
-                    <div class="block-content">
-                        <div class="objective-card">
-                            <blockquote>
-                                <i class='bx bxs-quote-alt-left quote-icon'></i>
-                                I am honest, hardworking and loyal and I want to utilize these characteristics for the betterment of the organization.
-                                <i class='bx bxs-quote-alt-right quote-icon'></i>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Resume Preview Section (hidden until resume is created) -->
+    <section class="resume-preview-section" id="resume-preview-section" style="display: none;">
+        <h2 class="heading">Your <span>Resume</span></h2>
+        <div class="resume-preview-container" id="resume-preview-container">
+            <!-- Generated resume preview will be injected here -->
         </div>
-    </section>
-
-    <!-- Resume PDF Viewer Section -->
-    <section class="resume-viewer-section">
-        <h2 class="heading">View <span>Resume</span></h2>
-        <div class="resume-viewer-container">
-            <div class="viewer-toolbar">
-                <div class="toolbar-left">
-                    <i class='bx bx-file'></i>
-                    <span>Resume Final.pdf</span>
+        <div class="preview-actions">
+            <button class="download-btn pdf-btn" id="download-preview-btn">
+                <i class='bx bxs-file-pdf'></i>
+                <div class="btn-content">
+                    <span class="btn-label">Download</span>
+                    <span class="btn-format">PDF Format</span>
                 </div>
-                <div class="toolbar-right">
-                    <a href="Resume Final.pdf" target="_blank" class="toolbar-btn" title="Open in new tab">
-                        <i class='bx bx-link-external'></i>
-                    </a>
-                    <a href="Resume Final.pdf" download="Damodar_Dhakal_Resume.pdf" class="toolbar-btn" title="Download PDF">
-                        <i class='bx bx-download'></i>
-                    </a>
+                <div class="btn-glow"></div>
+            </button>
+            <button class="download-btn print-btn" onclick="window.print()">
+                <i class='bx bx-printer'></i>
+                <div class="btn-content">
+                    <span class="btn-label">Print</span>
+                    <span class="btn-format">Resume</span>
                 </div>
-            </div>
-            <div class="pdf-viewer">
-                <embed src="Resume Final.pdf" type="application/pdf" width="100%" height="800px">
-                <div class="pdf-fallback">
-                    <i class='bx bx-file-blank'></i>
-                    <p>Your browser doesn't support PDF embedding.</p>
-                    <a href="Resume Final.pdf" target="_blank" class="btn-box">Open PDF in New Tab</a>
+                <div class="btn-glow"></div>
+            </button>
+            <button class="download-btn create-btn" id="edit-resume-btn">
+                <i class='bx bx-edit'></i>
+                <div class="btn-content">
+                    <span class="btn-label">Edit</span>
+                    <span class="btn-format">Resume</span>
                 </div>
-            </div>
+                <div class="btn-glow"></div>
+            </button>
         </div>
     </section>
 
@@ -456,7 +135,7 @@
                 <a href="index.html">Damodar<span>.</span></a>
             </div>
             <p>&copy; 2025 Damodar Dhakal. All Rights Reserved.</p>
-            <p>Banker | Coder | Web Developer | Android App Developer</p>
+            <p>Resume Builder Tool</p>
             <div class="footer-social">
                 <a href="https://www.facebook.com/damodardhakal007" target="_blank"><i class='bx bxl-facebook'></i></a>
                 <a href="https://www.instagram.com/damodardhakal007" target="_blank"><i class='bx bxl-instagram'></i></a>
@@ -515,14 +194,35 @@
                     <!-- Step 1: Personal Information -->
                     <div class="form-step-content active" id="step-1">
                         <h3><i class='bx bx-user'></i> Personal Information</h3>
+                        
+                        <!-- Photo Upload -->
+                        <div class="form-row full">
+                            <div class="form-field">
+                                <label for="rb-photo">Profile Photo</label>
+                                <div class="photo-upload-container">
+                                    <div class="photo-preview" id="photo-preview">
+                                        <i class='bx bx-camera'></i>
+                                        <span>Click to upload photo</span>
+                                    </div>
+                                    <input type="file" id="rb-photo" accept="image/*" style="display:none;">
+                                    <button type="button" class="photo-upload-btn" id="photo-upload-btn">
+                                        <i class='bx bx-upload'></i> Choose Photo
+                                    </button>
+                                    <button type="button" class="photo-remove-btn" id="photo-remove-btn" style="display:none;">
+                                        <i class='bx bx-x'></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-row">
                             <div class="form-field">
                                 <label for="rb-fullname">Full Name *</label>
-                                <input type="text" id="rb-fullname" placeholder="e.g. John Doe" required>
+                                <input type="text" id="rb-fullname" placeholder="e.g. Damodar Dhakal" required>
                             </div>
                             <div class="form-field">
                                 <label for="rb-title">Professional Title *</label>
-                                <input type="text" id="rb-title" placeholder="e.g. Software Engineer" required>
+                                <input type="text" id="rb-title" placeholder="e.g. Accountant / Software Engineer" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -532,13 +232,13 @@
                             </div>
                             <div class="form-field">
                                 <label for="rb-phone">Phone *</label>
-                                <input type="tel" id="rb-phone" placeholder="e.g. +1-555-123-4567" required>
+                                <input type="tel" id="rb-phone" placeholder="e.g. 9849353443" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-field">
                                 <label for="rb-address">Address</label>
-                                <input type="text" id="rb-address" placeholder="e.g. New York, USA">
+                                <input type="text" id="rb-address" placeholder="e.g. Kavresthali 1, Kathmandu">
                             </div>
                             <div class="form-field">
                                 <label for="rb-dob">Date of Birth</label>
@@ -548,22 +248,39 @@
                         <div class="form-row">
                             <div class="form-field">
                                 <label for="rb-father">Father's Name</label>
-                                <input type="text" id="rb-father" placeholder="e.g. Robert Doe">
+                                <input type="text" id="rb-father" placeholder="e.g. Shukdev Dhakal">
                             </div>
                             <div class="form-field">
                                 <label for="rb-marital">Marital Status</label>
                                 <select id="rb-marital">
                                     <option value="">Select...</option>
+                                    <option value="Unmarried">Unmarried</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
                                     <option value="Divorced">Divorced</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="rb-religion">Religion</label>
+                                <input type="text" id="rb-religion" placeholder="e.g. Hindu">
+                            </div>
+                            <div class="form-field">
+                                <label for="rb-citizen">Citizen Number</label>
+                                <input type="text" id="rb-citizen" placeholder="e.g. 27-1033/96851">
+                            </div>
+                        </div>
                         <div class="form-row full">
                             <div class="form-field">
-                                <label for="rb-objective">Career Objective / Summary *</label>
-                                <textarea id="rb-objective" rows="4" placeholder="Write a brief career objective or professional summary..." required></textarea>
+                                <label for="rb-career-statement">Career Statement *</label>
+                                <textarea id="rb-career-statement" rows="4" placeholder="Write your career statement (e.g. I am an Account student seeking to gain practical knowledge...)" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-field">
+                                <label for="rb-objective">Personal Objective</label>
+                                <textarea id="rb-objective" rows="3" placeholder="Write a brief personal objective (e.g. I am honest, hardworking and loyal...)"></textarea>
                             </div>
                         </div>
                     </div>
@@ -649,20 +366,8 @@
                         <h3><i class='bx bx-cog'></i> Skills & References</h3>
                         <div class="form-row full">
                             <div class="form-field">
-                                <label for="rb-technical-skills">Technical Skills (comma separated) *</label>
-                                <textarea id="rb-technical-skills" rows="3" placeholder="e.g. HTML/CSS, JavaScript, Python, React, Node.js"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-row full">
-                            <div class="form-field">
-                                <label for="rb-soft-skills">Soft Skills (comma separated)</label>
-                                <textarea id="rb-soft-skills" rows="2" placeholder="e.g. Leadership, Communication, Team Management, Problem Solving"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-row full">
-                            <div class="form-field">
-                                <label for="rb-languages">Languages (comma separated)</label>
-                                <input type="text" id="rb-languages" placeholder="e.g. English, Spanish, French">
+                                <label for="rb-skills">Skills (one per line, format: "Category: Skill")</label>
+                                <textarea id="rb-skills" rows="5" placeholder="e.g.&#10;Banking skills: Inventory Management (RIGO)&#10;Technical skills: Computer skills&#10;Research skills: Data collection, Interpretation and Analysis&#10;Leadership skills&#10;Interpersonal skills"></textarea>
                             </div>
                         </div>
                         <h3 style="margin-top: 25px;"><i class='bx bx-conversation'></i> References (Optional)</h3>
@@ -674,21 +379,27 @@
                                 <div class="form-row">
                                     <div class="form-field">
                                         <label>Name</label>
-                                        <input type="text" class="ref-name" placeholder="e.g. Dr. Jane Smith">
+                                        <input type="text" class="ref-name" placeholder="e.g. Rameshwor Prasad Yadav">
                                     </div>
                                     <div class="form-field">
                                         <label>Designation</label>
-                                        <input type="text" class="ref-designation" placeholder="e.g. Department Head">
+                                        <input type="text" class="ref-designation" placeholder="e.g. Principal">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-field">
                                         <label>Organization</label>
-                                        <input type="text" class="ref-org" placeholder="e.g. ABC University">
+                                        <input type="text" class="ref-org" placeholder="e.g. Green Hills Academy">
                                     </div>
                                     <div class="form-field">
-                                        <label>Contact</label>
-                                        <input type="text" class="ref-contact" placeholder="e.g. +1-555-987-6543">
+                                        <label>Contact Number</label>
+                                        <input type="text" class="ref-contact" placeholder="e.g. 015106358">
+                                    </div>
+                                </div>
+                                <div class="form-row full">
+                                    <div class="form-field">
+                                        <label>Email</label>
+                                        <input type="email" class="ref-email" placeholder="e.g. greenhills1@gmail.com">
                                     </div>
                                 </div>
                             </div>
@@ -707,7 +418,7 @@
                             Next <i class='bx bx-chevron-right'></i>
                         </button>
                         <button type="button" class="nav-btn generate-btn" id="generate-resume" style="display:none;">
-                            <i class='bx bx-file-blank'></i> Generate Resume as PDF
+                            <i class='bx bx-file-blank'></i> Generate Resume
                         </button>
                     </div>
                 </form>

@@ -217,204 +217,28 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
-// SCROLL REVEAL FOR RESUME BLOCKS
-// ============================================
-const resumeBlocks = document.querySelectorAll('.resume-block');
-
-const blockObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, index * 100);
-            blockObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-resumeBlocks.forEach((block, index) => {
-    block.style.transitionDelay = `${index * 0.1}s`;
-    blockObserver.observe(block);
-});
-
-// ============================================
-// WORD DOCUMENT GENERATION (DOCX)
-// ============================================
-const wordDownloadBtn = document.getElementById('word-download');
-
-if (wordDownloadBtn) {
-    wordDownloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        generateWordDocument();
-    });
-}
-
-function generateWordDocument() {
-    // Create a simple HTML-based .doc file (compatible with MS Word)
-    const resumeHTML = `
-<!DOCTYPE html>
-<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-<head>
-<meta charset="utf-8">
-<title>Damodar Dhakal - Resume</title>
-<!--[if gte mso 9]>
-<xml>
-<w:WordDocument>
-<w:View>Print</w:View>
-<w:Zoom>100</w:Zoom>
-</w:WordDocument>
-</xml>
-<![endif]-->
-<style>
-    body { font-family: 'Calibri', sans-serif; font-size: 11pt; line-height: 1.6; color: #333; margin: 40px; }
-    h1 { font-size: 24pt; color: #1a5276; text-align: center; margin-bottom: 5px; }
-    h2 { font-size: 14pt; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-top: 20px; }
-    h3 { font-size: 12pt; color: #333; margin-bottom: 3px; }
-    .contact-info { text-align: center; color: #555; font-size: 10pt; margin-bottom: 15px; }
-    .section { margin-bottom: 15px; }
-    ul { margin: 5px 0; padding-left: 20px; }
-    li { margin-bottom: 3px; }
-    .company { color: #1a5276; font-weight: bold; }
-    .date { color: #777; font-style: italic; font-size: 10pt; }
-    table { width: 100%; border-collapse: collapse; }
-    td { padding: 5px; vertical-align: top; }
-    .ref-table td { border: 1px solid #ddd; padding: 8px; }
-</style>
-</head>
-<body>
-    <h1>DAMODAR DHAKAL</h1>
-    <div class="contact-info">
-        <p>Kavresthali-1, Kathmandu | Phone: 9849353443 | Email: damodardhakal007@gmail.com | DOB: 1994-06-14</p>
-    </div>
-
-    <div class="section">
-        <h2>Career Statement</h2>
-        <p>I am an Account professional seeking to gain practical knowledge in this field. I would like to utilize my knowledge and skill for the growth of the company. I am an enthusiast in accounts and currently working in a commercial Bank with extensive experience. I want to implement my knowledge and skill for the growth of the organization.</p>
-    </div>
-
-    <div class="section">
-        <h2>Personal Details</h2>
-        <table>
-            <tr><td><strong>Father's Name:</strong> Shukdev Dhakal</td><td><strong>Religion:</strong> Hindu</td></tr>
-            <tr><td><strong>Marital Status:</strong> Married</td><td><strong>Citizenship No.:</strong> 27-1033/96851</td></tr>
-        </table>
-    </div>
-
-    <div class="section">
-        <h2>Personal Objective</h2>
-        <p>I am honest, hardworking and loyal and I want to utilize these characteristics for the betterment of the organization.</p>
-    </div>
-
-    <div class="section">
-        <h2>Academic Qualifications</h2>
-        <p><strong>Association of Chartered Certified Accountants (ACCA)</strong><br>
-        National College of Accountancy, Battisputali, Gausala<br>
-        <span class="date">Current Level: Skill Level</span></p>
-        
-        <p><strong>Institute of Chartered Accountant of India (ICAI)</strong><br>
-        CAI, Putalisadak, Kathmandu<br>
-        <span class="date">Current Level: IPCC</span></p>
-        
-        <p><strong>Bachelor in Business Studies (BBS)</strong><br>
-        Shanker Dev Campus, Putalishadak, Kathmandu</p>
-        
-        <p><strong>+2 Science (Biology)</strong><br>
-        Himalayan White House International College</p>
-        
-        <p><strong>SLC</strong><br>
-        Green Hills Academy</p>
-    </div>
-
-    <div class="section">
-        <h2>Experience</h2>
-        <p><strong>Junior Assistant</strong> - <span class="company">Sunrise Bank Limited</span><br>
-        <span class="date">April 2018 - Present</span></p>
-        <ul>
-            <li>Core Banking Operations using Finacle System</li>
-            <li>Credit Risk Management & NPL Analysis</li>
-            <li>Customer Account Management & Services</li>
-            <li>Financial Reporting & Compliance</li>
-            <li>CRR Management & Loan Processing</li>
-        </ul>
-        
-        <p><strong>Right Share Management</strong> - <span class="company">Mega Bank Nepal Limited</span><br>
-        <span class="date">September 2017 - October 2017</span></p>
-        <ul>
-            <li>Managed right share issuance processes</li>
-            <li>Investor communication & documentation</li>
-            <li>Share allotment coordination</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Skills</h2>
-        <p><strong>Banking Skills:</strong> Core Banking (Finacle), Inventory Management (RIGO), Credit Risk Management, NPL Analysis, CRR Management, Loan Pricing</p>
-        <p><strong>Technical Skills:</strong> HTML/CSS/JavaScript, Python Programming, Android Development, Website Development, AI & Prompt Engineering, Computer Hardware</p>
-        <p><strong>Research Skills:</strong> Data Collection, Interpretation and Analysis, Financial Forecasting, Market Analysis</p>
-        <p><strong>Soft Skills:</strong> Leadership, Interpersonal Communication, Team Management, Problem Solving</p>
-    </div>
-
-    <div class="section">
-        <h2>References</h2>
-        <table class="ref-table">
-            <tr>
-                <td>
-                    <strong>Rameshwor Prasad Yadav</strong><br>
-                    Designation: Principal<br>
-                    Organization: Green Hills Academy<br>
-                    Contact: 015106358<br>
-                    Email: greenhills1@gmail.com
-                </td>
-                <td>
-                    <strong>Sandip Babu Poudel</strong><br>
-                    Designation: Head Mega Account<br>
-                    Organization: Mega Bank Limited<br>
-                    Contact: 9851145884<br>
-                    Email: sandip.poudel@megabank.com.np
-                </td>
-            </tr>
-        </table>
-    </div>
-</body>
-</html>`;
-
-    // Convert to blob and download as .doc
-    const blob = new Blob(['\ufeff', resumeHTML], {
-        type: 'application/msword'
-    });
-    
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Damodar_Dhakal_Resume.doc';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(link.href);
-
-    // Show download notification
-    showNotification('Word document downloaded successfully!');
-}
-
-// ============================================
 // NOTIFICATION SYSTEM
 // ============================================
-function showNotification(message) {
+function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = 'download-notification';
+    
+    const icon = type === 'success' ? 'bx-check-circle' : (type === 'error' ? 'bx-error-circle' : 'bx-info-circle');
+    const color = type === 'success' ? '#00c853' : (type === 'error' ? '#e74c3c' : '#2196f3');
+    
     notification.innerHTML = `
-        <i class='bx bx-check-circle'></i>
+        <i class='bx ${icon}'></i>
         <span>${message}</span>
     `;
     
-    // Style the notification
     Object.assign(notification.style, {
         position: 'fixed',
         bottom: '30px',
         left: '50%',
         transform: 'translateX(-50%) translateY(100px)',
-        background: 'rgba(0, 200, 83, 0.15)',
-        border: '1px solid rgba(0, 200, 83, 0.4)',
-        color: '#00c853',
+        background: `rgba(${type === 'success' ? '0, 200, 83' : (type === 'error' ? '231, 76, 60' : '33, 150, 243')}, 0.15)`,
+        border: `1px solid rgba(${type === 'success' ? '0, 200, 83' : (type === 'error' ? '231, 76, 60' : '33, 150, 243')}, 0.4)`,
+        color: color,
         padding: '15px 25px',
         borderRadius: '12px',
         display: 'flex',
@@ -430,12 +254,10 @@ function showNotification(message) {
 
     document.body.appendChild(notification);
 
-    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(-50%) translateY(0)';
     }, 10);
 
-    // Remove after 3 seconds
     setTimeout(() => {
         notification.style.transform = 'translateX(-50%) translateY(100px)';
         setTimeout(() => {
@@ -447,29 +269,108 @@ function showNotification(message) {
 }
 
 // ============================================
-// WINDOW RESIZE HANDLER
+// RESUME BUILDER - STATE MANAGEMENT
 // ============================================
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        resizeCanvas();
-        initParticles();
-    }, 250);
-});
+let resumeData = null;
+let resumeHTMLContent = null;
+let photoDataURL = null; // Stores the photo as base64 data URL
 
-// ============================================
-// PERFORMANCE: REDUCE ANIMATIONS ON LOW-END DEVICES
-// ============================================
-if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
-    particles = particles.slice(0, 15);
+// Check if there's saved resume data in localStorage
+function loadSavedResume() {
+    const saved = localStorage.getItem('savedResumeData');
+    if (saved) {
+        resumeData = JSON.parse(saved);
+        enableViewDownloadButtons();
+    }
+    const savedPhoto = localStorage.getItem('savedResumePhoto');
+    if (savedPhoto) {
+        photoDataURL = savedPhoto;
+    }
 }
 
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('*').forEach(el => {
-        el.style.animationDuration = '0.01s';
-        el.style.transitionDuration = '0.01s';
+function enableViewDownloadButtons() {
+    const viewBtn = document.getElementById('view-resume-btn');
+    const downloadBtn = document.getElementById('download-resume-btn');
+    if (viewBtn) {
+        viewBtn.disabled = false;
+        viewBtn.classList.add('enabled');
+    }
+    if (downloadBtn) {
+        downloadBtn.disabled = false;
+        downloadBtn.classList.add('enabled');
+    }
+}
+
+function disableViewDownloadButtons() {
+    const viewBtn = document.getElementById('view-resume-btn');
+    const downloadBtn = document.getElementById('download-resume-btn');
+    if (viewBtn) {
+        viewBtn.disabled = true;
+        viewBtn.classList.remove('enabled');
+    }
+    if (downloadBtn) {
+        downloadBtn.disabled = true;
+        downloadBtn.classList.remove('enabled');
+    }
+}
+
+// ============================================
+// PHOTO UPLOAD HANDLING
+// ============================================
+const photoInput = document.getElementById('rb-photo');
+const photoPreview = document.getElementById('photo-preview');
+const photoUploadBtn = document.getElementById('photo-upload-btn');
+const photoRemoveBtn = document.getElementById('photo-remove-btn');
+
+if (photoUploadBtn && photoInput) {
+    photoUploadBtn.addEventListener('click', () => {
+        photoInput.click();
     });
+
+    photoPreview.addEventListener('click', () => {
+        photoInput.click();
+    });
+
+    photoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('Photo size must be less than 5MB.', 'error');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                photoDataURL = event.target.result;
+                photoPreview.innerHTML = `<img src="${photoDataURL}" alt="Profile Photo">`;
+                photoPreview.classList.add('has-photo');
+                photoRemoveBtn.style.display = 'inline-flex';
+                localStorage.setItem('savedResumePhoto', photoDataURL);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+if (photoRemoveBtn) {
+    photoRemoveBtn.addEventListener('click', () => {
+        photoDataURL = null;
+        photoPreview.innerHTML = `<i class='bx bx-camera'></i><span>Click to upload photo</span>`;
+        photoPreview.classList.remove('has-photo');
+        photoRemoveBtn.style.display = 'none';
+        photoInput.value = '';
+        localStorage.removeItem('savedResumePhoto');
+    });
+}
+
+// Load saved photo on page load
+function loadSavedPhoto() {
+    const savedPhoto = localStorage.getItem('savedResumePhoto');
+    if (savedPhoto && photoPreview) {
+        photoDataURL = savedPhoto;
+        photoPreview.innerHTML = `<img src="${photoDataURL}" alt="Profile Photo">`;
+        photoPreview.classList.add('has-photo');
+        if (photoRemoveBtn) photoRemoveBtn.style.display = 'inline-flex';
+    }
 }
 
 // ============================================
@@ -481,6 +382,10 @@ const modalCloseBtn = document.getElementById('modal-close');
 const prevStepBtn = document.getElementById('prev-step');
 const nextStepBtn = document.getElementById('next-step');
 const generateResumeBtn = document.getElementById('generate-resume');
+const viewResumeBtn = document.getElementById('view-resume-btn');
+const downloadResumeBtn = document.getElementById('download-resume-btn');
+const downloadPreviewBtn = document.getElementById('download-preview-btn');
+const editResumeBtn = document.getElementById('edit-resume-btn');
 
 let currentStep = 1;
 const totalSteps = 4;
@@ -490,6 +395,49 @@ if (createResumeBtn) {
     createResumeBtn.addEventListener('click', () => {
         modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (resumeData) {
+            populateFormFromData(resumeData);
+        }
+    });
+}
+
+// View Resume Button
+if (viewResumeBtn) {
+    viewResumeBtn.addEventListener('click', () => {
+        if (resumeData) {
+            showResumePreview();
+        } else {
+            showNotification('Please create a resume first.', 'error');
+        }
+    });
+}
+
+// Download Resume Button (hero section)
+if (downloadResumeBtn) {
+    downloadResumeBtn.addEventListener('click', () => {
+        if (resumeData) {
+            downloadResumePDF();
+        } else {
+            showNotification('Please create a resume first.', 'error');
+        }
+    });
+}
+
+// Download from preview section
+if (downloadPreviewBtn) {
+    downloadPreviewBtn.addEventListener('click', () => {
+        downloadResumePDF();
+    });
+}
+
+// Edit Resume Button (from preview)
+if (editResumeBtn) {
+    editResumeBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (resumeData) {
+            populateFormFromData(resumeData);
+        }
     });
 }
 
@@ -520,7 +468,6 @@ document.addEventListener('keydown', (e) => {
 
 // Step Navigation
 function updateStepUI() {
-    // Update step indicators
     document.querySelectorAll('.form-steps .step').forEach((step, index) => {
         step.classList.remove('active', 'completed');
         if (index + 1 === currentStep) {
@@ -530,7 +477,6 @@ function updateStepUI() {
         }
     });
 
-    // Show/hide step content
     document.querySelectorAll('.form-step-content').forEach((content, index) => {
         content.classList.remove('active');
         if (index + 1 === currentStep) {
@@ -538,7 +484,6 @@ function updateStepUI() {
         }
     });
 
-    // Show/hide navigation buttons
     if (prevStepBtn) {
         prevStepBtn.style.display = currentStep === 1 ? 'none' : 'inline-flex';
     }
@@ -596,21 +541,21 @@ if (addEducationBtn) {
             <div class="form-row">
                 <div class="form-field">
                     <label>Degree / Program</label>
-                    <input type="text" class="edu-degree" placeholder="e.g. Bachelor in Business Studies">
+                    <input type="text" class="edu-degree" placeholder="e.g. Master of Business Administration">
                 </div>
                 <div class="form-field">
                     <label>Institution</label>
-                    <input type="text" class="edu-institution" placeholder="e.g. Shanker Dev Campus">
+                    <input type="text" class="edu-institution" placeholder="e.g. Harvard Business School">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-field">
                     <label>Location</label>
-                    <input type="text" class="edu-location" placeholder="e.g. Kathmandu, Nepal">
+                    <input type="text" class="edu-location" placeholder="e.g. Boston, MA">
                 </div>
                 <div class="form-field">
                     <label>Year / Status</label>
-                    <input type="text" class="edu-year" placeholder="e.g. 2017 or Current">
+                    <input type="text" class="edu-year" placeholder="e.g. 2020 or Current">
                 </div>
             </div>
         `;
@@ -635,17 +580,17 @@ if (addExperienceBtn) {
             <div class="form-row">
                 <div class="form-field">
                     <label>Job Title</label>
-                    <input type="text" class="exp-title" placeholder="e.g. Junior Assistant">
+                    <input type="text" class="exp-title" placeholder="e.g. Project Manager">
                 </div>
                 <div class="form-field">
                     <label>Company</label>
-                    <input type="text" class="exp-company" placeholder="e.g. Sunrise Bank Limited">
+                    <input type="text" class="exp-company" placeholder="e.g. Google Inc.">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-field">
                     <label>Start Date</label>
-                    <input type="text" class="exp-start" placeholder="e.g. April 2018">
+                    <input type="text" class="exp-start" placeholder="e.g. March 2021">
                 </div>
                 <div class="form-field">
                     <label>End Date</label>
@@ -655,7 +600,7 @@ if (addExperienceBtn) {
             <div class="form-row full">
                 <div class="form-field">
                     <label>Key Responsibilities (one per line)</label>
-                    <textarea class="exp-responsibilities" rows="4" placeholder="e.g.&#10;Core Banking Operations&#10;Credit Risk Management"></textarea>
+                    <textarea class="exp-responsibilities" rows="4" placeholder="e.g.&#10;Led cross-functional teams&#10;Managed project budgets"></textarea>
                 </div>
             </div>
         `;
@@ -680,21 +625,27 @@ if (addReferenceBtn) {
             <div class="form-row">
                 <div class="form-field">
                     <label>Name</label>
-                    <input type="text" class="ref-name" placeholder="e.g. Rameshwor Prasad Yadav">
+                    <input type="text" class="ref-name" placeholder="e.g. Prof. Michael Johnson">
                 </div>
                 <div class="form-field">
                     <label>Designation</label>
-                    <input type="text" class="ref-designation" placeholder="e.g. Principal">
+                    <input type="text" class="ref-designation" placeholder="e.g. Director">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-field">
                     <label>Organization</label>
-                    <input type="text" class="ref-org" placeholder="e.g. Green Hills Academy">
+                    <input type="text" class="ref-org" placeholder="e.g. XYZ Corporation">
                 </div>
                 <div class="form-field">
-                    <label>Contact</label>
-                    <input type="text" class="ref-contact" placeholder="e.g. 015106358">
+                    <label>Contact Number</label>
+                    <input type="text" class="ref-contact" placeholder="e.g. +1-555-000-1234">
+                </div>
+            </div>
+            <div class="form-row full">
+                <div class="form-field">
+                    <label>Email</label>
+                    <input type="email" class="ref-email" placeholder="e.g. contact@example.com">
                 </div>
             </div>
         `;
@@ -703,14 +654,8 @@ if (addReferenceBtn) {
 }
 
 // ============================================
-// GENERATE RESUME AS PDF
+// COLLECT FORM DATA
 // ============================================
-if (generateResumeBtn) {
-    generateResumeBtn.addEventListener('click', () => {
-        generateResumePDF();
-    });
-}
-
 function collectFormData() {
     const data = {
         personal: {
@@ -722,15 +667,14 @@ function collectFormData() {
             dob: document.getElementById('rb-dob')?.value || '',
             father: document.getElementById('rb-father')?.value || '',
             marital: document.getElementById('rb-marital')?.value || '',
+            religion: document.getElementById('rb-religion')?.value || '',
+            citizen: document.getElementById('rb-citizen')?.value || '',
+            careerStatement: document.getElementById('rb-career-statement')?.value || '',
             objective: document.getElementById('rb-objective')?.value || ''
         },
         education: [],
         experience: [],
-        skills: {
-            technical: document.getElementById('rb-technical-skills')?.value || '',
-            soft: document.getElementById('rb-soft-skills')?.value || '',
-            languages: document.getElementById('rb-languages')?.value || ''
-        },
+        skills: document.getElementById('rb-skills')?.value || '',
         references: []
     };
 
@@ -767,7 +711,8 @@ function collectFormData() {
             name: card.querySelector('.ref-name')?.value || '',
             designation: card.querySelector('.ref-designation')?.value || '',
             org: card.querySelector('.ref-org')?.value || '',
-            contact: card.querySelector('.ref-contact')?.value || ''
+            contact: card.querySelector('.ref-contact')?.value || '',
+            email: card.querySelector('.ref-email')?.value || ''
         };
         if (ref.name) {
             data.references.push(ref);
@@ -777,41 +722,262 @@ function collectFormData() {
     return data;
 }
 
-function generateResumePDF() {
+// ============================================
+// POPULATE FORM FROM SAVED DATA
+// ============================================
+function populateFormFromData(data) {
+    if (!data) return;
+
+    // Personal info
+    const fields = {
+        'rb-fullname': data.personal.fullName,
+        'rb-title': data.personal.title,
+        'rb-email': data.personal.email,
+        'rb-phone': data.personal.phone,
+        'rb-address': data.personal.address,
+        'rb-dob': data.personal.dob,
+        'rb-father': data.personal.father,
+        'rb-marital': data.personal.marital,
+        'rb-religion': data.personal.religion || '',
+        'rb-citizen': data.personal.citizen || '',
+        'rb-career-statement': data.personal.careerStatement || '',
+        'rb-objective': data.personal.objective,
+        'rb-skills': data.skills || ''
+    };
+
+    for (const [id, value] of Object.entries(fields)) {
+        const el = document.getElementById(id);
+        if (el && value) {
+            el.value = value;
+        }
+    }
+
+    // Populate education entries
+    const eduContainer = document.getElementById('education-entries');
+    if (data.education.length > 0) {
+        eduContainer.innerHTML = '';
+        data.education.forEach((edu, index) => {
+            const card = document.createElement('div');
+            card.className = 'entry-card';
+            card.dataset.entry = 'education';
+            card.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-label">Education #${index + 1}</span>
+                    ${index > 0 ? `<button type="button" class="remove-entry-btn" onclick="this.closest('.entry-card').remove()"><i class='bx bx-x'></i></button>` : ''}
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Degree / Program</label>
+                        <input type="text" class="edu-degree" value="${edu.degree || ''}" placeholder="e.g. Bachelor of Science">
+                    </div>
+                    <div class="form-field">
+                        <label>Institution</label>
+                        <input type="text" class="edu-institution" value="${edu.institution || ''}" placeholder="e.g. MIT University">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Location</label>
+                        <input type="text" class="edu-location" value="${edu.location || ''}" placeholder="e.g. Boston, MA">
+                    </div>
+                    <div class="form-field">
+                        <label>Year / Status</label>
+                        <input type="text" class="edu-year" value="${edu.year || ''}" placeholder="e.g. 2017 or Current">
+                    </div>
+                </div>
+            `;
+            eduContainer.appendChild(card);
+        });
+        educationCount = data.education.length;
+    }
+
+    // Populate experience entries
+    const expContainer = document.getElementById('experience-entries');
+    if (data.experience.length > 0) {
+        expContainer.innerHTML = '';
+        data.experience.forEach((exp, index) => {
+            const card = document.createElement('div');
+            card.className = 'entry-card';
+            card.dataset.entry = 'experience';
+            card.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-label">Experience #${index + 1}</span>
+                    ${index > 0 ? `<button type="button" class="remove-entry-btn" onclick="this.closest('.entry-card').remove()"><i class='bx bx-x'></i></button>` : ''}
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Job Title</label>
+                        <input type="text" class="exp-title" value="${exp.title || ''}" placeholder="e.g. Software Developer">
+                    </div>
+                    <div class="form-field">
+                        <label>Company</label>
+                        <input type="text" class="exp-company" value="${exp.company || ''}" placeholder="e.g. Tech Corp Inc.">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Start Date</label>
+                        <input type="text" class="exp-start" value="${exp.start || ''}" placeholder="e.g. Jan 2020">
+                    </div>
+                    <div class="form-field">
+                        <label>End Date</label>
+                        <input type="text" class="exp-end" value="${exp.end || ''}" placeholder="e.g. Present">
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-field">
+                        <label>Key Responsibilities (one per line)</label>
+                        <textarea class="exp-responsibilities" rows="4" placeholder="e.g.&#10;Developed web applications">${exp.responsibilities || ''}</textarea>
+                    </div>
+                </div>
+            `;
+            expContainer.appendChild(card);
+        });
+        experienceCount = data.experience.length;
+    }
+
+    // Populate reference entries
+    const refContainer = document.getElementById('reference-entries');
+    if (data.references.length > 0) {
+        refContainer.innerHTML = '';
+        data.references.forEach((ref, index) => {
+            const card = document.createElement('div');
+            card.className = 'entry-card';
+            card.dataset.entry = 'reference';
+            card.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-label">Reference #${index + 1}</span>
+                    ${index > 0 ? `<button type="button" class="remove-entry-btn" onclick="this.closest('.entry-card').remove()"><i class='bx bx-x'></i></button>` : ''}
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Name</label>
+                        <input type="text" class="ref-name" value="${ref.name || ''}" placeholder="e.g. Dr. Jane Smith">
+                    </div>
+                    <div class="form-field">
+                        <label>Designation</label>
+                        <input type="text" class="ref-designation" value="${ref.designation || ''}" placeholder="e.g. Department Head">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Organization</label>
+                        <input type="text" class="ref-org" value="${ref.org || ''}" placeholder="e.g. ABC University">
+                    </div>
+                    <div class="form-field">
+                        <label>Contact Number</label>
+                        <input type="text" class="ref-contact" value="${ref.contact || ''}" placeholder="e.g. +1-555-987-6543">
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-field">
+                        <label>Email</label>
+                        <input type="email" class="ref-email" value="${ref.email || ''}" placeholder="e.g. contact@example.com">
+                    </div>
+                </div>
+            `;
+            refContainer.appendChild(card);
+        });
+        referenceCount = data.references.length;
+    }
+
+    // Load photo preview
+    loadSavedPhoto();
+}
+
+// ============================================
+// GENERATE RESUME
+// ============================================
+if (generateResumeBtn) {
+    generateResumeBtn.addEventListener('click', () => {
+        generateResume();
+    });
+}
+
+function generateResume() {
     const data = collectFormData();
 
     // Validate required fields
-    if (!data.personal.fullName || !data.personal.title || !data.personal.email || !data.personal.phone) {
-        showNotification('Please fill in all required personal information fields.');
+    if (!data.personal.fullName || !data.personal.email || !data.personal.phone) {
+        showNotification('Please fill in Full Name, Email, and Phone.', 'error');
         currentStep = 1;
         updateStepUI();
         return;
     }
 
-    if (!data.personal.objective) {
-        showNotification('Please add a career objective / summary.');
+    if (!data.personal.careerStatement) {
+        showNotification('Please add a career statement.', 'error');
         currentStep = 1;
         updateStepUI();
         return;
     }
 
-    // Build the resume HTML content
-    const resumeHTML = buildResumeHTML(data);
+    // Save data
+    resumeData = data;
+    localStorage.setItem('savedResumeData', JSON.stringify(data));
 
-    // Create a temporary container for the resume
+    // Generate HTML
+    resumeHTMLContent = buildResumeHTML(data);
+
+    // Enable view and download buttons
+    enableViewDownloadButtons();
+
+    // Close modal
+    closeModal();
+
+    // Show preview
+    showResumePreview();
+
+    showNotification('Resume created successfully! You can now view and download it.', 'success');
+}
+
+// ============================================
+// SHOW RESUME PREVIEW
+// ============================================
+function showResumePreview() {
+    const previewSection = document.getElementById('resume-preview-section');
+    const previewContainer = document.getElementById('resume-preview-container');
+
+    if (!resumeData) return;
+
+    // Generate HTML if not already done
+    if (!resumeHTMLContent) {
+        resumeHTMLContent = buildResumeHTML(resumeData);
+    }
+
+    previewContainer.innerHTML = resumeHTMLContent;
+    previewSection.style.display = 'block';
+
+    // Scroll to preview
+    setTimeout(() => {
+        previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+}
+
+// ============================================
+// DOWNLOAD RESUME AS PDF
+// ============================================
+function downloadResumePDF() {
+    if (!resumeData) {
+        showNotification('No resume data found. Please create a resume first.', 'error');
+        return;
+    }
+
+    const html = buildResumeHTML(resumeData);
+
+    // Create a temporary container
     const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = resumeHTML;
+    tempDiv.innerHTML = html;
     tempDiv.style.position = 'absolute';
     tempDiv.style.left = '-9999px';
     tempDiv.style.top = '0';
     document.body.appendChild(tempDiv);
 
-    // Generate PDF using html2pdf
     const element = tempDiv.querySelector('.resume-pdf-content');
 
     const opt = {
         margin: 0,
-        filename: 'Resume Final.pdf',
+        filename: `${resumeData.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
             scale: 2,
@@ -822,175 +988,262 @@ function generateResumePDF() {
             unit: 'mm',
             format: 'a4',
             orientation: 'portrait'
-        }
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
-    // Show loading notification
-    showNotification('Generating your resume PDF...');
+    showNotification('Generating your resume PDF...', 'info');
 
     html2pdf().set(opt).from(element).save().then(() => {
         document.body.removeChild(tempDiv);
-        showNotification('Resume Final.pdf downloaded successfully!');
-        closeModal();
+        showNotification('Resume PDF downloaded successfully!', 'success');
     }).catch((err) => {
         console.error('PDF generation error:', err);
         document.body.removeChild(tempDiv);
-        showNotification('Error generating PDF. Please try again.');
+        showNotification('Error generating PDF. Please try again.', 'error');
     });
 }
 
+// ============================================
+// BUILD GREEN-THEMED CV HTML TEMPLATE
+// ============================================
 function buildResumeHTML(data) {
-    // Format education section
+    const greenColor = '#2eb82e';
+    const darkGreen = '#239023';
+    
+    // Photo section
+    const photoHTML = photoDataURL 
+        ? `<img src="${photoDataURL}" style="width: 130px; height: 150px; object-fit: cover; border: 3px solid ${greenColor}; display: block;">`
+        : `<div style="width: 130px; height: 150px; background: #e0e0e0; border: 3px solid ${greenColor}; display: flex; align-items: center; justify-content: center; color: #999; font-size: 40px;">&#128100;</div>`;
+
+    // Format DOB
+    let dobFormatted = '';
+    if (data.personal.dob) {
+        dobFormatted = data.personal.dob;
+    }
+
+    // Personal Detail section
+    let personalDetailHTML = '';
+    const personalItems = [];
+    if (data.personal.father) personalItems.push(`Fathers Name:.&nbsp; ${data.personal.father}`);
+    if (data.personal.religion) personalItems.push(`Religion:. ${data.personal.religion}.`);
+    if (data.personal.marital) personalItems.push(`Marital status:. ${data.personal.marital}.`);
+    if (data.personal.citizen) personalItems.push(`Citizen number:.${data.personal.citizen}`);
+    
+    if (personalItems.length > 0) {
+        personalDetailHTML = `
+            <div style="margin-top: 20px;">
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">Personal Detail</div>
+                <div style="padding: 0 15px;">
+                    ${personalItems.map(item => `<p style="margin: 4px 0; font-size: 13px; color: #333;">${item}</p>`).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // Personal Objective section
+    let objectiveHTML = '';
+    if (data.personal.objective) {
+        objectiveHTML = `
+            <div style="margin-top: 20px;">
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">&nbsp;Personal objective</div>
+                <p style="padding: 0 15px; font-size: 13px; color: #333; line-height: 1.7; margin: 0;">${data.personal.objective}</p>
+            </div>
+        `;
+    }
+
+    // Academic Qualifications
     let educationHTML = '';
-    data.education.forEach(edu => {
-        educationHTML += `
-            <div style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #0ef;">
-                <p style="margin: 0; font-weight: 600; font-size: 14px; color: #1a5276;">${edu.degree}</p>
-                <p style="margin: 2px 0; font-size: 13px; color: #333;">${edu.institution}</p>
-                ${edu.location ? `<p style="margin: 2px 0; font-size: 12px; color: #666;">${edu.location}</p>` : ''}
-                ${edu.year ? `<p style="margin: 2px 0; font-size: 12px; color: #888; font-style: italic;">${edu.year}</p>` : ''}
-            </div>
-        `;
-    });
-
-    // Format experience section
-    let experienceHTML = '';
-    data.experience.forEach(exp => {
-        const responsibilities = exp.responsibilities.split('\n').filter(r => r.trim());
-        let respHTML = '';
-        if (responsibilities.length > 0) {
-            respHTML = '<ul style="margin: 8px 0 0 20px; padding: 0;">';
-            responsibilities.forEach(r => {
-                respHTML += `<li style="font-size: 12px; color: #444; margin-bottom: 4px; line-height: 1.5;">${r.trim()}</li>`;
-            });
-            respHTML += '</ul>';
-        }
-        experienceHTML += `
-            <div style="margin-bottom: 15px; padding-left: 15px; border-left: 3px solid #a855f7;">
-                <p style="margin: 0; font-weight: 600; font-size: 14px; color: #1a5276;">${exp.title}</p>
-                <p style="margin: 2px 0; font-size: 13px; color: #333; font-weight: 500;">${exp.company}</p>
-                <p style="margin: 2px 0; font-size: 12px; color: #888; font-style: italic;">${exp.start}${exp.end ? ' - ' + exp.end : ''}</p>
-                ${respHTML}
-            </div>
-        `;
-    });
-
-    // Format skills
-    const technicalSkills = data.skills.technical.split(',').map(s => s.trim()).filter(s => s);
-    const softSkills = data.skills.soft.split(',').map(s => s.trim()).filter(s => s);
-    const languages = data.skills.languages.split(',').map(s => s.trim()).filter(s => s);
-
-    let skillsHTML = '';
-    if (technicalSkills.length > 0) {
-        skillsHTML += `<div style="margin-bottom: 10px;">
-            <p style="font-weight: 600; font-size: 13px; color: #1a5276; margin-bottom: 5px;">Technical Skills</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                ${technicalSkills.map(s => `<span style="padding: 4px 12px; background: #e8f8f5; border: 1px solid #0ef; border-radius: 15px; font-size: 11px; color: #006064;">${s}</span>`).join('')}
-            </div>
-        </div>`;
-    }
-    if (softSkills.length > 0) {
-        skillsHTML += `<div style="margin-bottom: 10px;">
-            <p style="font-weight: 600; font-size: 13px; color: #1a5276; margin-bottom: 5px;">Soft Skills</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                ${softSkills.map(s => `<span style="padding: 4px 12px; background: #f4ecfb; border: 1px solid #a855f7; border-radius: 15px; font-size: 11px; color: #6b21a8;">${s}</span>`).join('')}
-            </div>
-        </div>`;
-    }
-    if (languages.length > 0) {
-        skillsHTML += `<div style="margin-bottom: 10px;">
-            <p style="font-weight: 600; font-size: 13px; color: #1a5276; margin-bottom: 5px;">Languages</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                ${languages.map(s => `<span style="padding: 4px 12px; background: #fef3c7; border: 1px solid #f59e0b; border-radius: 15px; font-size: 11px; color: #92400e;">${s}</span>`).join('')}
-            </div>
-        </div>`;
-    }
-
-    // Format references
-    let referencesHTML = '';
-    if (data.references.length > 0) {
-        data.references.forEach(ref => {
-            referencesHTML += `
-                <div style="display: inline-block; width: 48%; vertical-align: top; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; margin-right: 2%; margin-bottom: 10px;">
-                    <p style="margin: 0; font-weight: 600; font-size: 13px; color: #1a5276;">${ref.name}</p>
-                    ${ref.designation ? `<p style="margin: 2px 0; font-size: 12px; color: #555;">${ref.designation}</p>` : ''}
-                    ${ref.org ? `<p style="margin: 2px 0; font-size: 12px; color: #666;">${ref.org}</p>` : ''}
-                    ${ref.contact ? `<p style="margin: 2px 0; font-size: 11px; color: #888;">Contact: ${ref.contact}</p>` : ''}
+    if (data.education.length > 0) {
+        let eduItems = '';
+        data.education.forEach(edu => {
+            eduItems += `
+                <div style="margin-bottom: 10px;">
+                    <p style="margin: 0; font-size: 13px; color: #333;">&#9632;&nbsp;&nbsp;&nbsp;${edu.degree}</p>
+                    <p style="margin: 2px 0 2px 16px; font-size: 13px; color: #333;">${edu.institution}</p>
+                    ${edu.location ? `<p style="margin: 2px 0 2px 16px; font-size: 13px; color: #333;">${edu.location}</p>` : ''}
+                    ${edu.year ? `<p style="margin: 2px 0 2px 16px; font-size: 13px; color: #333;">Current Level : ${edu.year}</p>` : ''}
                 </div>
             `;
         });
+        educationHTML = `
+            <div style="margin-top: 20px;">
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">&nbsp;Academic Qualifications</div>
+                <div style="padding: 0 15px;">
+                    ${eduItems}
+                </div>
+            </div>
+        `;
     }
 
-    // Personal details section
-    let personalDetailsHTML = '';
-    if (data.personal.father || data.personal.marital || data.personal.dob) {
-        personalDetailsHTML = `
+    // Experience
+    let experienceHTML = '';
+    if (data.experience.length > 0) {
+        let expItems = '';
+        data.experience.forEach((exp, index) => {
+            const dateRange = `${exp.start}${exp.end ? ' to ' + exp.end : ''}`;
+            const isCurrent = exp.end && exp.end.toLowerCase() === 'present';
+            expItems += `
+                <p style="margin: 6px 0; font-size: 13px; color: #333; ${isCurrent ? 'font-weight: 700;' : ''}">&#9632;&nbsp;&nbsp;&nbsp;${isCurrent ? '<strong>' : ''}${exp.title} at ${exp.company} from ${dateRange}${isCurrent ? '</strong>' : ''}</p>
+            `;
+        });
+        experienceHTML = `
             <div style="margin-top: 20px;">
-                <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-bottom: 12px;">Personal Details</h2>
-                <table style="width: 100%; font-size: 13px; color: #444;">
-                    ${data.personal.father ? `<tr><td style="padding: 4px 0; font-weight: 500;">Father's Name:</td><td style="padding: 4px 0;">${data.personal.father}</td></tr>` : ''}
-                    ${data.personal.dob ? `<tr><td style="padding: 4px 0; font-weight: 500;">Date of Birth:</td><td style="padding: 4px 0;">${data.personal.dob}</td></tr>` : ''}
-                    ${data.personal.marital ? `<tr><td style="padding: 4px 0; font-weight: 500;">Marital Status:</td><td style="padding: 4px 0;">${data.personal.marital}</td></tr>` : ''}
-                </table>
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">Experience</div>
+                <div style="padding: 0 15px;">
+                    ${expItems}
+                </div>
+            </div>
+        `;
+    }
+
+    // Skills
+    let skillsHTML = '';
+    if (data.skills && data.skills.trim()) {
+        const skillLines = data.skills.split('\n').filter(s => s.trim());
+        let skillItems = '';
+        skillLines.forEach(skill => {
+            skillItems += `<p style="margin: 5px 0; font-size: 13px; color: #333;">&#9632;&nbsp;&nbsp;&nbsp;${skill.trim()}</p>`;
+        });
+        skillsHTML = `
+            <div style="margin-top: 20px;">
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">&nbsp;Skills</div>
+                <div style="padding: 0 15px;">
+                    ${skillItems}
+                </div>
+            </div>
+        `;
+    }
+
+    // References
+    let referencesHTML = '';
+    if (data.references.length > 0) {
+        let refColumns = '<div style="display: flex; gap: 40px; padding: 0 15px; flex-wrap: wrap;">';
+        data.references.forEach((ref, index) => {
+            refColumns += `
+                <div style="flex: 1; min-width: 220px;">
+                    <p style="margin: 0 0 4px 0; font-size: 13px; color: #333;"><strong>${index + 1}. ${ref.name}</strong></p>
+                    ${ref.contact ? `<p style="margin: 2px 0; font-size: 12px; color: #333;">&nbsp;Contact no: ${ref.contact}</p>` : ''}
+                    ${ref.designation ? `<p style="margin: 2px 0; font-size: 12px; color: #333;">&nbsp;Designation:. ${ref.designation}</p>` : ''}
+                    ${ref.org ? `<p style="margin: 2px 0; font-size: 12px; color: #333;">&nbsp;Organization:. ${ref.org}</p>` : ''}
+                    ${ref.email ? `<p style="margin: 2px 0; font-size: 12px; color: #333;">&nbsp;Email:.${ref.email}</p>` : ''}
+                </div>
+            `;
+        });
+        refColumns += '</div>';
+        referencesHTML = `
+            <div style="margin-top: 20px;">
+                <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">&nbsp;References</div>
+                ${refColumns}
             </div>
         `;
     }
 
     return `
-        <div class="resume-pdf-content" style="width: 210mm; min-height: 297mm; padding: 25mm 20mm; font-family: 'Segoe UI', 'Calibri', Arial, sans-serif; color: #333; background: #fff; box-sizing: border-box;">
-            <!-- Header -->
-            <div style="text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #1a5276;">
-                <h1 style="font-size: 28px; color: #1a5276; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 2px;">${data.personal.fullName}</h1>
-                <p style="font-size: 14px; color: #0ef; margin: 0 0 10px 0; font-weight: 500;">${data.personal.title}</p>
-                <div style="font-size: 12px; color: #555; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    ${data.personal.email ? `<span>✉ ${data.personal.email}</span>` : ''}
-                    ${data.personal.phone ? `<span>☎ ${data.personal.phone}</span>` : ''}
-                    ${data.personal.address ? `<span>📍 ${data.personal.address}</span>` : ''}
+        <div class="resume-pdf-content" style="width: 210mm; min-height: 297mm; padding: 0; font-family: 'Times New Roman', Times, serif; color: #333; background: #fff; box-sizing: border-box;">
+            <!-- Green top border -->
+            <div style="width: 100%; height: 6px; background: ${greenColor};"></div>
+            
+            <!-- Header Section with Photo and Contact -->
+            <div style="padding: 25px 30px 20px; display: flex; align-items: flex-start; gap: 25px;">
+                <!-- Photo -->
+                <div style="flex-shrink: 0;">
+                    ${photoHTML}
+                </div>
+                
+                <!-- Name and Contact Details -->
+                <div style="flex: 1;">
+                    <!-- Contact info row -->
+                    <div style="display: flex; justify-content: flex-end; gap: 20px; margin-bottom: 10px; flex-wrap: wrap;">
+                        ${data.personal.phone ? `
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 22px; height: 22px; background: ${greenColor}; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px;">&#9742;</span>
+                            <span style="font-size: 12px; color: #333;">${data.personal.phone}</span>
+                        </div>` : ''}
+                        ${data.personal.address ? `
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 22px; height: 22px; background: ${greenColor}; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px;">&#127968;</span>
+                            <span style="font-size: 12px; color: #333; text-transform: uppercase;">${data.personal.address}</span>
+                        </div>` : ''}
+                    </div>
+                    
+                    <!-- Name -->
+                    <h1 style="margin: 8px 0 12px; font-size: 28px; color: ${greenColor}; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">${data.personal.fullName}</h1>
+                    
+                    <!-- Second contact row -->
+                    <div style="display: flex; justify-content: flex-end; gap: 20px; flex-wrap: wrap;">
+                        ${dobFormatted ? `
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 22px; height: 22px; background: ${greenColor}; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 11px;">&#128197;</span>
+                            <span style="font-size: 12px; color: #333;">${dobFormatted}</span>
+                        </div>` : ''}
+                        ${data.personal.email ? `
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 22px; height: 22px; background: ${greenColor}; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 11px;">&#9993;</span>
+                            <span style="font-size: 12px; color: #333;">${data.personal.email}</span>
+                        </div>` : ''}
+                    </div>
                 </div>
             </div>
 
-            <!-- Career Objective -->
-            <div style="margin-bottom: 20px;">
-                <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-bottom: 12px;">Career Objective</h2>
-                <p style="font-size: 13px; color: #444; line-height: 1.7; padding: 10px 15px; background: #f8fffe; border-left: 3px solid #0ef; border-radius: 0 5px 5px 0;">${data.personal.objective}</p>
+            <!-- Green divider line -->
+            <div style="width: 100%; height: 4px; background: ${greenColor}; margin-bottom: 5px;"></div>
+
+            <!-- Body Content -->
+            <div style="padding: 15px 30px 30px;">
+                
+                <!-- Career Statement -->
+                <div>
+                    <div style="background: ${greenColor}; color: #fff; padding: 6px 15px; font-weight: 700; font-size: 14px; margin-bottom: 12px; display: inline-block; border-left: 4px solid ${darkGreen};">Career statement</div>
+                    <p style="padding: 0 15px; font-size: 13px; color: #333; line-height: 1.7; margin: 0;">${data.personal.careerStatement}</p>
+                </div>
+
+                <!-- Personal Detail -->
+                ${personalDetailHTML}
+
+                <!-- Personal Objective -->
+                ${objectiveHTML}
+
+                <!-- Academic Qualifications -->
+                ${educationHTML}
+
+                <!-- Experience -->
+                ${experienceHTML}
+
+                <!-- Skills -->
+                ${skillsHTML}
+
+                <!-- References -->
+                ${referencesHTML}
             </div>
-
-            <!-- Education -->
-            ${data.education.length > 0 ? `
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-bottom: 12px;">Education</h2>
-                    ${educationHTML}
-                </div>
-            ` : ''}
-
-            <!-- Experience -->
-            ${data.experience.length > 0 ? `
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #a855f7; padding-bottom: 5px; margin-bottom: 12px;">Work Experience</h2>
-                    ${experienceHTML}
-                </div>
-            ` : ''}
-
-            <!-- Skills -->
-            ${skillsHTML ? `
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-bottom: 12px;">Skills</h2>
-                    ${skillsHTML}
-                </div>
-            ` : ''}
-
-            <!-- Personal Details -->
-            ${personalDetailsHTML}
-
-            <!-- References -->
-            ${data.references.length > 0 ? `
-                <div style="margin-top: 20px;">
-                    <h2 style="font-size: 16px; color: #1a5276; border-bottom: 2px solid #0ef; padding-bottom: 5px; margin-bottom: 12px;">References</h2>
-                    ${referencesHTML}
-                </div>
-            ` : ''}
         </div>
     `;
+}
+
+// ============================================
+// WINDOW RESIZE HANDLER
+// ============================================
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        resizeCanvas();
+        initParticles();
+    }, 250);
+});
+
+// ============================================
+// PERFORMANCE: REDUCE ANIMATIONS ON LOW-END DEVICES
+// ============================================
+if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
+    particles = particles.slice(0, 15);
+}
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('*').forEach(el => {
+        el.style.animationDuration = '0.01s';
+        el.style.transitionDuration = '0.01s';
+    });
 }
 
 // ============================================
@@ -999,13 +1252,9 @@ function buildResumeHTML(data) {
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loaded');
     
-    // Trigger initial visibility check for blocks already in viewport
-    setTimeout(() => {
-        resumeBlocks.forEach(block => {
-            const rect = block.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                block.classList.add('visible');
-            }
-        });
-    }, 500);
+    // Load saved resume data
+    loadSavedResume();
+    
+    // Load saved photo
+    loadSavedPhoto();
 });
