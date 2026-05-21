@@ -3,9 +3,29 @@
 // ============================================
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-    }, 1500);
+    const preloaderText = document.getElementById('preloader-text');
+    const loaderRing = preloader.querySelector('.loader-ring');
+    const fullText = "Damodar Dhakal";
+    let index = 1; // Start typing after the initial "D"
+    
+    function typeEffect() {
+        if (index < fullText.length) {
+            if (index === 1 && loaderRing) {
+                loaderRing.classList.add('fade-out');
+            }
+            preloaderText.textContent += fullText.charAt(index);
+            index++;
+            setTimeout(typeEffect, 80); // Typing speed
+        } else {
+            // Once finished typing, fade out the preloader
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 800);
+        }
+    }
+    
+    // Allow the loader ring to spin around "D" first, then start typing
+    setTimeout(typeEffect, 1000);
 });
 
 // ============================================

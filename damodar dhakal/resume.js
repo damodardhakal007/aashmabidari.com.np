@@ -3,9 +3,29 @@
 // ============================================
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-    }, 1200);
+    const preloaderText = document.getElementById('preloader-text');
+    const loaderRing = preloader.querySelector('.loader-ring');
+    const fullText = "Resume Builder";
+    let index = 1; // Start typing after the initial "R"
+    
+    function typeEffect() {
+        if (index < fullText.length) {
+            if (index === 1 && loaderRing) {
+                loaderRing.classList.add('fade-out');
+            }
+            preloaderText.textContent += fullText.charAt(index);
+            index++;
+            setTimeout(typeEffect, 70); // Typing speed
+        } else {
+            // Once finished typing, fade out the preloader
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 800);
+        }
+    }
+    
+    // Allow the loader ring to spin around "R" first, then start typing
+    setTimeout(typeEffect, 1000);
 });
 
 // ============================================
