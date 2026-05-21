@@ -175,7 +175,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // ============================================
-// CUSTOM CURSOR
+// CUSTOM CURSOR WITH TRAILING DOTS
 // ============================================
 const cursor = document.getElementById('cursor');
 const cursorFollower = document.getElementById('cursor-follower');
@@ -222,12 +222,70 @@ if (cursor && cursorFollower) {
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
         cursorFollower.style.opacity = '0';
+        trailDots.forEach(dot => dot.style.opacity = '0');
     });
 
     document.addEventListener('mouseenter', () => {
         cursor.style.opacity = '1';
         cursorFollower.style.opacity = '0.6';
+        trailDots.forEach(dot => dot.style.opacity = '1');
     });
+}
+
+// ============================================
+// CURSOR TRAIL - SMALL DOTS FOLLOWING CURSOR
+// ============================================
+const trailCount = 12;
+const trailDots = [];
+const trailPositions = [];
+
+for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-trail-dot';
+    dot.style.cssText = `
+        position: fixed;
+        pointer-events: none;
+        width: ${Math.max(3, 8 - i * 0.5)}px;
+        height: ${Math.max(3, 8 - i * 0.5)}px;
+        background: rgba(0, 238, 255, ${1 - i * 0.07});
+        border-radius: 50%;
+        z-index: 9997;
+        top: 0;
+        left: 0;
+        transition: opacity 0.3s ease;
+        box-shadow: 0 0 ${4 - i * 0.3}px rgba(0, 238, 255, ${0.5 - i * 0.04});
+    `;
+    document.body.appendChild(dot);
+    trailDots.push(dot);
+    trailPositions.push({ x: 0, y: 0 });
+}
+
+function animateTrail() {
+    // First dot follows the cursor directly
+    trailPositions[0].x += (mouseX - trailPositions[0].x) * 0.3;
+    trailPositions[0].y += (mouseY - trailPositions[0].y) * 0.3;
+
+    // Each subsequent dot follows the one before it
+    for (let i = 1; i < trailCount; i++) {
+        trailPositions[i].x += (trailPositions[i - 1].x - trailPositions[i].x) * 0.25;
+        trailPositions[i].y += (trailPositions[i - 1].y - trailPositions[i].y) * 0.25;
+    }
+
+    // Update dot positions
+    for (let i = 0; i < trailCount; i++) {
+        trailDots[i].style.left = trailPositions[i].x + 'px';
+        trailDots[i].style.top = trailPositions[i].y + 'px';
+        trailDots[i].style.transform = 'translate(-50%, -50%)';
+    }
+
+    requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+
+// Hide trail dots on touch devices
+if ('ontouchstart' in window) {
+    trailDots.forEach(dot => dot.style.display = 'none');
 }
 
 // ============================================
