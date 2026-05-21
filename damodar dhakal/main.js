@@ -1,6 +1,30 @@
 // ============================================
-// PRELOADER
+// PRELOADER & IMAGE ENTRY ANIMATION
 // ============================================
+const imgBox = document.querySelector('.img-box');
+if (imgBox) {
+    const setupInitialImagePosition = () => {
+        const rect = imgBox.getBoundingClientRect();
+        // Position at bottom center of the viewport
+        const startX = window.innerWidth / 2 - (rect.left + rect.width / 2);
+        const startY = window.innerHeight - 50 - (rect.top + rect.height / 2);
+        
+        imgBox.style.transition = 'none';
+        imgBox.style.transform = `translate(${startX}px, ${startY}px) scale(0.2)`;
+        imgBox.style.opacity = '0.25';
+    };
+    
+    // Position immediately
+    setupInitialImagePosition();
+    
+    // Ensure position stays correct if resized during loading
+    window.addEventListener('resize', () => {
+        if (!imgBox.classList.contains('floating')) {
+            setupInitialImagePosition();
+        }
+    });
+}
+
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     const preloaderText = document.getElementById('preloader-text');
@@ -17,9 +41,22 @@ window.addEventListener('load', () => {
             index++;
             setTimeout(typeEffect, 80); // Typing speed
         } else {
-            // Once finished typing, fade out the preloader
+            // Once finished typing, fade out the preloader and fly in the image
             setTimeout(() => {
                 preloader.classList.add('hidden');
+                
+                if (imgBox) {
+                    imgBox.style.transition = 'transform 1.6s cubic-bezier(0.25, 1, 0.30, 1), opacity 1.6s ease-out';
+                    imgBox.style.transform = 'translate(0, 0) scale(1)';
+                    imgBox.style.opacity = '1';
+                    
+                    // Enable hover and float animations after the entrance transition ends
+                    setTimeout(() => {
+                        imgBox.classList.add('floating');
+                        imgBox.style.transform = '';
+                        imgBox.style.transition = '';
+                    }, 1600);
+                }
             }, 800);
         }
     }
