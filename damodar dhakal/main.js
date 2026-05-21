@@ -454,6 +454,26 @@ function setupRevealAnimations() {
         revealObserver.observe(cat);
     });
 
+    // Daure section animations
+    const daureShowcase = document.querySelector('.daure-showcase');
+    if (daureShowcase) {
+        daureShowcase.classList.add('reveal-left');
+        revealObserver.observe(daureShowcase);
+    }
+
+    const daureInfo = document.querySelector('.daure-info');
+    if (daureInfo) {
+        daureInfo.classList.add('reveal-right');
+        revealObserver.observe(daureInfo);
+    }
+
+    // Daure feature items - staggered
+    document.querySelectorAll('.feature-item').forEach((item, index) => {
+        item.classList.add('reveal-up');
+        item.style.transitionDelay = `${index * 0.1}s`;
+        revealObserver.observe(item);
+    });
+
     // Contact items
     document.querySelectorAll('.contact-item').forEach((item, index) => {
         item.classList.add('reveal-left');
