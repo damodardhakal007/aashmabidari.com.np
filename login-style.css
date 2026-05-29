@@ -1,0 +1,472 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: -apple-system, sans-serif;
+}
+
+:root {
+    --bg-color: #fff;
+    --snd-bg-color: #d5fdf9;
+    --text-color: #000;
+    --main-color: #007F73;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Header & NavBar Section */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    background: var(--main-color);
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+}
+
+.logo {
+    font-size: 3rem;
+    color: var(--bg-color);
+    font-weight: 700;
+    cursor: default;
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar a {
+    font-size: 1.9rem;
+    color: var(--bg-color);
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+/* Login Section */
+.login-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12rem 5% 2rem;
+    background: linear-gradient(135deg, var(--snd-bg-color) 0%, var(--bg-color) 100%);
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.login-box {
+    flex: 1;
+    background: var(--bg-color);
+    padding: 4rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 1rem 4rem rgba(0, 127, 115, 0.15);
+    border: 1px solid var(--border-color);
+}
+
+.login-box h2 {
+    font-size: 3.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.login-subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+/* Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group label i {
+    color: var(--main-color);
+    font-size: 1.8rem;
+}
+
+.form-group input {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+    background: var(--light-gray);
+}
+
+.form-group input:focus {
+    background: var(--bg-color);
+    border-color: var(--main-color);
+    box-shadow: 0 0 1rem rgba(0, 127, 115, 0.2);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+/* Form Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.remember-me input {
+    width: 1.8rem;
+    height: 1.8rem;
+    cursor: pointer;
+    accent-color: var(--main-color);
+}
+
+.forgot-password {
+    font-size: 1.4rem;
+    color: var(--main-color);
+    transition: 0.3s ease;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Sign In Button */
+.btn-signin {
+    padding: 1.3rem 2.8rem;
+    background: var(--main-color);
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 1rem;
+}
+
+.btn-signin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 2.4rem rgba(0, 127, 115, 0.3);
+}
+
+.btn-signin:active {
+    transform: translateY(-1px);
+}
+
+/* Sign Up Text */
+.signup-text {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    margin-top: 2rem;
+}
+
+.signup-text a {
+    color: var(--main-color);
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* Social Login */
+.social-login {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-login p {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.social-btn {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.social-btn.facebook {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+.social-btn.facebook:hover {
+    background: #1877f2;
+    color: var(--bg-color);
+    box-shadow: 0 0.5rem 1.5rem rgba(24, 119, 242, 0.3);
+}
+
+.social-btn.instagram {
+    color: #e1306c;
+    border-color: #e1306c;
+}
+
+.social-btn.instagram:hover {
+    background: #e1306c;
+    color: var(--bg-color);
+    box-shadow: 0 0.5rem 1.5rem rgba(225, 48, 108, 0.3);
+}
+
+.social-btn.google {
+    color: #ea4335;
+    border-color: #ea4335;
+}
+
+.social-btn.google:hover {
+    background: #ea4335;
+    color: var(--bg-color);
+    box-shadow: 0 0.5rem 1.5rem rgba(234, 67, 53, 0.3);
+}
+
+/* Illustration */
+.login-illustration {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-box {
+    text-align: center;
+    padding: 3rem;
+    background: var(--snd-bg-color);
+    border-radius: 1.5rem;
+    border: 2px solid var(--main-color);
+}
+
+.illustration-box i {
+    font-size: 8rem;
+    color: var(--main-color);
+    display: block;
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.illustration-box h3 {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.illustration-box p {
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Footer Section */
+.footer {
+    background: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer .social a {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--bg-color);
+    font-size: 2rem;
+    transition: 0.3s ease;
+}
+
+.footer .social a:hover {
+    background: var(--bg-color);
+    color: var(--main-color);
+    transform: scale(1.2);
+}
+
+.copyright {
+    color: var(--bg-color);
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.copyright a {
+    color: var(--bg-color);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem 3%;
+    }
+
+    .logo {
+        font-size: 2.2rem;
+    }
+
+    .navbar {
+        gap: 1rem;
+    }
+
+    .navbar a {
+        font-size: 1.5rem;
+    }
+
+    .login-section {
+        padding: 10rem 2rem 2rem;
+    }
+
+    .login-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .login-box {
+        padding: 2.5rem;
+        width: 100%;
+    }
+
+    .login-box h2 {
+        font-size: 2.5rem;
+    }
+
+    .illustration-box i {
+        font-size: 6rem;
+    }
+
+    .illustration-box h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        padding: 1.5rem;
+    }
+
+    .login-box h2 {
+        font-size: 2rem;
+    }
+
+    .form-group label {
+        font-size: 1.2rem;
+    }
+
+    .form-group input {
+        padding: 1rem 1.2rem;
+        font-size: 1.4rem;
+    }
+
+    .btn-signin {
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+    }
+
+    .social-buttons {
+        gap: 1rem;
+    }
+
+    .social-btn {
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+}

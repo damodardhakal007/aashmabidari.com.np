@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In · Kavresthali Secondary School</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    .signin-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .signin-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+      text-decoration: none;
+    }
+
+    .signin-brand-crest {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--cyan), var(--magenta));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--bg-dark);
+      font-weight: 900;
+      box-shadow: 0 0 32px rgba(0,245,255,.4), 0 0 16px rgba(255,0,229,.2);
+      flex-shrink: 0;
+    }
+
+    .signin-brand-text .ln1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      display: block;
+    }
+
+    .signin-brand-text .ln1 span { color: var(--cyan); }
+
+    .signin-brand-text .ln2 {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      display: block;
+    }
+
+    .signin-card {
+      background: linear-gradient(135deg, rgba(8,21,37,.96), rgba(6,16,26,.99));
+      border: 1px solid rgba(0,245,255,.2);
+      border-radius: 18px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow:
+        0 0 80px rgba(0,245,255,.12),
+        0 0 40px rgba(255,0,229,.06),
+        0 24px 60px rgba(0,0,0,.5);
+    }
+
+    .signin-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .signin-heading h2 {
+      font-size: 26px;
+      color: #fff;
+      margin: 0 0 6px 0;
+    }
+
+    .signin-heading h2 i { color: var(--cyan); }
+
+    .signin-heading p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin: 0;
+    }
+
+    .role-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .role-tab {
+      padding: 11px 6px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .role-tab i { font-size: 20px; }
+
+    .role-tab.active {
+      background: rgba(0,245,255,.14);
+      border-color: rgba(0,245,255,.5);
+      color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0,245,255,.15);
+    }
+
+    .role-tab:hover:not(.active) {
+      background: rgba(0,245,255,.06);
+      border-color: rgba(0,245,255,.25);
+      color: var(--text-light);
+    }
+
+    .signin-field {
+      margin-bottom: 20px;
+    }
+
+    .signin-field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-light);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 13px 44px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(0,245,255,.2);
+      border-radius: 9px;
+      color: var(--text-light);
+      font-size: 14px;
+      transition: all .25s ease;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    .input-wrap input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      background: rgba(0,245,255,.07);
+      box-shadow: 0 0 14px rgba(0,245,255,.14);
+    }
+
+    .input-wrap .ic {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: rgba(255,255,255,.35);
+      pointer-events: none;
+    }
+
+    .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,.35);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 2px;
+      line-height: 1;
+      transition: color .2s;
+    }
+
+    .toggle-pw:hover { color: var(--cyan); }
+
+    .signin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+      font-size: 13px;
+    }
+
+    .signin-row .chk {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .signin-row .chk input[type="checkbox"] { accent-color: var(--cyan); }
+
+    .forgot-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .forgot-link:hover { text-decoration: underline; }
+
+    .signin-error {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,107,107,.1);
+      border: 1px solid rgba(255,107,107,.35);
+      border-radius: 9px;
+      color: #ff9999;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .signin-error i { font-size: 18px; flex-shrink: 0; }
+    .signin-error a { color: var(--cyan); }
+
+    .signin-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      border: none;
+      border-radius: 9px;
+      color: var(--bg-dark);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: .02em;
+    }
+
+    .signin-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(0,245,255,.4), 0 0 14px rgba(255,0,229,.2);
+    }
+
+    .signin-submit:disabled {
+      opacity: .75;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .signin-submit.success {
+      background: linear-gradient(90deg, #00ff9d, #00c9a7);
+    }
+
+    .signin-divider {
+      text-align: center;
+      margin: 28px 0 22px;
+      position: relative;
+      color: rgba(255,255,255,.25);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .signin-divider::before,
+    .signin-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: rgba(255,255,255,.09);
+    }
+
+    .signin-divider::before { left: 0; }
+    .signin-divider::after { right: 0; }
+
+    .signin-foot {
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .signin-foot a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .signin-foot a:hover { text-decoration: underline; }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
+    .back-home:hover { color: var(--text-light); }
+
+    /* Admin badge shown when admin tab is active */
+    .admin-hint {
+      display: none;
+      padding: 10px 14px;
+      background: rgba(255,215,0,.08);
+      border: 1px solid rgba(255,215,0,.25);
+      border-radius: 8px;
+      color: var(--gold);
+      font-size: 12px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .admin-hint.visible { display: block; }
+
+    @media (max-width: 520px) {
+      .signin-card { padding: 32px 22px; }
+      .role-tabs { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ Particle / Nebula Background ═══ -->
+<canvas id="particles-canvas"></canvas>
+<div class="bg-glow-blob blob-1"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-2"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-3"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-4"><div class="nebula-core"></div></div>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<div class="signin-wrap">
+
+  <!-- Branding -->
+  <a href="index.html" class="signin-brand" aria-label="Back to home">
+    <div class="signin-brand-crest">K</div>
+    <div class="signin-brand-text">
+      <span class="ln1">Kavresthali<span>.</span></span>
+      <span class="ln2">Secondary School · Est. 1985</span>
+    </div>
+  </a>
+
+  <!-- Card -->
+  <div class="signin-card">
+
+    <div class="signin-heading">
+      <h2><i class="bx bx-log-in-circle"></i> Portal Sign-In</h2>
+      <p>Choose your role and enter your credentials</p>
+    </div>
+
+    <!-- Role Tabs -->
+    <div class="role-tabs" role="tablist">
+      <button type="button" class="role-tab active" data-role="student" aria-pressed="true">
+        <i class="bx bx-user"></i>Student
+      </button>
+      <button type="button" class="role-tab" data-role="parent">
+        <i class="bx bx-group"></i>Parent
+      </button>
+      <button type="button" class="role-tab" data-role="teacher">
+        <i class="bx bx-chalkboard"></i>Teacher
+      </button>
+      <button type="button" class="role-tab" data-role="admin">
+        <i class="bx bx-shield-quarter"></i>Admin
+      </button>
+    </div>
+
+    <!-- Admin hint (hidden unless admin tab active) -->
+    <div class="admin-hint" id="adminHint">
+      <i class="bx bx-shield-check"></i> Admin access grants full school management capabilities
+    </div>
+
+    <!-- Error -->
+    <div class="signin-error" id="signinError">
+      <i class="bx bx-x-circle"></i>
+      <span id="signinErrorText"></span>
+    </div>
+
+    <form id="signin-form" novalidate autocomplete="on">
+
+      <div class="signin-field">
+        <label for="username" id="username-label">Student ID</label>
+        <div class="input-wrap">
+          <i class="bx bx-id-card ic"></i>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="e.g. KSS-2025-0314"
+            required
+            autocomplete="username"
+          />
+        </div>
+      </div>
+
+      <div class="signin-field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <i class="bx bx-lock-alt ic"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          />
+          <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Toggle password visibility">
+            <i class="bx bx-show"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="signin-row">
+        <label class="chk">
+          <input type="checkbox" id="rememberMe" /> Remember this device
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="signin-submit" id="signinBtn">
+        <i class="bx bx-log-in-circle"></i>
+        Sign in as <span id="role-label">Student</span>
+      </button>
+
+    </form>
+
+    <div class="signin-divider">or</div>
+
+    <div class="signin-foot">
+      New student? <a href="signup.html">Create an account</a><br />
+      <a href="index.html" class="back-home"><i class="bx bx-arrow-back"></i> Back to Home</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/main.js"></script>
+<script>
+/* Wrapped in IIFE to avoid const re-declaration conflicts with main.js
+   (main.js declares `const tabs` at global scope — re-declaring it here
+   would cause a SyntaxError that silently kills the entire script block). */
+(function () {
+  var ADMIN_USERNAME = 'damodar.admin';
+  var ADMIN_PASSWORD = 'Damodar@1547';
+
+  var ROLE_CONFIG = {
+    student: { label: 'Student',  usernameLabel: 'Student ID',           placeholder: 'e.g. KSS-2025-0314' },
+    parent:  { label: 'Parent',   usernameLabel: 'Parent ID / Mobile',    placeholder: 'e.g. 98XXXXXXXX' },
+    teacher: { label: 'Teacher',  usernameLabel: 'Faculty ID / Email',    placeholder: 'faculty@kavresthali.edu.np' },
+    admin:   { label: 'Admin',    usernameLabel: 'Admin Username',         placeholder: 'admin.username' }
+  };
+
+  var currentRole = 'student';
+
+  // ── Role tab switching ────────────────────────────────────────
+  var roleTabs = document.querySelectorAll('.role-tab');
+  roleTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      roleTabs.forEach(function (t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-pressed', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-pressed', 'true');
+      currentRole = tab.dataset.role;
+      var cfg = ROLE_CONFIG[currentRole];
+      document.getElementById('username-label').textContent = cfg.usernameLabel;
+      var uInput = document.getElementById('username');
+      uInput.placeholder = cfg.placeholder;
+      uInput.value = '';
+      document.getElementById('role-label').textContent = cfg.label;
+      document.getElementById('adminHint').classList.toggle('visible', currentRole === 'admin');
+      hideError();
+    });
+  });
+
+  // ── Error helpers ─────────────────────────────────────────────
+  // (password toggle is handled by main.js — no second handler needed here)
+  function showError(html) {
+    var el = document.getElementById('signinError');
+    document.getElementById('signinErrorText').innerHTML = html;
+    el.style.display = 'flex';
+  }
+
+  function hideError() {
+    document.getElementById('signinError').style.display = 'none';
+  }
+
+  // ── localStorage user lookup ──────────────────────────────────
+  function getStoredUsers() {
+    try { return JSON.parse(localStorage.getItem('kss_users') || '[]'); }
+    catch (e) { return []; }
+  }
+
+  // ── Security logging (failed attempts) ───────────────────────
+  function logFailedAttempt(usernameAttempted, role) {
+    try {
+      var log = JSON.parse(localStorage.getItem('kss_seclog') || '[]');
+      // Count consecutive attempts for this username
+      var prev = log.find(function(e){ return e.username === usernameAttempted && e.role === role; });
+      var attempts = prev ? (prev.attempts || 1) + 1 : 1;
+      // Remove old entry for same username/role if exists
+      log = log.filter(function(e){ return !(e.username === usernameAttempted && e.role === role); });
+      log.unshift({
+        username: usernameAttempted,
+        role:     role,
+        attempts: attempts,
+        time:     new Date().toISOString(),
+        ua:       navigator.userAgent.slice(0, 80)
+      });
+      if (log.length > 200) log.pop();
+      localStorage.setItem('kss_seclog', JSON.stringify(log));
+    } catch(e) { /* silent */ }
+  }
+
+  // ── Login success handler ─────────────────────────────────────
+  function handleLoginSuccess(role, username, displayName) {
+    var btn = document.getElementById('signinBtn');
+    btn.innerHTML = "<i class='bx bx-loader-alt bx-spin'></i> Authenticating…";
+    btn.disabled = true;
+
+    setTimeout(function () {
+      btn.innerHTML = "<i class='bx bx-check-circle'></i> Welcome — Redirecting…";
+      btn.classList.add('success');
+
+      if (typeof launchConfetti === 'function') launchConfetti();
+
+      localStorage.setItem('userRole',        role);
+      localStorage.setItem('userName',        username);
+      localStorage.setItem('userDisplayName', displayName);
+      localStorage.setItem('loggedIn',        'true');
+
+      setTimeout(function () {
+        window.location.href = 'portal.html?role=' + role;
+      }, 1100);
+    }, 900);
+  }
+
+  // ── Form submit ───────────────────────────────────────────────
+  var form = document.getElementById('signin-form');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideError();
+
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value;
+
+    if (!username || !password) {
+      showError('Please fill in both fields.');
+      return;
+    }
+
+    // Admin credentials check
+    if (currentRole === 'admin') {
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        handleLoginSuccess('admin', ADMIN_USERNAME, 'Damodar Dhakal');
+      } else {
+        logFailedAttempt(username, 'admin');
+        showError('Wrong username or password. Please check your credentials.');
+      }
+      return;
+    }
+
+    // Registered user check (student / parent / teacher)
+    var users = getStoredUsers();
+    var match = null;
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].username === username &&
+          users[i].password === password &&
+          users[i].role === currentRole) {
+        match = users[i];
+        break;
+      }
+    }
+
+    if (match) {
+      if (match.status === 'pending') {
+        showError('Your account is pending admin approval. Please wait for confirmation.');
+        return;
+      }
+      var displayName = (match.firstName && match.lastName)
+        ? match.firstName + ' ' + match.lastName
+        : match.username;
+      handleLoginSuccess(match.role, match.username, displayName);
+    } else {
+      logFailedAttempt(username, currentRole);
+      showError(
+        'Wrong username or password. ' +
+        (currentRole === 'student'
+          ? 'New here? <a href="signup.html">Create an account</a>.'
+          : 'Please contact the school office for portal access.')
+      );
+    }
+  });
+
+}()); // end IIFE
+</script>
+</body>
+</html>

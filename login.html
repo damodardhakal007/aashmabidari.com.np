@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="login-style.css">
+    <title>Login - Aashma Bidari</title>
+</head>
+
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <a href="index.html" class="logo">Aashma Bidari</a>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="index.html#kavresthali">Kavresthali School</a>
+            <a href="contact-me.html">Contact Me</a>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Sign In</h2>
+                <p class="login-subtitle">Welcome back! Please sign in to your account.</p>
+
+                <form id="loginForm" class="login-form">
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class='bx bx-envelope'></i> Email Address
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class='bx bx-lock-alt'></i> Password
+                        </label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <!-- Sign In Button -->
+                    <button type="submit" class="btn-signin">Sign In</button>
+                </form>
+
+                <!-- Sign Up Link -->
+                <p class="signup-text">Don't have an account? <a href="#signup">Create one here</a></p>
+
+                <!-- Social Login -->
+                <div class="social-login">
+                    <p>Or sign in with</p>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn facebook">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                        <a href="#" class="social-btn instagram">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="#" class="social-btn google">
+                            <i class='bx bxl-google'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Illustration Side -->
+            <div class="login-illustration">
+                <div class="illustration-box">
+                    <i class='bx bx-lock-open'></i>
+                    <h3>Secure Login</h3>
+                    <p>Your data is protected with advanced security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/aashma.bidari.2025" target="_blank"><i class='bx bxl-facebook'></i></a>
+            <a href="https://instagram.com/aashma._dhakal" target="_blank"><i class='bx bxl-instagram'></i></a>
+        </div>
+
+        <p class="copyright">
+            © <a href="damodar%20dhakal/index.html" target="_blank">Damodar Dhakal</a> - All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="login-script.js"></script>
+</body>
+
+</html>

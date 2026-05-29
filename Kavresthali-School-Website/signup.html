@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Sign Up · Kavresthali Secondary School</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        .signup-container {
+            min-height: 100vh; background: var(--bg-dark);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px; position: relative;
+        }
+
+        .signup-card {
+            background: linear-gradient(135deg, rgba(8,21,37,.95), rgba(6,16,26,.98));
+            border: 1px solid rgba(0,245,255,.2);
+            border-radius: 12px; padding: 40px;
+            max-width: 600px; width: 100%;
+            box-shadow: 0 0 60px rgba(0,245,255,.2);
+        }
+
+        .signup-header {
+            text-align: center; margin-bottom: 32px;
+        }
+
+        .signup-header h1 {
+            font-size: 28px; color: var(--cyan);
+            margin: 0 0 8px 0;
+        }
+
+        .signup-header p {
+            color: var(--text-muted); font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block; margin-bottom: 8px;
+            color: var(--text-light); font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .04em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 12px 14px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(0,245,255,.2);
+            border-radius: 8px; color: var(--text-light);
+            font-size: 14px; transition: all .3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none; border-color: var(--cyan);
+            background: rgba(0,245,255,.08);
+            box-shadow: 0 0 12px rgba(0,245,255,.1);
+        }
+
+        .form-group textarea {
+            resize: vertical; min-height: 80px;
+        }
+
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group.full { grid-column: 1 / -1; }
+
+        .signup-button {
+            width: 100%; padding: 14px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            border: none; border-radius: 8px;
+            color: var(--bg-dark); font-size: 14px; font-weight: 800;
+            cursor: pointer; transition: all .3s ease;
+            margin-top: 16px;
+        }
+
+        .signup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0,245,255,.4);
+        }
+
+        .signup-button:disabled {
+            opacity: .6; cursor: not-allowed;
+        }
+
+        .signup-footer {
+            text-align: center; margin-top: 24px;
+            padding-top: 24px; border-top: 1px dashed rgba(255,255,255,.1);
+            font-size: 13px; color: var(--text-muted);
+        }
+
+        .signup-footer a {
+            color: var(--cyan); text-decoration: none; font-weight: 700;
+        }
+
+        .success-message {
+            padding: 16px; background: rgba(0,255,157,.12);
+            border: 1px solid #00ff9d; border-radius: 8px;
+            color: #00ff9d; margin-bottom: 16px; display: none;
+        }
+
+        .error-message {
+            padding: 16px; background: rgba(255,107,107,.12);
+            border: 1px solid #ff6b6b; border-radius: 8px;
+            color: #ff9999; margin-bottom: 16px; display: none;
+        }
+
+        .form-row-info {
+            font-size: 11px; color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .signup-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    <div class="bg-glow-blob blob-1"><div class="nebula-core"></div></div>
+    <div class="bg-glow-blob blob-2"><div class="nebula-core"></div></div>
+
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="signup-header">
+                <h1><i class="bx bx-user-plus"></i> Portal Registration</h1>
+                <p>Create your account — admin will review and approve your request</p>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                <i class="bx bx-check-circle"></i> Request submitted! Your account is <strong>pending admin approval</strong>. You will be able to login once approved.
+            </div>
+            <div class="error-message" id="errorMsg"></div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="role">I am a *</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select role…</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher / Faculty</option>
+                        <option value="parent">Parent / Guardian</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="98XXXXXXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="grade">Grade <span style="color:var(--text-muted);font-size:11px">(students only)</span></label>
+                        <select id="grade" name="grade">
+                            <option value="">Select Grade</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11 (Science)</option>
+                            <option value="11M">Grade 11 (Management)</option>
+                            <option value="11H">Grade 11 (Humanities)</option>
+                            <option value="12">Grade 12 (Science)</option>
+                            <option value="12M">Grade 12 (Management)</option>
+                            <option value="12H">Grade 12 (Humanities)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianName">Guardian Name <span style="color:var(--text-muted);font-size:11px">(students only)</span></label>
+                    <input type="text" id="guardianName" name="guardianName" />
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianPhone">Guardian Phone <span style="color:var(--text-muted);font-size:11px">(students only)</span></label>
+                    <input type="tel" id="guardianPhone" name="guardianPhone" placeholder="98XXXXXXXX" />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" placeholder="Street, Ward, District"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username">Username *</label>
+                        <input type="text" id="username" name="username" required />
+                        <div class="form-row-info">Must be unique (for login)</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" required />
+                        <div class="form-row-info">Min 8 characters</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required />
+                </div>
+
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-muted); font-size: 13px;">
+                    <input type="checkbox" id="termsAgree" name="termsAgree" required />
+                    I agree to the terms and conditions
+                </label>
+
+                <button type="submit" class="signup-button">
+                    <i class="bx bx-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="signup-footer">
+                Already have an account? <a href="signin.html">Sign in here</a><br>
+                <a href="index.html" style="display: inline-block; margin-top: 8px;">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            function getPending() { try { return JSON.parse(localStorage.getItem('kss_pending')||'[]'); } catch{return[];} }
+            function getUsers()   { try { return JSON.parse(localStorage.getItem('kss_users')  ||'[]'); } catch{return[];} }
+            function usernameExists(un) {
+                return getPending().some(u=>u.username===un) || getUsers().some(u=>u.username===un) || un==='damodar.admin';
+            }
+
+            var form       = document.getElementById('signupForm');
+            var successMsg = document.getElementById('successMsg');
+            var errorMsg   = document.getElementById('errorMsg');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                errorMsg.style.display = 'none';
+                successMsg.style.display = 'none';
+
+                var role          = document.getElementById('role').value;
+                var firstName     = document.getElementById('firstName').value.trim();
+                var lastName      = document.getElementById('lastName').value.trim();
+                var email         = document.getElementById('email').value.trim();
+                var phone         = document.getElementById('phone').value.trim();
+                var grade         = document.getElementById('grade') ? document.getElementById('grade').value : '';
+                var gender        = document.getElementById('gender') ? document.getElementById('gender').value : '';
+                var guardianName  = document.getElementById('guardianName') ? document.getElementById('guardianName').value.trim() : '';
+                var guardianPhone = document.getElementById('guardianPhone') ? document.getElementById('guardianPhone').value.trim() : '';
+                var username      = document.getElementById('username').value.trim();
+                var password      = document.getElementById('password').value;
+                var confirm       = document.getElementById('confirmPassword').value;
+
+                if (!role) { showError('Please select your role.'); return; }
+                if (password.length < 8) { showError('Password must be at least 8 characters.'); return; }
+                if (password !== confirm) { showError('Passwords do not match.'); return; }
+                if (usernameExists(username)) { showError('Username already taken. Please choose another.'); return; }
+
+                var requestID = role.slice(0,3).toUpperCase() + '-' + Math.floor(100000 + Math.random()*900000);
+                var userData = {
+                    id: requestID, role: role,
+                    firstName: firstName, lastName: lastName,
+                    email: email, phone: phone,
+                    grade: grade, gender: gender,
+                    guardianName: guardianName, guardianPhone: guardianPhone,
+                    username: username, password: password,
+                    status: 'pending',
+                    requestedAt: new Date().toISOString()
+                };
+
+                var pending = getPending();
+                pending.push(userData);
+                localStorage.setItem('kss_pending', JSON.stringify(pending));
+
+                successMsg.innerHTML = '<i class="bx bx-time-five"></i> Request submitted! Your account (<strong>' + requestID + '</strong>) is <strong>pending admin approval</strong>. You will be notified once approved.';
+                successMsg.style.display = 'block';
+                form.reset();
+            });
+
+            function showError(msg) {
+                errorMsg.innerHTML = '<i class="bx bx-x-circle"></i> ' + msg;
+                errorMsg.style.display = 'block';
+            }
+        }());
+    </script>
+</body>
+</html>

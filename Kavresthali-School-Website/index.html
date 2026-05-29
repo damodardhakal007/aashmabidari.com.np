@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kavresthali Secondary School · Knowledge · Discipline · Service</title>
+<meta name="description" content="Official portal of Kavresthali Secondary School, Kathmandu. Sign in to the Student, Parent, Teacher, or Admin portal — attendance, grades, notices, bus tracking, fee payment." />
+<link rel="stylesheet" href="assets/styles.css" />
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+</head>
+<body>
+
+<!-- ═════════ Particle / Nebula Background ═════════ -->
+<canvas id="particles-canvas"></canvas>
+<div class="bg-glow-blob blob-1"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-2"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-3"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-4"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-5"><div class="nebula-core"></div></div>
+<div class="bg-glow-blob blob-6"><div class="nebula-core"></div></div>
+
+<!-- ═════════ Preloader ═════════ -->
+<div class="preloader" id="preloader">
+  <div class="loader">
+    <span class="loader-text" id="preloader-text">K</span>
+    <div class="loader-ring"></div>
+  </div>
+</div>
+
+<!-- ═════════ Header / Navigation ═════════ -->
+<header class="header">
+  <a href="#home" class="logo">
+    <span class="logo-crest"></span>
+    <span class="logo-text">
+      <span class="ln1">Kavresthali<span>.</span></span>
+      <span class="ln2">Secondary School · Est. 1985</span>
+    </span>
+  </a>
+  <i class="bx bx-menu" id="menu-icon"></i>
+  <nav class="navbar">
+    <a href="#home"      style="--i:1" class="active">Home</a>
+    <a href="#about"     style="--i:2">About</a>
+    <a href="#academics" style="--i:3">Academics</a>
+    <a href="#portals"   style="--i:4">Portals</a>
+    <a href="#news"      style="--i:5">News</a>
+    <a href="#faculty"   style="--i:6">Teachers</a>
+    <a href="#contact"   style="--i:7">Contact</a>
+    <a href="signin.html" style="--i:8" class="nav-cta"><i class="bx bx-log-in"></i> Portal Login</a>
+  </nav>
+</header>
+
+<!-- ═════════ Home / Hero ═════════ -->
+<section class="home" id="home">
+  <div class="home-content">
+    <div class="eyebrow">Academic Session 2082 / 2025 · Admissions Open</div>
+    <h3>Where every student becomes</h3>
+    <h3><span class="text"></span></h3>
+    <h1>Kavresthali Secondary School</h1>
+    <p class="lead">
+      For four decades, families across the Tarakeshwar valley have trusted us
+      to shape children from Grade 1 to 12 — with a curriculum that balances
+      academic rigour, cultural identity, and the practical skills to lead in a
+      connected world.
+    </p>
+
+    <div class="home-sci">
+      <a href="https://facebook.com" target="_blank" style="--i:1" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" style="--i:2" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="https://wa.me/977" target="_blank" style="--i:3" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+      <a href="https://youtube.com" target="_blank" style="--i:4" aria-label="YouTube"><i class="bx bxl-youtube"></i></a>
+    </div>
+
+    <div>
+      <a href="signin.html" class="btn-box"><i class="bx bx-log-in-circle"></i> Portal Login</a>
+      <a href="#about" class="btn-box btn-ghost"><i class="bx bx-info-circle"></i> Discover Campus</a>
+    </div>
+
+    <div class="home-stats">
+      <div class="home-stat"><div class="n"><span data-count="1240" data-suffix="+">0</span></div><div class="l">Active Students</div></div>
+      <div class="home-stat"><div class="n"><span data-count="68">0</span></div><div class="l">Faculty Members</div></div>
+      <div class="home-stat"><div class="n"><span data-count="96" data-suffix="%">0</span></div><div class="l">SEE Pass Rate</div></div>
+    </div>
+  </div>
+
+  <div class="home-img">
+    <div class="img-glow"></div>
+    <div class="img-box">
+      <img src="assets/principal.jpg" alt="Principal — Kavresthali Secondary School" class="profile-img" />
+    </div>
+    <div class="img-badge">Principal's Welcome</div>
+  </div>
+</section>
+
+<!-- ═════════ About ═════════ -->
+<section class="about" id="about">
+  <h2 class="heading">Our <span>School</span></h2>
+  <p class="section-sub">A school rooted in heritage and designed for what comes next — eight ideas that hold us together.</p>
+
+  <div class="about-grid" id="about-grid">
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-buildings"></i>
+      <h3>Our Campus</h3>
+      <p>A four-acre campus in Kavresthali-7, Kathmandu with twenty-eight classrooms, four science labs, two computer labs and an open amphitheatre for assembly.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-bulb"></i>
+      <h3>Our Mission</h3>
+      <p>To nurture confident, principled young people who lead with knowledge, work with discipline, and contribute with service — Vidya, Anushasan, Seva.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-book-open"></i>
+      <h3>NEB Curriculum</h3>
+      <p>Aligned with Nepal's National Curriculum Framework from Grade 1 through 12, with English-medium instruction beginning at Grade 4.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-trophy"></i>
+      <h3>Forty Years</h3>
+      <p>Founded in 1985 as a single-room community classroom for twenty-eight children — today serving the families of nineteen surrounding villages.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-bus"></i>
+      <h3>Transport Network</h3>
+      <p>Nineteen GPS-tracked bus routes covering Tokha, Tarakeshwar, Balaju and beyond — with live tracking inside the parent portal.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-chip"></i>
+      <h3>Future-Ready</h3>
+      <p>Robotics, AI literacy, and a coding club running from Grade 6. Our STEM team brought silver at the 2026 national NAST youth challenge.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-heart"></i>
+      <h3>Community First</h3>
+      <p>Need-based scholarships covering full fees for 38 students this year, free uniform support, and a daily mid-day meal for primary grades.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-shine"></div>
+      <i class="bx bx-shield-quarter"></i>
+      <h3>Safe &amp; Inclusive</h3>
+      <p>A no-tolerance policy on bullying, trained student counsellors on campus daily, and a transparent grievance system with anonymous reporting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ Academics (Skill-bar style) ═════════ -->
+<section class="skills academics" id="academics">
+  <h2 class="heading">Our <span>Academics</span></h2>
+  <p class="section-sub">Six programmes from Pre-Primary through Grade 12 — each measured on the outcomes that matter to families.</p>
+
+  <div class="skills-container">
+    <div class="skill-category">
+      <h3><i class="bx bx-paint"></i> Pre-Primary &amp; Primary</h3>
+      <div class="cat-sub">Grades 1 – 5 · Play-based, bilingual foundations</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Literacy Outcome</span><span class="skill-percent">94%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="94"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Numeracy Outcome</span><span class="skill-percent">91%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="91"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Attendance Rate</span><span class="skill-percent">97%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="97"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><i class="bx bx-atom"></i> Lower Secondary</h3>
+      <div class="cat-sub">Grades 6 – 8 · Subject specialisation begins</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Science Diagnostic</span><span class="skill-percent">89%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="89"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Math Diagnostic</span><span class="skill-percent">86%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="86"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>English Fluency</span><span class="skill-percent">82%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><i class="bx bx-award"></i> Secondary (SEE)</h3>
+      <div class="cat-sub">Grades 9 &amp; 10 · National Examination preparation</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>SEE Pass Rate</span><span class="skill-percent">96%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="96"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Distinction Rate</span><span class="skill-percent">42%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="42"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>+2 Continuation</span><span class="skill-percent">88%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><i class="bx bx-test-tube"></i> +2 Science Stream</h3>
+      <div class="cat-sub">Grades 11 &amp; 12 · Physics · Chem · Bio / Math</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>NEB Pass Rate</span><span class="skill-percent">93%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="93"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>IOE Entrance Selected</span><span class="skill-percent">31%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="31"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Lab Hours / Week</span><span class="skill-percent">100%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="100"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><i class="bx bx-briefcase"></i> +2 Management Stream</h3>
+      <div class="cat-sub">Grades 11 &amp; 12 · Accounts · Economics · Business</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>NEB Pass Rate</span><span class="skill-percent">95%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Industry Visits / Year</span><span class="skill-percent">80%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>BBA Continuation</span><span class="skill-percent">76%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="76"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><i class="bx bx-globe"></i> +2 Humanities Stream</h3>
+      <div class="cat-sub">Grades 11 &amp; 12 · Sociology · Psychology · Mass Comm.</div>
+      <div class="skill-item">
+        <div class="skill-info"><span>NEB Pass Rate</span><span class="skill-percent">97%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="97"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Languages Offered</span><span class="skill-percent">85%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Research Projects</span><span class="skill-percent">72%</span></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="72"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ Portals (Portfolio-card style) ═════════ -->
+<section class="portals" id="portals">
+  <h2 class="heading">School <span>Portals</span></h2>
+  <p class="section-sub">Everything our students, parents, teachers and operations team need — built into a single, secure platform.</p>
+
+  <div class="portfolio-container">
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-user-pin"></i></div>
+      <h3>Student Portal</h3>
+      <p>Daily homework feed, e-library, exam admit cards, results, and one-tap leave requests — all in one dashboard built for ages 10 and up.</p>
+      <div class="tag-row"><span>Homework</span><span>Results</span><span>Library</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Open Portal</a>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-group"></i></div>
+      <h3>Parent Portal</h3>
+      <p>Live attendance push notifications, term grades, fee payment via eSewa/Khalti, and the parent-teacher meeting slot booker.</p>
+      <div class="tag-row"><span>Attendance</span><span>Fees</span><span>PTM Booking</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Open Portal</a>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-chalkboard"></i></div>
+      <h3>Teacher Portal</h3>
+      <p>Bulk attendance with face-grouping, gradebook with AI-drafted report comments, lesson planner, and parent messaging.</p>
+      <div class="tag-row"><span>Gradebook</span><span>AI Comments</span><span>Messaging</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Open Portal</a>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-shield-quarter"></i></div>
+      <h3>Admin Console</h3>
+      <p>Role-based widget dashboards, multi-school tenant config, AI predictive performance alerts, and full FERPA/GDPR audit logs.</p>
+      <div class="tag-row"><span>Widgets</span><span>AI Alerts</span><span>Audit</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Open Console</a>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-map-alt"></i></div>
+      <h3>Live Bus Tracking</h3>
+      <p>Real-time GPS on every bus, geofencing alerts at the family's chosen radius, and an in-app "Reached safely" stamp for parents.</p>
+      <div class="tag-row"><span>GPS</span><span>Geofence</span><span>SMS Alerts</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Open Tracker</a>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="portfolio-icon"><i class="bx bx-credit-card"></i></div>
+      <h3>Fees &amp; Finance</h3>
+      <p>Automated invoice generation, smart triggers for clubs and bus routes, and dynamic ledger with eSewa, Khalti and bank gateways.</p>
+      <div class="tag-row"><span>Auto-bill</span><span>eSewa</span><span>Khalti</span></div>
+      <a href="signin.html" class="portfolio-btn"><i class="bx bx-log-in"></i> Pay Fees</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ News & Notices ═════════ -->
+<section class="news" id="news">
+  <h2 class="heading">News &amp; <span>Notices</span></h2>
+  <p class="section-sub">What's happening on campus — the latest from our newsroom plus a live notice board.</p>
+
+  <div class="news-layout">
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-img"><span class="news-tag">Annual Day</span></div>
+        <div class="news-body">
+          <div class="news-date">May 24, 2026 · By the Editorial Team</div>
+          <h3>40th Annual Day "Sankalpa" celebrates four decades of teaching</h3>
+          <p>Over six hundred students, alumni and families gathered for an evening of music, drama and a keynote by Dr. Saraswati Bhattarai. The photo gallery and chief guest's address are now available inside the parent portal.</p>
+          <a href="#" class="news-link">Read full coverage <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img"><span class="news-tag">Sports</span></div>
+        <div class="news-body">
+          <div class="news-date">May 18, 2026</div>
+          <h3>KSS retains the Inter-School Football Cup — third year running</h3>
+          <p>Our U-16 squad defeated Triyog HS 2–1 in the final at Dasarath Stadium, scoring the winning goal in extra time.</p>
+          <a href="#" class="news-link">Read more <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img"><span class="news-tag">Academics</span></div>
+        <div class="news-body">
+          <div class="news-date">May 10, 2026</div>
+          <h3>Robotics Club wins silver at the national STEM Challenge</h3>
+          <p>The Grade 10 team's water-purification prototype impressed judges at NAST's youth innovation fair.</p>
+          <a href="#" class="news-link">Read more <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="notice-panel">
+      <div class="notice-head">
+        <h4>Live Notice Board</h4>
+        <a href="#" class="news-link">View all <i class="bx bx-right-arrow-alt"></i></a>
+      </div>
+      <div class="notice-row">
+        <div class="notice-date"><div class="day">02</div><div class="mon">Jun</div></div>
+        <div class="notice-title"><span class="pill urgent">Urgent</span>Second Terminal Exams begin for Grades 6 – 10. Admit cards from Fri in the parent portal.</div>
+      </div>
+      <div class="notice-row">
+        <div class="notice-date"><div class="day">05</div><div class="mon">Jun</div></div>
+        <div class="notice-title"><span class="pill event">Event</span>Parent–Teacher Meeting for Grades 1 – 5. Slot booking opens 48 hrs prior.</div>
+      </div>
+      <div class="notice-row">
+        <div class="notice-date"><div class="day">12</div><div class="mon">Jun</div></div>
+        <div class="notice-title"><span class="pill acad">Academic</span>Grade 11 stream counselling and document submission — 10:00 AM onwards.</div>
+      </div>
+      <div class="notice-row">
+        <div class="notice-date"><div class="day">18</div><div class="mon">Jun</div></div>
+        <div class="notice-title"><span class="pill event">Event</span>Science Exhibition — open to public. All families welcome at the East Gate.</div>
+      </div>
+      <div class="notice-row">
+        <div class="notice-date"><div class="day">25</div><div class="mon">Jun</div></div>
+        <div class="notice-title"><span class="pill acad">Academic</span>Mid-term break — school closed Jun 25 – Jul 02. Holiday homework posted by Jun 23.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ Our Teachers ═════════ -->
+<section class="faculty" id="faculty">
+  <h2 class="heading" id="faculty-heading">Our <span>Teachers</span></h2>
+  <p class="section-sub" id="faculty-sub">Meet the educators shaping every student at Kavresthali Secondary School.</p>
+
+  <div class="faculty-grid" id="faculty-grid">
+    <div class="faculty-card">
+      <div class="faculty-avatar"><div class="faculty-avatar-inner" id="principal-avatar"><img src="assets/principal.jpg" alt="Principal" /></div></div>
+      <h4 id="principal-name">Damodar Dhakal</h4>
+      <div class="role">Principal</div>
+      <p class="bio">Banker turned educator, leading Kavresthali into its fifth decade with a sharper focus on financial literacy and digital fluency.</p>
+      <div class="quote">"A school is the bank where children deposit their first ambitions."</div>
+    </div>
+
+    <div class="faculty-card">
+      <div class="faculty-avatar"><div class="faculty-avatar-inner">SB</div></div>
+      <h4>Saraswati Bhattarai</h4>
+      <div class="role">Vice-Principal · Academics</div>
+      <p class="bio">Twenty-two years in NEB curriculum design. Mentors our +2 Science faculty and chairs the academic council.</p>
+      <div class="quote">"Curiosity precedes capability. Protect curiosity at all costs."</div>
+    </div>
+
+    <div class="faculty-card">
+      <div class="faculty-avatar"><div class="faculty-avatar-inner">RK</div></div>
+      <h4>Ramesh Karki</h4>
+      <div class="role">Head of Secondary</div>
+      <p class="bio">Math &amp; Physics teacher for Grades 9–12. Heads the SEE preparation programme — 96% pass rate, three years running.</p>
+      <div class="quote">"Practice solves what panic cannot. We rehearse calm."</div>
+    </div>
+
+    <div class="faculty-card">
+      <div class="faculty-avatar"><div class="faculty-avatar-inner">SL</div></div>
+      <h4>Sunita Lama</h4>
+      <div class="role">Dean of Student Affairs</div>
+      <p class="bio">Counsellor and the architect of our anti-bullying policy. Runs the weekly house-system town hall every Friday.</p>
+      <div class="quote">"Discipline isn't about punishment — it's about pattern."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ Contact ═════════ -->
+<section class="contact" id="contact">
+  <h2 class="heading">Visit or <span>Contact Us</span></h2>
+  <p class="section-sub">Drop by the campus, ring the office, or send a message — admissions enquiries usually get a reply within one working day.</p>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="bx bx-map-pin"></i>
+        <div>
+          <h3>Campus Address</h3>
+          <p>Kavresthali-7, Tarakeshwar Municipality, Kathmandu 44600, Nepal.</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="bx bx-phone"></i>
+        <div>
+          <h3>Office</h3>
+          <p>+977-1-4XXX XXX · Sun – Fri · 9:00 – 16:00</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="bx bx-envelope"></i>
+        <div>
+          <h3>Email</h3>
+          <p>info@kavresthalischool.edu.np<br/>admissions@kavresthalischool.edu.np</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="bx bx-bus"></i>
+        <div>
+          <h3>Bus Routes</h3>
+          <p>19 routes from Tokha, Tarakeshwar &amp; Balaju. Live tracker in parent portal.</p>
+        </div>
+      </div>
+      <div class="contact-social">
+        <h3>Follow Our Campus</h3>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" title="Facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://instagram.com" target="_blank" title="Instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://wa.me/977" target="_blank" title="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+          <a href="https://youtube.com" target="_blank" title="YouTube"><i class="bx bxl-youtube"></i></a>
+          <a href="https://twitter.com" target="_blank" title="Twitter / X"><i class="bx bxl-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contact-form">
+      <h3><i class="bx bx-message-detail"></i> Send Us a Message</h3>
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input type="text" id="contact-name" name="name" placeholder=" " required />
+          <label for="contact-name">Your Name</label>
+          <i class="bx bx-user input-icon"></i>
+        </div>
+        <div class="input-wrapper">
+          <input type="email" id="contact-email" name="email" placeholder=" " required />
+          <label for="contact-email">Your Email</label>
+          <i class="bx bx-envelope input-icon"></i>
+        </div>
+      </div>
+      <div class="input-wrapper full-width">
+        <select id="contact-topic" name="topic" required>
+          <option value="" disabled selected hidden> </option>
+          <option>Admissions enquiry</option>
+          <option>Existing-student matter</option>
+          <option>Bus &amp; transport</option>
+          <option>Fees &amp; finance</option>
+          <option>Recruitment</option>
+          <option>Other</option>
+        </select>
+        <label for="contact-topic">Topic</label>
+        <i class="bx bx-purchase-tag input-icon"></i>
+      </div>
+      <div class="input-wrapper full-width">
+        <input type="text" id="contact-subject" name="subject" placeholder=" " required />
+        <label for="contact-subject">Subject</label>
+        <i class="bx bx-edit input-icon"></i>
+      </div>
+      <div class="input-wrapper full-width">
+        <textarea id="contact-message" name="message" rows="5" placeholder=" " required></textarea>
+        <label for="contact-message">Your Message</label>
+        <i class="bx bx-detail input-icon"></i>
+      </div>
+      <button type="submit" class="submit-btn">
+        <span><i class="bx bx-send"></i> Send Message</span>
+      </button>
+      <div class="form-status" id="form-status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ═════════ Footer ═════════ -->
+<footer class="footer" id="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-row">
+        <span class="logo-crest" style="width:42px;height:42px;"></span>
+        <div class="logo-text">
+          <span class="ln1" style="font-size:18px;color:#fff;font-family:'Playfair Display',serif;font-weight:900;">Kavresthali<span>.</span></span>
+          <span class="ln2">Estd. 1985</span>
+        </div>
+      </div>
+      <p>Kavresthali-7, Tarakeshwar Municipality, Kathmandu 44600, Nepal.<br/><br/>Office Hours · Sunday – Friday · 9:00 – 16:00 NPT.</p>
+    </div>
+    <div>
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#about">About the School</a></li>
+        <li><a href="#academics">Academics</a></li>
+        <li><a href="#faculty">Faculty &amp; Staff</a></li>
+        <li><a href="#news">News &amp; Notices</a></li>
+        <li><a href="#">Houses &amp; Clubs</a></li>
+        <li><a href="#">Alumni Network</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Portals</h5>
+      <ul>
+        <li><a href="signin.html">Student Portal</a></li>
+        <li><a href="signin.html">Parent Portal</a></li>
+        <li><a href="signin.html">Teacher Portal</a></li>
+        <li><a href="signin.html">Admin Console</a></li>
+        <li><a href="signin.html">Bus Tracker</a></li>
+        <li><a href="signin.html">Fee Payment</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Admissions</h5>
+      <ul>
+        <li><a href="#contact">Apply Now</a></li>
+        <li><a href="#">Fee Structure</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">Bus Routes</a></li>
+        <li><a href="#">Download Prospectus</a></li>
+        <li><a href="#contact">Visit Campus</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 1985 – 2026 Kavresthali Secondary School. All rights reserved.</span>
+    <span>Privacy · Terms · Anti-Ragging Policy · FERPA / GDPR aligned</span>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<a href="#home" class="scroll-top" id="scroll-top" aria-label="Back to top"><i class="bx bx-up-arrow-alt"></i></a>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<script src="assets/main.js"></script>
+<script>
+/* Dynamic homepage content — reads from localStorage set by the admin portal */
+(function () {
+    function gc(k, def) { try { var v = localStorage.getItem('kss_content_' + k); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
+
+    // ── Stats ─────────────────────────────────────────────────────
+    var stats = gc('stats', null);
+    if (stats) {
+        document.querySelectorAll('[data-count]').forEach(function (el) {
+            var stat = el.closest('.home-stat');
+            if (!stat) return;
+            var lbl = (stat.querySelector('.l') || {}).textContent || '';
+            lbl = lbl.toLowerCase();
+            if (lbl.includes('student') && stats.students != null) el.dataset.count = stats.students;
+            else if (lbl.includes('faculty') && stats.faculty != null) el.dataset.count = stats.faculty;
+            else if ((lbl.includes('see') || lbl.includes('pass')) && stats.seeRate != null) el.dataset.count = stats.seeRate;
+        });
+    }
+
+    // ── Our School (About cards) ─────────────────────────────────
+    var about = gc('about', null);
+    if (about && about.length) {
+        var grid = document.getElementById('about-grid');
+        if (grid) {
+            grid.innerHTML = about.map(function (c) {
+                return '<div class="about-card"><div class="card-shine"></div>' +
+                    '<i class="bx ' + (c.icon || 'bx-star') + '"></i>' +
+                    '<h3>' + (c.title || '') + '</h3>' +
+                    '<p>' + (c.text || '') + '</p></div>';
+            }).join('');
+        }
+        // Also update sub heading if set
+        var aboutSub = document.querySelector('#about .section-sub');
+        var aboutHead = gc('about_heading', null);
+        if (aboutHead && aboutSub) aboutSub.textContent = aboutHead.sub || aboutSub.textContent;
+    }
+
+    // ── Our Academics ────────────────────────────────────────────
+    var academics = gc('academics', null);
+    if (academics && academics.length) {
+        var container = document.querySelector('.skills-container');
+        if (container) {
+            container.innerHTML = academics.map(function (prog) {
+                var items = (prog.skills || []).map(function (s) {
+                    return '<div class="skill-item">' +
+                        '<div class="skill-info"><span>' + s.label + '</span><span class="skill-percent">' + s.pct + '%</span></div>' +
+                        '<div class="skill-bar"><div class="skill-progress" data-progress="' + s.pct + '"></div></div>' +
+                        '</div>';
+                }).join('');
+                return '<div class="skill-category"><h3><i class="bx ' + (prog.icon || 'bx-book') + '"></i> ' + prog.name + '</h3>' +
+                    '<div class="cat-sub">' + (prog.sub || '') + '</div>' + items + '</div>';
+            }).join('');
+            // Re-init skill bars after dynamic injection
+            container.querySelectorAll('.skill-progress').forEach(function (b) { b.style.width = '0%'; });
+            var obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.style.width = e.target.dataset.progress + '%'; obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.3 });
+            container.querySelectorAll('.skill-progress').forEach(function (b) { obs.observe(b); });
+        }
+    }
+
+    // ── Principal / Headmaster ────────────────────────────────────
+    var principal = gc('principal', null);
+    if (principal) {
+        var nameEl = document.getElementById('principal-name');
+        if (nameEl) nameEl.textContent = principal.name || nameEl.textContent;
+        var roleEl = nameEl && nameEl.closest('.faculty-card') && nameEl.closest('.faculty-card').querySelector('.role');
+        if (roleEl) roleEl.textContent = principal.role || roleEl.textContent;
+        var bioEl = nameEl && nameEl.closest('.faculty-card') && nameEl.closest('.faculty-card').querySelector('.bio');
+        if (bioEl) bioEl.textContent = principal.bio || bioEl.textContent;
+        var quoteEl = nameEl && nameEl.closest('.faculty-card') && nameEl.closest('.faculty-card').querySelector('.quote');
+        if (quoteEl) quoteEl.textContent = principal.quote || quoteEl.textContent;
+        // Profile picture: stored as base64 keyed by username
+        if (principal.username) {
+            var pic = localStorage.getItem('kss_pic_' + principal.username);
+            var avEl = document.getElementById('principal-avatar');
+            if (pic && avEl) avEl.innerHTML = '<img src="' + pic + '" alt="Principal" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+        }
+    }
+
+    // ── Our Teachers (replaces static cards if admin has set them) ─
+    var teachers = gc('teachers', null);
+    if (teachers && teachers.length) {
+        var fg = document.getElementById('faculty-grid');
+        if (fg) {
+            fg.innerHTML = teachers.filter(function(t){ return t.visible !== false; }).map(function (t) {
+                var pic = t.username ? localStorage.getItem('kss_pic_' + t.username) : null;
+                var avatarInner = pic
+                    ? '<img src="' + pic + '" alt="' + t.name + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">'
+                    : (t.name || '?').split(' ').map(function(w){return w[0];}).join('').slice(0,2);
+                return '<div class="faculty-card reveal-up">' +
+                    '<div class="faculty-avatar"><div class="faculty-avatar-inner">' + avatarInner + '</div></div>' +
+                    '<h4>' + (t.name || '') + '</h4>' +
+                    '<div class="role">' + (t.role || '') + '</div>' +
+                    '<p class="bio">' + (t.bio || '') + '</p>' +
+                    '<div class="quote">' + (t.quote || '') + '</div>' +
+                    '</div>';
+            }).join('');
+        }
+    }
+
+    // ── Contact ───────────────────────────────────────────────────
+    var contact = gc('contact', null);
+    if (contact) {
+        document.querySelectorAll('.contact-item').forEach(function (item) {
+            var h = item.querySelector('h3'), p = item.querySelector('p');
+            if (!h || !p) return;
+            var t = h.textContent.trim().toLowerCase();
+            if (t.includes('address') && contact.address) p.textContent = contact.address;
+            else if (t.includes('office') && contact.phone) p.textContent = contact.phone + (contact.hours ? ' · ' + contact.hours : '');
+            else if (t.includes('email') && contact.email) p.innerHTML = contact.email;
+        });
+    }
+
+    // ── Notices (notice board) ────────────────────────────────────
+    var notices = [];
+    try { notices = JSON.parse(localStorage.getItem('kss_notices') || '[]'); } catch(e) {}
+    var visibleNotices = notices.filter(function(n){ return n.hidden !== true; });
+    if (visibleNotices.length) {
+        var np = document.querySelector('.notice-panel');
+        if (np) {
+            np.querySelectorAll('.notice-row').forEach(function (r) { r.remove(); });
+            visibleNotices.slice(0, 6).forEach(function (n) {
+                var d;
+                try { d = n.date ? new Date(n.date) : new Date(n.createdAt); } catch(e) { d = new Date(); }
+                var day = ('0' + d.getDate()).slice(-2);
+                var mon = d.toLocaleDateString('en-GB', {month:'short'});
+                var pillMap = {urgent:'urgent', event:'event', acad:'acad', info:'event'};
+                var pillClass = pillMap[n.category] || 'event';
+                var catLabel  = n.category ? n.category.charAt(0).toUpperCase() + n.category.slice(1) : 'Notice';
+                var row = document.createElement('div');
+                row.className = 'notice-row';
+                row.innerHTML = '<div class="notice-date"><div class="day">' + day + '</div><div class="mon">' + mon + '</div></div>' +
+                    '<div class="notice-title"><span class="pill ' + pillClass + '">' + catLabel + '</span>' + (n.title || '') + '</div>';
+                np.appendChild(row);
+            });
+        }
+    }
+}());
+</script>
+</body>
+</html>
